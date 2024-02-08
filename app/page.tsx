@@ -5,6 +5,7 @@ import Profile from "./components/Profile/Profile";
 import Class from "./components/Class/Class";
 import { Payment } from "./components/Payment/Payment";
 import { Footer } from "./components/Footer/Footer";
+import { Course } from "./components/Course/Course";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           <Profile />
           <Class />
           <Payment />
+          <Course />
         </main>
         <Footer />
     </>
