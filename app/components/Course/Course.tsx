@@ -18,7 +18,7 @@ export const Course = () => {
           </div>
 
           <p className="Module__description">
-            In this module, you will learn about how to transform a website designed in Figma or photoshop into a working website. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript . At t he end of t hi s module, you wi l l be able to develop and deploy your own por t fol io webs i te where you wi l l showcase al l your projec ts you have completed dur ing your s tudy t ime at GCC. And of cour se, any ot her projec ts you complete on your own and would l i ke prospec t i ve employer s to know about . Happy coding.
+            In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.
           </p>
 
           <button className="Module__Topics">Show Topics</button>
