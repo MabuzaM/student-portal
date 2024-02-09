@@ -1,26 +1,34 @@
 import React from 'react';
-import './Navbar.css';
+import './Navbar.scss'
 
-export default function Navbar() {
+export const Navbar = () => {
   return (
     <nav className="Nav">
-      <ul className="Nav__list">
-        <li className="Nav__item">
-          <a href="#" className="Nav__link">Profile</a>
+      <ul className="Nav_list">
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Profile</a>
         </li>
 
-        <li className="Nav__item">
-          <a href="#" className="Nav__link">Classes</a>
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Dashboard</a>
         </li>
 
-        <li className="Nav__item">
-          <a href="#" className="Nav__link">Exams</a>
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Classes</a>
         </li>
 
-        <li className="Nav__item">
-          <a href="#" className="Nav__link">Admin</a>
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Timetable</a>
+        </li>
+
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Attendance</a>
+        </li>
+
+        <li className="Nav_item">
+          <a href="#" className="Nav_link">Exams</a>
         </li>
       </ul>
     </nav>
   );
-}
+};

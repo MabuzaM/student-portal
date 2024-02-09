@@ -1,0 +1,87 @@
+@import "../../utils/variables.scss";
+
+.ModulesList {
+  background-color: $accent-gray;
+  padding: 60px 30px;
+
+  &_controlWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &_title {
+    background-color: $main-orange;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    width: 50%;
+  }
+}
+
+.ModuleInfo {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 166.52%;
+  letter-spacing: 0.14em;
+  display: flex;
+  gap: 42px;
+  padding: 14px 78px;
+  background-color: #fff;
+  border-radius: 20px;
+
+  &_wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.14em;
+  }
+
+  &_instructor {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.14em;
+  }
+
+  &_details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+    width: 90%;
+  }
+
+  &_progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    border-radius: 100%;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #fff;
+    background-color: $main-orange;
+  }
+
+  &_summary {
+    margin-bottom: 36px;
+  }
+
+  &_dropdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_arrow {
+    height: 8px;
+  }
+}

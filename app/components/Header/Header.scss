@@ -1,0 +1,41 @@
+@import "../../utils/variables.scss";
+
+h1 {
+  margin: 0;
+}
+
+.Header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: $main-orange;
+  padding: 4px 94px;
+  box-shadow: 0px 11px 16px 4px rgba(0, 0, 0, 0.14);
+  min-width: 100vw;
+
+  &_logo {
+    height: 40px;
+    width: 40px;
+    pointer-events: none;
+  }
+
+  &_title {
+    text-transform: uppercase;
+  }
+
+  &_profile-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    min-height: 40px;
+    background-color: $main-orange;
+    border-radius: 50%;
+  }
+
+  &_profile {
+    height: 30px;
+  }
+}

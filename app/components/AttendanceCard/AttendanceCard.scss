@@ -1,0 +1,75 @@
+@import "../../utils/variables.scss";
+
+.Card {
+  border: 1px solid $main-orange;
+  border-radius: 20px;
+  padding: 20px 16px;
+  display: flex;
+  gap: 32px;
+  flex-basis: 25%;
+  flex-direction: column;
+  align-items: center;
+
+  &_title {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    align-self: flex-start
+  }
+
+  &_image {
+    width: 150px;
+    height: 150px;
+    background-color: #e2e2e2;
+    margin-bottom: 20px;
+  }
+
+  &_button {
+    margin-top: 16px;
+  }
+}
+
+.AttendanceCard {
+  &_table {
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  
+    &-header {
+      background-color: $main-orange;
+      font-weight: 700;
+      line-height: 16px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &-head {
+      padding: 26px 4px;
+    }
+  
+    &-row {
+      border-bottom: 1px solid $main-orange;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-data--present {
+      color: $text-green;
+    }
+
+    &-data--absent {
+      color: $text-red;
+    }
+  }
+
+  &_link {
+    font-size: 11px;
+    line-height: 13px;
+    color: $link-blue;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

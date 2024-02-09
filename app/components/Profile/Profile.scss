@@ -1,0 +1,37 @@
+@import "../../utils/variables.scss";
+
+.Profile {
+  background-color: $accent-gray;
+  border-radius: 20px;
+  box-shadow: (0px 10px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  align-items: center;
+  min-width: 100vw;
+  margin-bottom: 40px;
+  gap: 14px;
+  padding: 22px 95px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+
+  &_photoBG {
+    background-color: $main-orange;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 70px;
+  }
+
+  &_photo {
+    max-width: 200px;
+  }
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+}

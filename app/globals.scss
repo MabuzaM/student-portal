@@ -1,0 +1,39 @@
+p, h1, h2, hr, h5, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  &_main {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 94px;
+    margin-bottom: 40px;
+    min-width: 100vw;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

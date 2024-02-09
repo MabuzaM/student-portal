@@ -1,25 +1,41 @@
-import LoginForm from "./components/LoginForm/LoginForm";
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
-import Class from "./components/Class/Class";
-import { Payment } from "./components/Payment/Payment";
-import { Footer } from "./components/Footer/Footer";
-import { Course } from "./components/Course/Course";
+import './globals.scss';
+import { AttendanceCard } from './components/AttendanceCard/AttendanceCard';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { IcassCard } from './components/IcassCard/IcassCard';
+import { ModulesCard } from './components/ModulesCard/ModulesCard';
+import { ModulesList } from './components/ModulesList/ModulesList';
+import { Navbar } from './components/Navbar/Navbar';
+import { Profile } from './components/Profile/Profile';
+import { TimetableCard } from './components/TimetableCard/TimetableCard';
+import { Topic } from './components/Topic/Topic';
+import { TopicList } from './components/TopicList/TopicList';
 
-export default function Home() {
+
+function Home() {
   return (
-    <>
-        <Header />
-        <Navbar />
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <LoginForm />
-          <Profile />
-          <Class />
-          <Payment />
-          <Course />
-        </main>
-        <Footer />
-    </>
+    <div className="App">
+      <Header />
+      <Navbar />
+      <section className="hero">
+        <Profile />
+      </section>
+
+      <main className="Main App_main">
+        <ModulesCard />
+
+        <TimetableCard />
+
+        <IcassCard />
+
+        <AttendanceCard />
+      </main>
+      <Topic />
+      <ModulesList />
+      <TopicList />
+      <Footer />
+    </div>
   );
 }
+
+export default Home;
