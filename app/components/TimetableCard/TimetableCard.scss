@@ -1,7 +1,7 @@
 @import "../../utils/variables.scss";
 
 .Card {
-  border: 1px solid $main-orange;
+  border: 1px solid $main-blue;
   border-radius: 20px;
   padding: 20px 16px;
   display: flex;
@@ -15,9 +15,9 @@
   }
 
   &_image {
-    width: 150px;
-    height: 150px;
-    background-color: #e2e2e2;
+    //width: 150px;
+    //height: 150px;
+    //background-color: #e2e2e2;
     margin-bottom: 20px;
   }
 
@@ -29,14 +29,14 @@
 .Table {
   border-collapse: collapse;
   &_header {
-    background-color: $main-orange;
+    background-color: $main-blue;
     font-weight: 700;
     font-size: 24px;
     line-height: 39px;
   }
 
   &_row {
-    border-bottom: 1px solid $main-orange;
+    border-bottom: 1px solid $main-blue;
     font-weight: 300;
     font-size: 12px;
     line-height: 15px;

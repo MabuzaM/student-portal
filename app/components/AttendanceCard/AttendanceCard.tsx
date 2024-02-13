@@ -1,6 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 import './AttendanceCard.scss';
-import { todayDate } from '../../helperFunctions.js';
+//import attendance from './assets/attendace.png';
+//import { todayDate } from '../../helperFunctions.js';
 // import Card from 'react-bootstrap/Card';
 // import CardGroup from 'react-bootstrap/CardGroup';
 
@@ -9,9 +11,11 @@ export const AttendanceCard = () => {
    <article className="Card AttendanceCard">
       <h2 className="Card_title">Class Attendance</h2>
 
-      <div className="Card_image">image</div>
+      <div className="Card_image">
+        Image
+      </div>
 
-      <h2 className="AttendanceCard_title">{todayDate}</h2>
+      <h2 className="AttendanceCard_title"></h2>
 
       <table className="AttendanceCard_table">
         <thead className="AttendanceCard_table-header">

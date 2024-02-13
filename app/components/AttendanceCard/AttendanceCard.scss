@@ -1,7 +1,7 @@
 @import "../../utils/variables.scss";
 
 .Card {
-  border: 1px solid $main-orange;
+  border: 1px solid $main-blue;
   border-radius: 20px;
   padding: 20px 16px;
   display: flex;
@@ -36,7 +36,7 @@
     flex-direction: column;
   
     &-header {
-      background-color: $main-orange;
+      background-color: $main-blue;
       font-weight: 700;
       line-height: 16px;
       text-transform: uppercase;
@@ -49,7 +49,7 @@
     }
   
     &-row {
-      border-bottom: 1px solid $main-orange;
+      border-bottom: 1px solid $main-blue;
       display: flex;
       justify-content: space-between;
     }

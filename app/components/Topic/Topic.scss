@@ -12,7 +12,7 @@
   }
 
   &_title {
-    background-color: $main-orange;
+    background-color: $main-blue;
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
@@ -33,7 +33,7 @@
     width: 70%;
     background-color: #fff;
     height: 400px;
-    border-right: 1px solid $main-orange;
+    border-right: 1px solid $main-blue;
 
     &--video {
       width: 100%;
@@ -48,8 +48,8 @@
     padding: 0 26px;
 
     &--title {
-      color: $main-orange;
-      border-bottom: 1px solid $main-orange;
+      color: $main-blue;
+      border-bottom: 1px solid $main-blue;
       padding-bottom: 14px;
     }
   }

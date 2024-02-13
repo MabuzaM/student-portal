@@ -1,5 +1,7 @@
 import React from 'react';
 import './TimetableCard.scss';
+import Image from 'next/image';
+import timetable from './assets/timetable.png';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
@@ -8,7 +10,9 @@ export const TimetableCard = () => {
    <article className="Card">
       <h2 className="Card_title">Timetable</h2>
 
-      <div className="Card_image">image</div>
+      <div className="Card_image">
+        <Image src={timetable} alt='timetable icon' width={150}/>      
+      </div>
 
       <table className="Table Card_table">
         <thead className="Table_header">

@@ -1,7 +1,8 @@
 import React from 'react';
 import './ModulesList.scss';
+import Image from 'next/image';
 import arrow from './assets/dropdownArrow.png';
-import { TopicList } from '../TopicList/TopicList.tsx';
+import { TopicList } from '../TopicList/TopicList';
 
 export const ModulesList = () => {
   return (
@@ -32,7 +33,7 @@ export const ModulesList = () => {
           </div>
 
           <p className="ModuleInfo_summary">
-            In this module, you will learn about how to transform a website designed in Figma or photoshop into a working website. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at GCC. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.
+            In this module, you will learn about how to transform a website designed in Figma or photoshop into a working website. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.
           </p>
 
           <div className="ModuleInfo_dropdown">
@@ -40,7 +41,7 @@ export const ModulesList = () => {
               Show Topics
             </p>
 
-            <img
+            <Image
               src={arrow}
               alt="drop down"
               className="ModuleInfo_arrow"

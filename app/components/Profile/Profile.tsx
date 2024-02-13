@@ -1,14 +1,16 @@
 import React from 'react';
 import './Profile.scss';
+import Image from 'next/image';
 import profile_picture from './assets/profilePicture.png';
 
 export const Profile = () => {
   return (
     <article className="Profile">
       <div className="Profile_photoBG">
-        <img
+        <Image
           src={profile_picture}
           alt="profile"
+          width={200}
           className="Profile_photo"
         />
       </div>

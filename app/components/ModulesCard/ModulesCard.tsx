@@ -1,5 +1,7 @@
 import React from 'react';
 import './ModulesCard.scss';
+import Image from 'next/image';
+import modules from './assets/modules-transparent.png';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
@@ -8,7 +10,9 @@ export const ModulesCard = () => {
    <article className="Card">
       <h2 className="Card_title">Modules</h2>
 
-      <div className="Card_image">image</div>
+      <div className="Card_image">
+        <Image src={modules} alt='modules icon' width={150}/>
+      </div>
 
       <div className="Module">
         <h5 className="Module_name">Computer Architecture</h5>

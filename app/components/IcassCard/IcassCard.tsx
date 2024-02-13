@@ -1,5 +1,7 @@
 import React from 'react';
 import './IcassCard.scss';
+import Image from 'next/image';
+ import exam from './assets/exams.png';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
@@ -8,7 +10,9 @@ export const IcassCard = () => {
    <article className="Card IcassCard">
       <h2 className="Card_title">Assessments</h2>
 
-      <div className="Card_image">image</div>
+      <div className="Card_image">
+        <Image src={exam} alt='icass icon' width={150} />
+      </div>
 
       <div className="Icass">
         <h2 className="Icass_title">Icass</h2>
