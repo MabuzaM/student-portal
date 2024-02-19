@@ -1,27 +1,35 @@
 import React from 'react';
 import './TopicList.scss';
-import axios from 'axios';
 
-export const TopicList = () => {
+export const TopicList = ({moduleTopics = []}) => {
   return (
     <article className="TopicList">
       <table className="TopicList_table">
         <tbody>
-          <tr className="TopicList_row">
-            <div className="TopicList_name">
-              <td className="TopicList_column">1</td>
-              <td className="TopicList_column">Introduction to HTML and the Web</td>
-            </div>
+          {
+            moduleTopics.map((moduleTopic: { topic: any; progress: any; }, index: number) => {
 
-            <div className="TopicList_progress">
-              <td className="TopicList_column">100%</td>
-              <td className="TopicList_column">
-                <div className="TopicList_color TopicList_progress--green"></div>
-              </td>
-            </div>
-          </tr>
+              const { topic, progress } = moduleTopic;
+              return (
+                <tr className="TopicList_row" key={index}>
+                  <div className="TopicList_name">
+                    <td className="TopicList_column">{index++}</td>
+                    <td className="TopicList_column">{topic}</td>
+                   </div>
 
-          <tr className="TopicList_row">
+                  <div className="TopicList_progress">
+                    <td className="TopicList_column">{progress}</td>
+                    <td className="TopicList_column">
+                      <div className="TopicList_color TopicList_progress--green"></div>
+                    </td>
+                  </div>
+                </tr>
+              );
+              })
+          }
+          
+
+          {/* <tr className="TopicList_row">
             <div className="TopicList_name">
               <td className="TopicList_column">2</td>
               <td className="TopicList_column">Tags, Attributes and Elements</td>
@@ -61,7 +69,7 @@ export const TopicList = () => {
                 <div className="TopicList_color TopicList_progress--red"></div>
               </td>
             </div>
-          </tr>      
+          </tr>       */}
         </tbody>   
       </table>
     </article>

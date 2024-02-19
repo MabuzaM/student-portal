@@ -1,3 +1,4 @@
+'use client'
 import './globals.scss';
 import { AttendanceCard } from './components/AttendanceCard/AttendanceCard';
 import { Footer } from './components/Footer/Footer';
