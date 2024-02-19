@@ -4,14 +4,14 @@
   background-color: $accent-gray;
   padding: 60px 30px;
 
-  &_headerWrapper {
+  &__headerWrapper {
     display: flex;
     justify-content: space-between;
     gap: 20px;
     margin-bottom: 40px;
   }
 
-  &_title {
+  &__title, &__lesson {
     background-color: $main-blue;
     font-weight: 700;
     font-size: 24px;
@@ -19,17 +19,17 @@
     width: 50%;
   }
 
-  &_buttons {
+  &__buttons {
     display: flex;
     justify-content: flex-start;
   }
 
-  &_contentWrapper {
+  &__contentWrapper {
     display: flex;
     gap: 5%;
   }
 
-  &_content {
+  &__content {
     width: 70%;
     background-color: #fff;
     height: 400px;
@@ -41,7 +41,7 @@
     }
   }
 
-  &_playlist {
+  &__playlist {
     width: 25%;
     height: 400px;
     background-color: #fff;

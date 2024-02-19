@@ -15,10 +15,21 @@
         {
           "topic": "Introduction to HTML and the Web",
           "topicProgress": 100,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
-            "topicVideoLink": "Link goes here"
-          }],
+          "topicLessons": [
+            {
+              "topicLessonTitle": "Choosing an IDE or Text Editor",
+              "topicVideoLink": "Link goes here"
+            },
+            {
+              "topicLessonTitle": "How the internet works",
+              "topicVideoLink": "Link goes here"
+            },
+            {
+              "topicLessonTitle": "HTML5 Syntax and how it differs from HTML ",
+              "topicVideoLink": "Link goes here"
+            }
+        
+        ],
           "topicNotes": {
             "externalLinks": [{
               "link": "Notes link goes here"
@@ -30,8 +41,8 @@
         {
           "topic": "HTML Elements",
           "topicProgress": 60,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -45,8 +56,8 @@
         {
           "topic": "Semantic tags",
           "topicProgress": 10,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -60,8 +71,8 @@
         {
           "topic": "HTML Comment",
           "topicProgress": 0,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -84,8 +95,8 @@
         {
           "topic": "Introduction to CSS3 and Styling",
           "topicProgress": 0,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -99,8 +110,8 @@
         {
           "topic": "Element Selectors",
           "topicProgress": 60,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -114,8 +125,8 @@
         {
           "topic": "Class Selectors",
           "topicProgress": 10,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -129,8 +140,8 @@
         {
           "topic": "ID Selectors",
           "topicProgress": 0,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -154,8 +165,8 @@
         {
           "topic": "Introduction to JavaScript and interactions",
           "topicProgress": 100,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -169,8 +180,8 @@
         {
           "topic": "JavaScript Syntax, Variables",
           "topicProgress": 60,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -184,8 +195,8 @@
         {
           "topic": "Datatypes",
           "topicProgress": 10,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
@@ -199,8 +210,8 @@
         {
           "topic": "Basic Operators",
           "topicProgress": 0,
-          "topicPlaylist": [{
-            "topicVideoTitle": "Choosing an IDE or Text Editor",
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
             "topicVideoLink": "Link goes here"
           }],
           "topicNotes": {
