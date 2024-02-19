@@ -29,50 +29,57 @@ export const ModulesList = () => {
             courseManager: string,
             courseProgress: number
           }) => {
+            const { courseName, courseModules } = course;
             return (
               <>
                 <div className="ModuleList_controlWrapper" key={course.courseName}>
                   <div className="ModulesList_title">
                     {
-                      course.courseName
+                      courseName
                     }
                   </div>
                 </div>
 
                 {
-            course.courseModules.map((courseModule) => (
-              
-              courseModule.moduleTopics.map((moduleTopic, index: any) => {
-                const { topic, progress } = moduleTopic;
-                return (
-                  <>
-                      <div className="ModuleInfo">
+                  courseModules.map((courseModule) => {
+                    const {
+                      moduleName,
+                      moduleTutor,
+                      moduleInstructor,
+                      moduleSummary,
+                      moduleProgress,
+                      moduleTopics
+                    } = courseModule;
+
+                    return(
+                      <div className="ModuleInfo" key={moduleName}>
                         <div className="ModuleInfo_progress">
                           {
-                            courseModule.moduleProgress
+                            moduleProgress
                           }
                         </div>
-      
+    
                         <div className="ModuleInfo_details">
                           <div className="ModuleInfo_wrapper">
                             <p className="ModuleInfo_name">
                               {
-                                courseModule.moduleName
+                                moduleName
                               }
                             </p>
+
                             <p className="ModuleInfo_instructor">
                               {
-                                courseModule.moduleInstructor
+                                moduleInstructor
                               }
                             </p>
                           </div>
       
                           <p className="ModuleInfo_summary">
                             {
-                              courseModule.moduleSummary
+                              moduleSummary
                             }
                           </p>
-      
+
                           <div className="ModuleInfo_dropdown">
                             <p className="ModuleInfo_text">
                               Show Topics
@@ -83,19 +90,22 @@ export const ModulesList = () => {
                               alt="drop down"
                               className="ModuleInfo_arrow" />
                           </div>
-                          <TopicList moduleTopics={courseModule.moduleTopics}/>         
-                        </div>
+                          <TopicList moduleTopics={moduleTopics} /> 
+
+                        </div>        
                       </div>
-                    </>
-                  );
-              })
-            ))
-                }         
+                    );
+                  })
+                }
               </>
             )
-            })
+          }
+        )
       }
-      
     </article>
-  );
-};
+  )
+}
+
+
+
+

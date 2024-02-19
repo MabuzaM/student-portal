@@ -1,0 +1,210 @@
+{
+  "courseId": "webdev",
+  "courseName": "Web Development",
+  "courseManager": "M Ncube",
+  "courseDuration": 6,
+  "courseSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+  "courseModules": [
+    {
+      "moduleName": "HTML5",
+      "moduleInstructor": "M Moyo",
+      "moduleTutor": "B Sibanda",
+      "moduleProgress": 0,
+      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to HTML and the Web",
+          "topicProgress": 100,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "HTML Elements",
+          "topicProgress": 60,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Semantic tags",
+          "topicProgress": 10,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "HTML Comment",
+          "topicProgress": 0,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        }
+      ]
+    },
+
+    {
+      "moduleName": "CSS3",
+      "moduleInstructor": "M Moyo",
+      "moduleTutor": "B Sibanda",
+      "moduleProgress": 0,
+      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to CSS3 and Styling",
+          "topicProgress": 0,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Element Selectors",
+          "topicProgress": 60,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Class Selectors",
+          "topicProgress": 10,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }
+        },
+
+        {
+          "topic": "ID Selectors",
+          "topicProgress": 0,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "moduleName": "JavaScript",
+      "moduleInstructor": "M Moyo",
+      "moduleTutor": "B Sibanda",
+      "moduleProgress": 0,
+      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to JavaScript and interactions",
+          "topicProgress": 100,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "JavaScript Syntax, Variables",
+          "topicProgress": 60,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Datatypes",
+          "topicProgress": 10,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Basic Operators",
+          "topicProgress": 0,
+          "topicPlaylist": {
+            "topicVideoTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          },
+          "topicNotes": {
+            "externalLinks": {
+              "link": "Notes link goes here"
+            },
+            "notes": "Notes text goes here"
+          }
+        }
+      ]
+    }
+  ]
+}
