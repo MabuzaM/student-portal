@@ -24,14 +24,22 @@ export const ModulesList = () => {
     <article className="ModulesList">
       {
         courses.map((course: Course) => {
-            const { courseName, courseModules } = course;
+            const { courseName, courseModules, courseSummary, courseProgress } = course;
 
             return (
               <>
-                <div className="ModuleList_controlWrapper" key={courseName}>
-                  <div className="ModulesList_title">
+                <div className="Course_controlWrapper" key={courseName}>
+                  <div className="Course_title">
                     {
                       courseName
+                    }
+
+                    <div className="Course_progress">{courseProgress}%</div>
+                  </div>
+
+                  <div className="Course_summary">
+                    {
+                      courseSummary
                     }
                   </div>
                 </div>

@@ -5,9 +5,9 @@ export const Footer = () => {
   return (
     <footer className="Footer">
       <p>GET IN TOUCH </p>
-      <p>Tel: 011 403 3068</p>
-      <p>Email: info@gcc-ed.com</p>
-      <p>Gauteng City College 33 Hoofd Street, Forum VI, BraamPark, Braamfontein, Johannesburg</p>
+      <p>Tel: 0664 920 102</p>
+      <p>Email: info@asheracademy.com</p>
+      <p>Asher Academy 42 Steyn Road, President Park, Midrand, Johannesburg</p>
     </footer>
   );
 };

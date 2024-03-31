@@ -3,14 +3,16 @@
   "courseName": "Web Development",
   "courseManager": "M Ncube",
   "courseDuration": 6,
-  "courseSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+  "courseProgress": 50,
+  "courseSummary": "In this course, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding!!",
+  "course_faculty": "Information technology",
   "courseModules": [
     {
       "moduleName": "HTML5",
-      "moduleInstructor": "M Moyo",
-      "moduleTutor": "B Sibanda",
+      "moduleInstructor": "M Ncube",
+      "moduleTutor": "M Ncube",
       "moduleProgress": 0,
-      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleSummary": "This is an introductory module for the web development course, mainly for creating the structure of your web application. In this module, you will learn about how to transform a website designed in Figma or photoshop or any other web design technology into a working static web application. There is a lot of typing here, you must be a fast typer, hope you took your typing speed drills. You will enjoy learning how to use the modern standard, HTML5 for creating webpages. We will teach you how to create webpages and join them together to make a website or web application from sratch. We are also going to teach the industry standards and good practices you should follow when writing html markup. Happy coding!!",
       "moduleTopics": [
         {
           "topic": "Introduction to HTML and the Web",
@@ -90,7 +92,7 @@
       "moduleInstructor": "M Moyo",
       "moduleTutor": "B Sibanda",
       "moduleProgress": 0,
-      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleSummary": "Now that you are able to create the structure of your web application and add some content to it. In this module, we will teach you how to use CSS3 for adding styles to your webpages. You will learn how to make your web application look nice and presentable. We will also introduce you to SASS, which is a compiled css. Happy coding.",
       "moduleTopics": [
         {
           "topic": "Introduction to CSS3 and Styling",
@@ -160,7 +162,7 @@
       "moduleInstructor": "M Moyo",
       "moduleTutor": "B Sibanda",
       "moduleProgress": 0,
-      "moduleSummary": "In this module, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding.",
+      "moduleSummary": "You are now able to create a complete web application that you can show to your friends or even the whole world, Yeee!!. Comeon your web application needs some interactivity. JavaScript is the guy to help you with that. We will teach you javascript from scratch and how you can use it to add some interactivity to your web application. Javascript will also be the foundation you need to learn modern web development frameworks like ReactJS, NextJS, ExpressJS and many more. Happy coding!.",
       "moduleTopics": [
         {
           "topic": "Introduction to JavaScript and interactions",

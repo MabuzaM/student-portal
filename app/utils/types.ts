@@ -26,7 +26,8 @@ export type Course = {
   courseDuration: number,
   courseManager: string,
   courseModules: CourseModule[],
-  courseFaculty: string
+  courseFaculty: string,
+  courseProgress: number
 }
 
 export type Attendance = {
