@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './IcassCard.scss';
 import Image from 'next/image';
  import exam from './assets/exams.png';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import axios from 'axios';
+import { Assessment } from '@/app/utils/types';
 
 export const IcassCard = () => {
+  const [assessments, setAssessments] = useState<Assessment[]>([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/getAssessments')
+      .then((assessment) => (
+        setAssessments(assessment.data)
+      ))
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
   return (
    <article className="Card IcassCard">
       <h2 className="Card_title">Assessments</h2>
@@ -20,39 +33,24 @@ export const IcassCard = () => {
         <table className="Icass_table">
           <thead className="Icass_table-header">
             <th  className="Icass_table-head">Module</th>
-            <th  className="Icass_table-head">dp1</th>
-            <th  className="Icass_table-head">dp2</th>
-            <th  className="Icass_table-head">dp3</th>
+            <th  className="Icass_table-head">Assignment</th>
+            <th  className="Icass_table-head">Test</th>
+            <th  className="Icass_table-head">Internal Exam</th>
           </thead>
 
           <tbody className="Icass_table-body">
-            <tr className="Icass_table-row">
-              <td className="Icass_data Icass_data--module"> Module1 </td>
-              <td className="Icass_data Icass_data--fail"> A </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-            </tr>
-
-            <tr className="Icass_table-row">
-              <td className="Icass_data Icass_data--module"> Module2 </td>
-              <td className="Icass_data Icass_data--pass"> 76 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-            </tr>
-
-            <tr className="Icass_table-row">
-              <td className="Icass_data Icass_data--module"> Module3 </td>
-              <td className="Icass_data Icass_data--fail"> 39 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-            </tr>
-
-            <tr className="Icass_table-row">
-              <td className="Icass_data Icass_data--module"> Module4 </td>
-              <td className="Icass_data Icass_data--pass"> 76 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-              <td className="Icass_data Icass_data--fail"> 0 </td>
-            </tr>
+            {
+              assessments.map((assessment) => {
+                return(
+                  <tr className="Icass_table-row" key={assessment.module}>
+                    <td className="Icass_data Icass_data--module"> {assessment.module} </td>
+                    <td className="Icass_data Icass_data--fail"> {assessment.assignment} </td>
+                    <td className="Icass_data Icass_data--fail"> {assessment.test} </td>
+                    <td className="Icass_data Icass_data--fail"> {assessment.internal_exam} </td>
+                  </tr>
+                )
+              })
+            }
           </tbody>
         </table>
 

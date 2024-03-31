@@ -49,3 +49,10 @@ export type Student = {
     password: string,
     picture: string
 }
+
+export type Assessment = {
+  module: string,
+  assignment: number,
+  test: number,
+  internal_exam: number
+}

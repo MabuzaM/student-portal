@@ -12,7 +12,7 @@ export const AttendanceCard = () => {
   const [attendance, setAttendance] = useState<Attendance[]>([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:3001/getAttendance')
+    axios.get('http://127.0.0.1:3001/getAttendances')
       .then((attendance) => {
         setAttendance(attendance.data)
     })
@@ -40,8 +40,8 @@ export const AttendanceCard = () => {
             attendance?.map((moduleRow: any) => {
               console.log(attendance);
               return (
-                <tr className="AttendanceCard_table-row" key={moduleRow.module}>
-                  <td className="AttendanceCard_table-data">{moduleRow.module}</td>
+                <tr className="AttendanceCard_table-row" key={moduleRow.subject}>
+                  <td className="AttendanceCard_table-data">{moduleRow.subject}</td>
                   <td className="AttendanceCard_table-data">{moduleRow.time}</td>
                   <td className="AttendanceCard_table-data AttendanceCard_table-data--present">{moduleRow.attendance}</td>
                 </tr>

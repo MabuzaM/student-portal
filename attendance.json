@@ -1,15 +1,7 @@
-[{
-    "module": "HTML4",
-    "time": "1300",
-    "attendance": "P"
-  },
+
   {
     "module": "CSS3",
     "time": "0800",
     "attendance": "P"
-  },
-  {
-    "module": "JavaScript",
-    "time": "1100",
-    "attendance": "P"
-  }]
+  }
+
