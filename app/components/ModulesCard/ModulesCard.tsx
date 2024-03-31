@@ -3,9 +3,11 @@ import './ModulesCard.scss';
 import Image from 'next/image';
 import modulesIcon from './assets/modules-transparent.png';
 import axios from 'axios';
+import { Course } from '@/app/utils/types';
+import { Courses } from '@/app/courses';
 
 export const ModulesCard = () => {
-  const [courses, setCourses] = useState([]);
+ const [courses, setCourses] = useState([]);
 
   useEffect (() => {
     axios.get('http://127.0.0.1:3001/getCourses')
@@ -26,7 +28,7 @@ export const ModulesCard = () => {
       </div>
 
       {
-          courses.map((course: Object) => (
+          courses.map((course: Course) => (
             course.courseModules.map((courseModule: { moduleName: string; moduleInstructor: string; moduleTutor: string; }, index: React.Key) => {
               return (
                 <div className="Module" key={index}>

@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TopicList.scss';
+import { Course, CourseModule, ModuleTopic } from '@/app/utils/types';
+import axios from 'axios';
 
-export const TopicList = ({moduleTopics = []}) => {
+export const TopicList = () => {
+  const [courses, setCourses] = useState([]);
+  const [moduleTopics, setModuleTopics] = useState<ModuleTopic[]>([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:3001/getCourses')
+    .then((courses) => {
+      setCourses(courses.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
+    courses.map((course: Course) => {
+      course.courseModules.map((courseModule: CourseModule) => {
+        setModuleTopics([...courseModule.moduleTopics]);
+      })
+    })
+  }, [courses, moduleTopics]);
+  
   return (
     <article className="TopicList">
       <table className="TopicList_table">
         <tbody>
           {
-            moduleTopics.map((moduleTopic: { topic: any; progress: any; }, index: number) => {
+            moduleTopics.map((moduleTopic: ModuleTopic, index: number) => {
 
-              const { topic, progress } = moduleTopic;
+              const { topic, topicProgress } = moduleTopic;
+              console.log(courses);
               return (
                 <tr className="TopicList_row" key={index}>
                   <div className="TopicList_name">
@@ -18,7 +40,7 @@ export const TopicList = ({moduleTopics = []}) => {
                    </div>
 
                   <div className="TopicList_progress">
-                    <td className="TopicList_column">{progress}</td>
+                    <td className="TopicList_column">{topicProgress}</td>
                     <td className="TopicList_column">
                       <div className="TopicList_color TopicList_progress--green"></div>
                     </td>
@@ -27,7 +49,7 @@ export const TopicList = ({moduleTopics = []}) => {
               );
               })
           }
-          
+
 
           {/* <tr className="TopicList_row">
             <div className="TopicList_name">

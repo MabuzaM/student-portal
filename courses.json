@@ -18,15 +18,15 @@
           "topicLessons": [
             {
               "topicLessonTitle": "Choosing an IDE or Text Editor",
-              "topicVideoLink": "Link goes here"
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
             },
             {
               "topicLessonTitle": "How the internet works",
-              "topicVideoLink": "Link goes here"
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
             },
             {
               "topicLessonTitle": "HTML5 Syntax and how it differs from HTML ",
-              "topicVideoLink": "Link goes here"
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
             }
         
         ],
@@ -211,8 +211,8 @@
           "topic": "Basic Operators",
           "topicProgress": 0,
           "topicLessons": [{
-            "topicLessonTitle": "Choosing an IDE or Text Editor",
-            "topicVideoLink": "Link goes here"
+            "topicLessonTitle": "Working with arithmetic operators",
+            "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
           }],
           "topicNotes": {
             "externalLinks": [{

@@ -5,9 +5,11 @@ import Image from 'next/image';
 import arrow from './assets/dropdownArrow.png';
 import { TopicList } from '../TopicList/TopicList';
 import axios from 'axios';
+import { Course, CourseModule, ModuleTopic } from '@/app/utils/types';
 
 export const ModulesList = () => {
    const [courses, setCourses] = useState([]);
+
   useEffect(() => {
     axios.get('http://127.0.0.1:3001/getCourses')
     .then((courses) => {
@@ -21,18 +23,12 @@ export const ModulesList = () => {
   return (
     <article className="ModulesList">
       {
-        courses.map((course: 
-          { 
-            courseName: string,
-            courseModules: { map: (arg0: (courseModule: any) => void) => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; },
-            courseSummary: string,
-            courseManager: string,
-            courseProgress: number
-          }) => {
+        courses.map((course: Course) => {
             const { courseName, courseModules } = course;
+
             return (
               <>
-                <div className="ModuleList_controlWrapper" key={course.courseName}>
+                <div className="ModuleList_controlWrapper" key={courseName}>
                   <div className="ModulesList_title">
                     {
                       courseName
@@ -41,7 +37,7 @@ export const ModulesList = () => {
                 </div>
 
                 {
-                  courseModules.map((courseModule) => {
+                  courseModules.map((courseModule: CourseModule) => {
                     const {
                       moduleName,
                       moduleTutor,
@@ -90,7 +86,34 @@ export const ModulesList = () => {
                               alt="drop down"
                               className="ModuleInfo_arrow" />
                           </div>
-                          <TopicList moduleTopics={moduleTopics} /> 
+                          <article className="TopicList">
+                            <table className="TopicList_table">
+                              <tbody>
+                                {
+                                  moduleTopics.map((moduleTopic: ModuleTopic, index: number) => {
+
+                                    const { topic, topicProgress } = moduleTopic;
+                                    console.log(courses);
+                                    return (
+                                      <tr className="TopicList_row" key={index}>
+                                        <div className="TopicList_name">
+                                          <td className="TopicList_column">{index++}</td>
+                                          <td className="TopicList_column">{topic}</td>
+                                        </div>
+
+                                        <div className="TopicList_progress">
+                                          <td className="TopicList_column">{topicProgress}</td>
+                                          <td className="TopicList_column">
+                                            <div className="TopicList_color TopicList_progress--green"></div>
+                                          </td>
+                                        </div>
+                                      </tr>
+                                    );
+                                    })
+                                }
+                              </tbody>   
+                            </table>
+                          </article>
 
                         </div>        
                       </div>
