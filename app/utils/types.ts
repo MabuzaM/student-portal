@@ -19,6 +19,19 @@ export type CourseModule = {
   moduleTopics: ModuleTopic[]
 }
 
+export type Lesson = {
+  lesson_number: number,
+  lesson_time: string,
+  subject: string,
+  teacher: string,
+  classroom: string
+}
+
+export type Timetable = {
+  day: string,
+  lessons: Lesson[]
+}
+
 export type Course = {
   courseId: string,
   courseName: string,
@@ -27,7 +40,8 @@ export type Course = {
   courseManager: string,
   courseModules: CourseModule[],
   courseFaculty: string,
-  courseProgress: number
+  courseProgress: number,
+  courseTimetable: Timetable[]
 }
 
 export type Attendance = {

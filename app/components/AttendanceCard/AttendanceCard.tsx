@@ -17,7 +17,7 @@ export const AttendanceCard = () => {
         setAttendance(attendance.data)
     })
     .catch((err) => {console.log(err);})
-  }, [attendance])
+  }, [])
   return (
    <article className="Card AttendanceCard">
       <h2 className="Card_title">Class Attendance</h2>
@@ -30,15 +30,16 @@ export const AttendanceCard = () => {
 
       <table className="AttendanceCard_table">
         <thead className="AttendanceCard_table-header">
-          <th  className="AttendanceCard_table-head">Module</th>
-          <th  className="AttendanceCard_table-head">Time</th>
-          <th  className="AttendanceCard_table-head">P/A</th>
+          <tr>
+            <th  className="AttendanceCard_table-head">Module</th>
+            <th  className="AttendanceCard_table-head">Time</th>
+            <th  className="AttendanceCard_table-head">P/A</th>
+          </tr>
         </thead>
 
         <tbody className="AttendanceCard_table-body">
           {
             attendance?.map((moduleRow: any) => {
-              console.log(attendance);
               return (
                 <tr className="AttendanceCard_table-row" key={moduleRow.subject}>
                   <td className="AttendanceCard_table-data">{moduleRow.subject}</td>
@@ -48,19 +49,6 @@ export const AttendanceCard = () => {
               )
             })
           }
-
-
-          {/* <tr className="AttendanceCard_table-row">
-            <td className="AttendanceCard_table-data"> Module1 </td>
-            <td className="AttendanceCard_table-data"> 1400 </td>
-            <td className="AttendanceCard_table-data AttendanceCard_table-data--present"> P </td>
-          </tr>
-
-          <tr className="AttendanceCard_table-row">
-            <td className="AttendanceCard_table-data"> Module1 </td>
-            <td className="AttendanceCard_table-data"> 1500 </td>
-            <td className="AttendanceCard_table-data AttendanceCard_table-data--absent"> A </td>
-          </tr> */}
         </tbody>
       </table>
 

@@ -5,7 +5,90 @@
   "courseDuration": 6,
   "courseProgress": 50,
   "courseSummary": "In this course, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding!!",
-  "course_faculty": "Information technology",
+  "courseFaculty": "Information technology",
+    "courseTimetable": [
+      {
+        "day": "Monday",
+        "lessons": [
+          {
+            "lesson_number": 1,
+            "lesson_time": "09:00 AM",
+            "subject": "Mathematics",
+            "teacher": "Mr. Smith",
+            "classroom": "Room A101"
+          },
+          {
+            "lesson_number": 2,
+            "lesson_time": "10:00 AM",
+            "subject": "English",
+            "teacher": "Ms. Johnson",
+            "classroom": "Room B202"
+          },
+          {
+            "lesson_number": 3,
+            "lesson_time": "11:00 AM",
+            "subject": "Science",
+            "teacher": "Dr. Brown",
+            "classroom": "Lab C301"
+          },
+          {
+            "lesson_number": 4,
+            "lesson_time": "12:00 PM",
+            "subject": "History",
+            "teacher": "Mrs. Wilson",
+            "classroom": "Room D401"
+          },
+          {
+            "lesson_number": 5,
+            "lesson_time": "01:00 PM",
+            "subject": "Physical Education",
+            "teacher": "Coach Anderson",
+            "classroom": "Gymnasium"
+          }
+        ]
+      },
+      {
+        "day": "Tuesday",
+        "lessons": [
+          {
+            "lesson_number": 1,
+            "lesson_time": "09:00 AM",
+            "subject": "Physics",
+            "teacher": "Dr. Lee",
+            "classroom": "Lab C301"
+          },
+          {
+            "lesson_number": 2,
+            "lesson_time": "10:00 AM",
+            "subject": "Mathematics",
+            "teacher": "Mr. Smith",
+            "classroom": "Room A101"
+          },
+          {
+            "lesson_number": 3,
+            "lesson_time": "11:00 AM",
+            "subject": "English",
+            "teacher": "Ms. Johnson",
+            "classroom": "Room B202"
+          },
+          {
+            "lesson_number": 4,
+            "lesson_time": "12:00 PM",
+            "subject": "Art",
+            "teacher": "Ms. Davis",
+            "classroom": "Art Studio E501"
+          },
+          {
+            "lesson_number": 5,
+            "lesson_time": "01:00 PM",
+            "subject": "Chemistry",
+            "teacher": "Dr. Lee",
+            "classroom": "Lab C301"
+          }
+        ]
+      }
+    ],
+  
   "courseModules": [
     {
       "moduleName": "HTML5",

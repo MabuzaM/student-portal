@@ -23,12 +23,12 @@ export const ModulesList = () => {
   return (
     <article className="ModulesList">
       {
-        courses.map((course: Course) => {
+        courses.map((course: Course, index) => {
             const { courseName, courseModules, courseSummary, courseProgress } = course;
 
             return (
               <>
-                <div className="Course_controlWrapper" key={courseName}>
+                <div className="Course_controlWrapper" key={courseName.slice(0, 4) + index}>
                   <div className="Course_title">
                     {
                       courseName
@@ -45,7 +45,7 @@ export const ModulesList = () => {
                 </div>
 
                 {
-                  courseModules.map((courseModule: CourseModule) => {
+                  courseModules.map((courseModule: CourseModule, index) => {
                     const {
                       moduleName,
                       moduleTutor,
@@ -56,7 +56,7 @@ export const ModulesList = () => {
                     } = courseModule;
 
                     return(
-                      <div className="ModuleInfo" key={moduleName}>
+                      <div className="ModuleInfo" key={moduleName.slice(0,3) + index}>
                         <div className="ModuleInfo_progress">
                           {
                             moduleProgress
@@ -101,20 +101,19 @@ export const ModulesList = () => {
                                   moduleTopics.map((moduleTopic: ModuleTopic, index: number) => {
 
                                     const { topic, topicProgress } = moduleTopic;
-                                    console.log(courses);
                                     return (
-                                      <tr className="TopicList_row" key={index}>
-                                        <div className="TopicList_name">
-                                          <td className="TopicList_column">{index++}</td>
-                                          <td className="TopicList_column">{topic}</td>
-                                        </div>
+                                      <tr className="TopicList_row" key={topic.slice(0, 4) + index}>
+                                        <td className="TopicList_name">
+                                          <span className="TopicList_column">{index++}</span>
+                                          <span className="TopicList_column">{topic}</span>
+                                        </td>
 
-                                        <div className="TopicList_progress">
-                                          <td className="TopicList_column">{topicProgress}</td>
-                                          <td className="TopicList_column">
-                                            <div className="TopicList_color TopicList_progress--green"></div>
-                                          </td>
-                                        </div>
+                                        <td className="TopicList_progress">
+                                          <span className="TopicList_column">{topicProgress}</span>
+                                          <span className="TopicList_column">
+                                          <div className="TopicList_color TopicList_progress--green"></div>
+                                          </span>
+                                        </td>
                                       </tr>
                                     );
                                     })

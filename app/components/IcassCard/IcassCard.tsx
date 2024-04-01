@@ -32,10 +32,12 @@ export const IcassCard = () => {
 
         <table className="Icass_table">
           <thead className="Icass_table-header">
-            <th  className="Icass_table-head">Module</th>
-            <th  className="Icass_table-head">Assignment</th>
-            <th  className="Icass_table-head">Test</th>
-            <th  className="Icass_table-head">Internal Exam</th>
+            <tr>
+              <th  className="Icass_table-head">Module</th>
+              <th  className="Icass_table-head">Assignment</th>
+              <th  className="Icass_table-head">Test</th>
+              <th  className="Icass_table-head">Internal Exam</th>
+            </tr>
           </thead>
 
           <tbody className="Icass_table-body">

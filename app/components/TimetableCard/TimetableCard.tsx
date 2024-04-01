@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TimetableCard.scss';
 import Image from 'next/image';
 import timetable from './assets/timetable.png';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import { Course, Timetable } from '@/app/utils/types';
+import axios from 'axios';
 
 export const TimetableCard = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+ // const [courseTimetable, setCourseTimetable] = useState<Timetable[]>([]);
+
+  useEffect(()=> {
+    axios.get('http://localhost:3001/getCourses').then((courses) => {
+      setCourses(courses.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
   return (
    <article className="Card">
       <h2 className="Card_title">Timetable</h2>
@@ -14,8 +26,48 @@ export const TimetableCard = () => {
         <Image src={timetable} alt='timetable icon' width={150}/>      
       </div>
 
-      <table className="Table Card_table">
+      <table border={1}>
+        <tbody>
+          {
+            courses.map((course) => (
+              course.courseTimetable.map((timetableDetails) => {
+                console.log(timetableDetails);
+
+                return(
+                  <tr key={timetableDetails.day}>
+                    <td>
+                      {timetableDetails.day}
+                    </td>
+                    {
+                      timetableDetails.lessons.map((lesson) => {
+                        const { 
+                          lesson_number,
+                          lesson_time,
+                          subject,
+                          classroom,
+                          teacher
+                        } = lesson;
+                        return(
+                          <td key={lesson_number + subject}>
+                            <h6>{lesson_time}</h6>
+                            <h5>{subject}</h5>
+                            <h6>{classroom}</h6>
+                            <h6>{teacher}</h6>
+                          </td>
+                        );
+                      })
+                    }
+                  </tr>
+                );
+              })
+            ))
+          }
+        </tbody>
+      </table>
+
+      {/* <table className="Table Card_table">
         <thead className="Table_header">
+
           <th className="Table_head Table_head--lesson">Lsn</th>
           <th  className="Table_head Table_head--day">M</th>
           <th  className="Table_head Table_head--day">T</th>
@@ -115,7 +167,7 @@ export const TimetableCard = () => {
             <td> <span  className="Table_row--subject"> Sub1 </span> <br /> H03 </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
 
       
 
