@@ -7,18 +7,18 @@ import { TopicList } from '../TopicList/TopicList';
 import axios from 'axios';
 import { Course, CourseModule, ModuleTopic } from '@/app/utils/types';
 
-export const ModulesList = () => {
-   const [courses, setCourses] = useState([]);
+export const ModulesList = ({courses = []}) => {
+   //const [courses, setCourses] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:3001/getCourses')
-    .then((courses) => {
-      setCourses(courses.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://127.0.0.1:3001/getCourses')
+  //   .then((courses) => {
+  //     setCourses(courses.data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }, []);
 
   return (
     <article className="ModulesList">

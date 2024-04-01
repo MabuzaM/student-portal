@@ -6,19 +6,7 @@ import axios from 'axios';
 import { Course } from '@/app/utils/types';
 import { Courses } from '@/app/courses';
 
-export const ModulesCard = () => {
- const [courses, setCourses] = useState([]);
-
-  useEffect (() => {
-    axios.get('http://127.0.0.1:3001/getCourses')
-    .then((courses) => {
-      setCourses(courses.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, [])
-
+export const ModulesCard = ({courses = []}) => {
   return (
    <article className="Card">
       <h2 className="Card_title">Modules</h2>

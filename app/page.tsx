@@ -18,13 +18,7 @@ import { Course, CourseModule, ModuleTopic, TopicLesson } from './utils/types';
 function Home() {
   //States
   const [courses, setCourses] = useState<Course[]>([]);
-  const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
-  const [moduleTopics, setModuleTopics] = useState<ModuleTopic[]>([]);
-  const [moduleTopic, setModuleTopic] = useState({});
-  const [topicLessons, setTopicLessons] = useState<TopicLesson[]>([]);
-  const [topic, setTopic] = useState("");
-  const [topicLessonTitle, setTopicLessonTitle] = useState("");
-  const [lessonVideoLink, setLessonVideoLink] = useState("");
+
 
   useEffect(() => {
   // // Get courses
@@ -40,28 +34,6 @@ function Home() {
   
  },[])
 
-//  courses.map((course: Course) => {
-//   setCourseModules([...course.courseModules])
-//   courseModules.map((courseModule) => (
-//     courseModule.moduleTopics.map((moduleTopic) => {
-//       const {
-//         topic,
-//         topicLessons,
-//         topicNotes
-//       } = moduleTopic;
-
-//       setTopic(topic);
-//       setTopicLessons([...topicLessons]);
-//       console.log(topicLessons);
-
-//       topicLessons.map((topicLesson) => {
-//         setTopicLessonTitle(topicLesson.topicLessonTitle);
-//         setLessonVideoLink(topicLesson.topicVideoLink);
-//       })
-//     })
-//   ))
-//   })
-
   return (
     <div className="App">
       <Header />
@@ -71,16 +43,16 @@ function Home() {
       </section>
 
       <main className="Main App_main">
-        <ModulesCard />
+        <ModulesCard courses={courses}/>
 
-        <TimetableCard />
+        <TimetableCard courses={courses}/>
 
         <IcassCard />
 
         <AttendanceCard />
       </main>
       <Topic />
-      <ModulesList />
+      <ModulesList courses={courses}/>
       <Footer />
     </div>
   );

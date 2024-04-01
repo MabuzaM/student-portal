@@ -7,17 +7,17 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import { Course, Timetable } from '@/app/utils/types';
 import axios from 'axios';
 
-export const TimetableCard = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
+export const TimetableCard = ({courses = []}) => {
+  //const [courses, setCourses] = useState<Course[]>([]);
  // const [courseTimetable, setCourseTimetable] = useState<Timetable[]>([]);
 
-  useEffect(()=> {
-    axios.get('http://localhost:3001/getCourses').then((courses) => {
-      setCourses(courses.data);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, [])
+  // useEffect(()=> {
+  //   axios.get('http://localhost:3001/getCourses').then((courses) => {
+  //     setCourses(courses.data);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  // }, [])
   return (
    <article className="Card">
       <h2 className="Card_title">Timetable</h2>
@@ -27,9 +27,14 @@ export const TimetableCard = () => {
       </div>
 
       <table border={1}>
+        <thead>
+          <tr>
+
+          </tr>
+        </thead>
         <tbody>
           {
-            courses.map((course) => (
+            courses.map((course: Course) => (
               course.courseTimetable.map((timetableDetails) => {
                 console.log(timetableDetails);
 

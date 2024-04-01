@@ -3,25 +3,25 @@ import './TopicList.scss';
 import { Course, CourseModule, ModuleTopic } from '@/app/utils/types';
 import axios from 'axios';
 
-export const TopicList = () => {
-  const [courses, setCourses] = useState([]);
+export const TopicList = ({courses = []}) => {
+  //const [courses, setCourses] = useState([]);
   const [moduleTopics, setModuleTopics] = useState<ModuleTopic[]>([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:3001/getCourses')
-    .then((courses) => {
-      setCourses(courses.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    // axios.get('http://127.0.0.1:3001/getCourses')
+    // .then((courses) => {
+    //   setCourses(courses.data);
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // })
 
     courses.map((course: Course) => {
       course.courseModules.map((courseModule: CourseModule) => {
         setModuleTopics([...courseModule.moduleTopics]);
       })
     })
-  }, [courses, moduleTopics]);
+  }, []);
   
   return (
     <article className="TopicList">
