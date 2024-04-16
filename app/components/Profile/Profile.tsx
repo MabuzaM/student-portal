@@ -9,14 +9,14 @@ import { Student } from '@/app/utils/types';
 export const Profile = () => {
   const [student, setStudent] = useState<Student>();
 
-  useEffect (() => {
-    axios.get('http://localhost:3001/getStudent')
-    .then((student) => {
-      setStudent(student.data)
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, [])
+  // useEffect (() => {
+  //   axios.get('http://localhost:3001/getStudent')
+  //   .then((student) => {
+  //     setStudent(student.data)
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  // }, [])
   return (
     <article className="Profile">
       <div className="Profile_photoBG">
@@ -29,10 +29,10 @@ export const Profile = () => {
       </div>
 
       <div className="Profile_info">
-        <p>{student?.student_id}</p>
+        {/* <p>{student?.student_id}</p>
         <p>{student?.name} {student?.surname}</p>
         <p>{student?.course}</p>
-        <p>{student?.level}</p>
+        <p>{student?.level}</p> */}
         <p>Faculty of Information and Communication Technology</p>
       </div>
     </article>

@@ -5,7 +5,7 @@
   display: flex;
   background-color: $main-blue;
   padding: 20px 95px;
-  min-width: 100vw;
+  max-width: 100vw;
   top: 0;
   &_list {
     list-style: none;
@@ -13,7 +13,7 @@
     letter-spacing: 2px;
     font-weight: 700;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     gap: 30px;
   }
 

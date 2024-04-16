@@ -1,0 +1,15 @@
+{
+  "studentName": "Manqoba",
+  "surname": "Ncube",
+  "phone": "09885",
+  "nationalId": "1223",
+  "email": "ashely@gmail.com",
+  "dateOfBirth": "09-01-2019",
+  "address1": "42 Steyn",
+  "address2": "Midrand",
+  "course": "webdev",
+  "parentName": "Angie",
+  "parentSurname": "Vundla",
+  "parentPhone": "0649729771",
+  "parentEmail": "angie@gmail.com"
+}

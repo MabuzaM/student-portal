@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import axios from 'axios';
 import { Assessment } from '@/app/utils/types';
+import { changeMarkColor } from '@/app/utils/handlerFunctions';
 
 export const IcassCard = () => {
   const [assessments, setAssessments] = useState<Assessment[]>([]);
@@ -43,12 +44,26 @@ export const IcassCard = () => {
           <tbody className="Icass_table-body">
             {
               assessments.map((assessment) => {
+                const { module, test, assignment, internal_exam } = assessment;
+
                 return(
-                  <tr className="Icass_table-row" key={assessment.module}>
-                    <td className="Icass_data Icass_data--module"> {assessment.module} </td>
-                    <td className="Icass_data Icass_data--fail"> {assessment.assignment} </td>
-                    <td className="Icass_data Icass_data--fail"> {assessment.test} </td>
-                    <td className="Icass_data Icass_data--fail"> {assessment.internal_exam} </td>
+                  <tr className="Icass_table-row" key={module}>
+                    <td className="Icass_data Icass_data--module"> {module} </td>
+
+                    <td
+                      className="Icass_data"
+                      style={{ color: changeMarkColor(assignment) }}
+                    > {assignment} </td>
+
+                    <td
+                      className="Icass_data"
+                      style={{ color: changeMarkColor(test) }}
+                    > {test} </td>
+
+                    <td
+                      className="Icass_data"
+                      style={{ color: changeMarkColor(internal_exam) }}
+                    > {internal_exam} </td>
                   </tr>
                 )
               })

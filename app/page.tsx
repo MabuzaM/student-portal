@@ -1,5 +1,6 @@
 'use client';
-import react, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './globals.scss';
 import { AttendanceCard } from './components/AttendanceCard/AttendanceCard';
 import { Footer } from './components/Footer/Footer';
@@ -14,11 +15,14 @@ import { Topic } from './components/Topic/Topic';
 import { TopicList } from './components/TopicList/TopicList';
 import axios from 'axios';
 import { Course, CourseModule, ModuleTopic, TopicLesson } from './utils/types';
+import { StudentRegistration } from './components/StudentRegistration/StudentRegistration';
+import { EmployeeRegistration } from './components/EmployeeRegistration/EmployeeRegistration';
+import { BrowserRouter, Route, Routes, HashRouter, createBrowserRouter } from 'react-router-dom';
+import { StudentsDashboard } from './components/StudentsDashboard/StudentsDashboard';
 
-function Home() {
+function App() {
   //States
   const [courses, setCourses] = useState<Course[]>([]);
-
 
   useEffect(() => {
   // // Get courses
@@ -30,32 +34,53 @@ function Home() {
   .catch((err) => {
     console.log(err);
   })
-
-  
  },[])
 
   return (
     <div className="App">
-      <Header />
-      <Navbar />
-      <section className="hero">
-        <Profile />
-      </section>
-
+      <HashRouter>
+      <Header />  
+      <section className="App__hero">
+        <Navbar />
+       </section>
       <main className="Main App_main">
-        <ModulesCard courses={courses}/>
 
-        <TimetableCard courses={courses}/>
+          <Routes>
+            <Route
+              path='/'
+              element = {<StudentsDashboard courses={courses}/>}
+            />
 
-        <IcassCard />
+            <Route
+              path='/profile'
+              element={ <Profile />}
+            />
 
-        <AttendanceCard />
+            <Route
+              path='/courses'
+              element = {<ModulesList courses={courses}/>}
+            />
+
+            <Route
+              path='/staffRegistration'
+              element = {<EmployeeRegistration courses={courses}/>}
+            />
+
+            <Route
+              path='/studentRegistration'
+              element = {<StudentRegistration courses={courses}/>}
+            />
+            
+          </Routes>
+
       </main>
-      <Topic />
-      <ModulesList courses={courses}/>
+
+      {/* <Topic /> */}
+      
       <Footer />
+      </HashRouter>
     </div>
   );
 }
 
-export default Home;
+export default App;

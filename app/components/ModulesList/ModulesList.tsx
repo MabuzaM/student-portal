@@ -4,28 +4,24 @@ import './ModulesList.scss';
 import Image from 'next/image';
 import arrow from './assets/dropdownArrow.png';
 import { TopicList } from '../TopicList/TopicList';
-import axios from 'axios';
 import { Course, CourseModule, ModuleTopic } from '@/app/utils/types';
+import { changeProgressBackground } from '@/app/utils/handlerFunctions';
+import { Topic } from '../Topic/Topic';
 
 export const ModulesList = ({courses = []}) => {
-   //const [courses, setCourses] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState<ModuleTopic>();
 
-  // useEffect(() => {
-  //   axios.get('http://127.0.0.1:3001/getCourses')
-  //   .then((courses) => {
-  //     setCourses(courses.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }, []);
-
+  const getSelectedTopic = (topic: ModuleTopic) => {
+    setSelectedTopic({...topic});
+  }
   return (
+    <>
+    <Topic selectedTopic={selectedTopic}/>
     <article className="ModulesList">
       {
         courses.map((course: Course, index) => {
             const { courseName, courseModules, courseSummary, courseProgress } = course;
-
+              
             return (
               <>
                 <div className="Course_controlWrapper" key={courseName.slice(0, 4) + index}>
@@ -34,7 +30,10 @@ export const ModulesList = ({courses = []}) => {
                       courseName
                     }
 
-                    <div className="Course_progress">{courseProgress}%</div>
+                    <div
+                      className="Course_progress"
+                      style={{ backgroundColor: changeProgressBackground(courseProgress) }}
+                    >{0 | courseProgress}%</div>
                   </div>
 
                   <div className="Course_summary">
@@ -57,9 +56,12 @@ export const ModulesList = ({courses = []}) => {
 
                     return(
                       <div className="ModuleInfo" key={moduleName.slice(0,3) + index}>
-                        <div className="ModuleInfo_progress">
+                        <div
+                          className="ModuleInfo_progress"
+                          style={{ backgroundColor: changeProgressBackground(moduleProgress) }}
+                        >
                           {
-                            moduleProgress
+                            0 | moduleProgress
                           }
                         </div>
     
@@ -94,33 +96,11 @@ export const ModulesList = ({courses = []}) => {
                               alt="drop down"
                               className="ModuleInfo_arrow" />
                           </div>
-                          <article className="TopicList">
-                            <table className="TopicList_table">
-                              <tbody>
-                                {
-                                  moduleTopics.map((moduleTopic: ModuleTopic, index: number) => {
-
-                                    const { topic, topicProgress } = moduleTopic;
-                                    return (
-                                      <tr className="TopicList_row" key={topic.slice(0, 4) + index}>
-                                        <td className="TopicList_name">
-                                          <span className="TopicList_column">{index++}</span>
-                                          <span className="TopicList_column">{topic}</span>
-                                        </td>
-
-                                        <td className="TopicList_progress">
-                                          <span className="TopicList_column">{topicProgress}</span>
-                                          <span className="TopicList_column">
-                                          <div className="TopicList_color TopicList_progress--green"></div>
-                                          </span>
-                                        </td>
-                                      </tr>
-                                    );
-                                    })
-                                }
-                              </tbody>   
-                            </table>
-                          </article>
+                          <TopicList
+                            moduleTopics={moduleTopics}
+                            selectedTopic={selectedTopic}
+                            onTopicClick={getSelectedTopic}
+                          />
 
                         </div>        
                       </div>
@@ -133,6 +113,7 @@ export const ModulesList = ({courses = []}) => {
         )
       }
     </article>
+    </>
   )
 }
 

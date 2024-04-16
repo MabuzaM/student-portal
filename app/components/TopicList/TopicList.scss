@@ -1,2 +1,76 @@
 @import "../../utils/variables.scss";
 
+.TopicList {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.14em;
+
+  &_table {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &_row {
+    border-bottom: 1px solid #d9d9d9;
+    //padding: 10px 14px;
+    display: block;
+    //width: 100%;
+
+    &:hover {
+      background-color: #f5f5f5;      
+      color: $main-blue;
+    }
+  }
+
+  &_column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__column {
+    //margin: 0;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    
+    &:hover {
+      background-color: #f5f5f5;      
+      color: $main-blue;
+      cursor: pointer;
+    }
+  }
+
+  &_name, &_progress {
+    display: flex;
+    //justify-self: flex-end;
+    gap: 20px;
+  }
+
+  &_progress {
+    &--green {
+      background-color: #2ce233;
+    }
+
+    &--orange {
+      background-color: #f6b012;
+    }
+
+    &--red {
+      background-color: #f00;
+    }
+  }
+
+  &_color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+}
