@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './TopicList.scss';
 import { ModuleTopic } from '@/app/utils/types';
-import { changeProgressBackground, handleSelectTopic } from '@/app/utils/handlerFunctions';
+import { changeProgressBackground } from '@/app/utils/handlerFunctions';
 
-export const TopicList = ({moduleTopics = [], onTopicClick}) => {
+export const TopicList = ({moduleTopics = [], onTopicClick = () => {}, topicListShown = false, selectedModule = ''}) => {
   const handleSelectedTopicChange = (newTopic: ModuleTopic) => {
     const selectedTopic = newTopic;
     
     onTopicClick(selectedTopic);
   }
+
   return (
     <article className="TopicList">
       <table className="TopicList_table">
@@ -19,7 +20,7 @@ export const TopicList = ({moduleTopics = [], onTopicClick}) => {
               const { topic, topicProgress } = moduleTopic;
               return (
                 <tr
-                  className="TopicList_row" key={topic.slice(0, 4) + index}
+                  className="TopicList_row" key={topic?.slice(0, 4) + index}
                 >
                   <td                    
                     className="TopicList_name"

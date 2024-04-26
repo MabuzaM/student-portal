@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
   // // Get courses
 
-  axios.get('http://127.0.0.1:3001/getCourses')
+  axios.get('http://127.0.0.1:5000/getCourses')
   .then((courses) => {
     setCourses(courses.data);
   })
@@ -46,10 +46,10 @@ function App() {
       <main className="Main App_main">
 
           <Routes>
-            <Route
-              path='/'
-              element = {<StudentsDashboard courses={courses}/>}
-            />
+              <Route
+                path='/'
+                element = {<StudentsDashboard courses={courses}/>}
+              />            
 
             <Route
               path='/profile'

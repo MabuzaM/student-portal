@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Course } from "@/app/utils/types";
 import './EmployeeRegistration.scss';
 import axios from "axios";
+import { Form, useForm } from "react-hook-form";
+import ky from "ky";
 
 export const EmployeeRegistration = ({courses = []}) => {
   const initialEmployeeDetails = {
@@ -21,41 +23,29 @@ export const EmployeeRegistration = ({courses = []}) => {
     employeeCourses: [],
   }
 
-  const [newEmployeeDetails, setnewEmployeeDetails] = useState({...initialEmployeeDetails});
+  const { register, handleSubmit, formState: {errors} } = useForm();
+  const client = ky.create({});
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
 
-    setnewEmployeeDetails((prevData) => {
-      return {
-        ...prevData,
-        [name]: value
+  const onSubmit = async (data: {}) => {
+    try {
+      const response = await client.post('http://127.0.0.1:5000/employee/', { json: data });
+      console.log(data);
+      data = {...initialEmployeeDetails}
+      if (response.ok) {
+        console.log('Employee data successfully saved!');
+      } else {
+        console.log('Error submitting employee data!', await response.text());
       }
-    })
+    } catch (error) {
+      console.log('Error making the request', error);
+    }
   };
-
-  const handleRegisterEmployer = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-
-    axios.post(
-      '/employee',
-      newEmployeeDetails,
-      {headers: {
-        "Content-Type": "application/json/text/x-www-form-urlencoded", "Accept": "*/*"}}).then(() => {
-      console.log("Employee created");
-      alert('Success');
-    }).catch((err) => {
-      console.log("Can't create employee", err);
-      alert('Failed to create');
-    })
-  }
 
   return (
     <form
       className="EmployeeRegistration"
-      onSubmit={(e) => {handleRegisterEmployer(e)}}
-      method="post"
-      action={"#"}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h3>Employee Registration</h3>
 
@@ -68,10 +58,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text" 
               className="EmployeeRegistration__input" 
-              name="employeeName"
               id="employeeName" 
-              value={newEmployeeDetails.employeeName} 
-              onChange={handleInputChange}
+              {...register('employeeName', {required: true})}
             />
           </div>
         </div>
@@ -82,10 +70,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeeSurname"
               id="employeeSurname"
-              value={newEmployeeDetails.employeeSurname} 
-              onChange={handleInputChange}
+              {...register('employeeSurname', {required: true})}
             />
           </div>
         </div>
@@ -96,12 +82,10 @@ export const EmployeeRegistration = ({courses = []}) => {
           <label htmlFor="employeeDateOfBirth" className="EmployeeRegistration__label">Date Of Birth:</label>
           <div className="EmployeeRegistration__form-control">
             <input
-              type="text"
+              type="date"
               className="EmployeeRegistration__input"
-              name="employeeDateOfBirth"
               id="employeeDateOfBirth"
-              value={newEmployeeDetails.employeeDateOfBirth} 
-              onChange={handleInputChange}
+              {...register('employeeDateOfBirth', {required: true})}
             />
           </div>
         </div>
@@ -112,10 +96,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeeNatId"
               id="employeeNatId"
-              value={newEmployeeDetails.employeeNatId} 
-              onChange={handleInputChange}
+              {...register('employeeNatId', {required: true})}
             />
           </div>
         </div>
@@ -124,7 +106,7 @@ export const EmployeeRegistration = ({courses = []}) => {
       <div className="EmployeeRegistration__row">
         <label htmlFor="employeeGender">Gender</label>
 
-        <select name="employeeGender" id="employeeGender" value={newEmployeeDetails.employeeGender} onChange={handleInputChange}>
+        <select id="employeeGender" {...register('employeeGender', {required: true})}>
           <option defaultValue={''}>Select your gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -133,7 +115,7 @@ export const EmployeeRegistration = ({courses = []}) => {
 
         <label htmlFor="employeeMaritalStatus">Marital Status</label>
 
-        <select name="employeeMaritalStatus" id="employeeMaritalStatus" value={newEmployeeDetails.employeeMaritalStatus} onChange={handleInputChange}>
+        <select id="employeeMaritalStatus" {...register('employeeMaritalStatus', {required: true})}>
           <option defaultValue={''}>Select your marital status</option>
           <option value="Single">Single</option>
           <option value="Married">Married</option>
@@ -148,10 +130,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeePhone"
               id="employeePhone"
-              value={newEmployeeDetails.employeePhone} 
-              onChange={handleInputChange}
+              {...register('employeePhone', {required: true})}
             />
           </div>
         </div>
@@ -162,10 +142,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeeAddress"
               id="employeeAddress"
-              value={newEmployeeDetails.employeeAddress} 
-              onChange={handleInputChange}
+              {...register('employeeAddress', {required: true})}
               />
           </div>
         </div>
@@ -178,12 +156,10 @@ export const EmployeeRegistration = ({courses = []}) => {
           <label htmlFor="employeeEmail" className="EmployeeRegistration__label">Email Address:</label>
           <div className="EmployeeRegistration__form-control">
             <input
-              type="text"
+              type="email"
               className="EmployeeRegistration__input"
-              name="employeeEmail"
               id="employeeEmail"
-              value={newEmployeeDetails.employeeEmail} 
-              onChange={handleInputChange}
+              {...register('employeeEmail', {required: true})}
             />
           </div>
         </div>
@@ -194,10 +170,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeePassword"
               id="employeePassword"
-              value={newEmployeeDetails.employeePassword} 
-              onChange={handleInputChange}
+              {...register('employeePassword', {required: true})}
             />
           </div>
         </div>
@@ -212,10 +186,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeeJobTitle"
               id="employeeJobTitle"
-              value={newEmployeeDetails.employeeJobTitle} 
-              onChange={handleInputChange}
+              {...register('employeeJobTitle', {required: true})}
             />
           </div>
         </div>
@@ -226,10 +198,8 @@ export const EmployeeRegistration = ({courses = []}) => {
             <input
               type="text"
               className="EmployeeRegistration__input"
-              name="employeeDepartment"
               id="employeeDepartment"
-              value={newEmployeeDetails.employeeDepartment} 
-              onChange={handleInputChange}
+              {...register('employeeDepartment', {required: true})}
             />
           </div>
         </div>
@@ -237,7 +207,7 @@ export const EmployeeRegistration = ({courses = []}) => {
 
       <label htmlFor="employeeCourses"><h3>For Academic employee Only</h3></label>
 
-      <select name="employeeCourses" id="employeeCourses" value={newEmployeeDetails.employeeCourses} multiple onChange={handleInputChange}>
+      <select id="employeeCourses" {...register('employeeCourses', {required: true})}>
         <option defaultValue={''}>Select your courses</option>
         {courses.map((course: Course) =>{
           const { courseId} = course

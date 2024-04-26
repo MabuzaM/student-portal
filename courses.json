@@ -98,7 +98,7 @@
       "moduleSummary": "This is an introductory module for the web development course, mainly for creating the structure of your web application. In this module, you will learn about how to transform a website designed in Figma or photoshop or any other web design technology into a working static web application. There is a lot of typing here, you must be a fast typer, hope you took your typing speed drills. You will enjoy learning how to use the modern standard, HTML5 for creating webpages. We will teach you how to create webpages and join them together to make a website or web application from sratch. We are also going to teach the industry standards and good practices you should follow when writing html markup. Happy coding!!",
       "moduleTopics": [
         {
-          "topicTitle": "Introduction to HTML and the Web",
+          "topic": "Introduction to HTML and the Web",
           "topicProgress": 100,
           "topicLessons": [
             {
@@ -117,7 +117,7 @@
         ],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
             }],
             "notes": "Notes text goes here"
           }
@@ -132,7 +132,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
             }],
             "notes": "Notes text goes here"
           }
@@ -147,7 +147,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
             }],
             "notes": "Notes text goes here"
           }
@@ -162,7 +162,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
             }],
             "notes": "Notes text goes here"
           }
@@ -201,7 +201,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
             }],
             "notes": "Notes text goes here"
           }
@@ -216,7 +216,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
             }],
             "notes": "Notes text goes here"
           }
@@ -231,7 +231,7 @@
           }],
           "topicNotes": {
             "externalLinks": [{
-              "link": "Notes link goes here"
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
             }],
             "notes": "Notes text goes here"
           }

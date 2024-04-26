@@ -11,10 +11,10 @@ const EmployeeSchema = new mongoose.Schema({
     required: true,
   },
   employeeDateOfBirth: {
-    type: DataTransfer,
+    type: Date,
     required: true,
   }, 
-  employeeNatId: string, 
+  employeeNatId: String, 
   employeeGender: String,
   employeeMaritalStatus: String,
   employeePhone: String, 

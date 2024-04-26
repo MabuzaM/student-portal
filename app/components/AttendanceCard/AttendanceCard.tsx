@@ -12,7 +12,7 @@ export const AttendanceCard = () => {
   const [attendance, setAttendance] = useState<Attendance[]>([]);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:3001/getAttendances')
+    axios.get('http://127.0.0.1:5000/getAttendances')
       .then((attendance) => {
         setAttendance(attendance.data)
     })

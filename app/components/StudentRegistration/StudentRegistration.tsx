@@ -4,6 +4,9 @@ import './StudentRegistration.scss';
 import bootstrap from 'bootstrap';
 import { Course, Student } from '@/app/utils/types';
 import axios from 'axios';
+import { Form } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import ky from 'ky';
 
 
 export const StudentRegistration = ({courses = []}) => {
@@ -23,43 +26,46 @@ export const StudentRegistration = ({courses = []}) => {
     parentEmail: '',
   };
 
-  const [formData, setFormData] = useState({...initialStudentData});
+  const [formData, setFormData] = useState({
+    studentName: '',
+    surname: '',
+    courseName: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    email: '',
+    nationalId: '',
+    dateOfBirth: '',
+    parentSurname: '',
+    parentName: '',
+    parentPhone: '',
+    parentEmail: '',
+  });
 
-  const handleRegister = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const client = ky.create({ /* Optional: Create a pre-configured Ky instance*/  });
 
-    const jsonStringFormData = JSON.stringify(formData);
-
+  const onSubmit = async (data: {}) => {
     try {
-      
-     await axios.post('/student',
-        {...formData},
-        {headers: {
-          'Content-Type': 'application/json/text', // Set the content type
-        }});
-      alert('Student successfully added');
+      const response = await client.post('http://127.0.0.1:5000/student/', { json: data });
+      console.log(data);
 
-    } catch (err) {
-      alert('Failed to register student');
-      console.error('Error creating student',err);
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+      } else {
+        console.error('Error submitting form:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error making request:', error);
     }
-  };
-
-  const handleInputChange = async (e: { target: { name: string; value: string; }; }) => {
-    const { name, value } = e.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   return (
     <form
       className='StudentRegistration'
-      onSubmit={handleRegister}
+      onSubmit={handleSubmit(onSubmit)}
       method='post'
-      action={'http://localhost:3001/api/student'}>
+    >
       <h3>Student Registration</h3>
 
       <hr />
@@ -70,12 +76,11 @@ export const StudentRegistration = ({courses = []}) => {
           <div className="StudentRegistration__form-control">
             <input
               type="text" 
-              className="StudentRegistration__input" 
-              name="studentName"
-              id="studName" 
-              value={formData.studentName} 
-              onChange={handleInputChange}
+              className="StudentRegistration__input"
+              id="studName"
+              {...register('studentName', {required: true})}
             />
+            {errors.studentName && <div>{errors.studentName.message || "Name is required"}</div>}
           </div>
         </div>
 
@@ -85,10 +90,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="surname"
               id="studSurname"
-              value={formData.surname} 
-              onChange={handleInputChange}
+              {...register('surname', {required: true})}
             />
           </div>
         </div>
@@ -101,10 +104,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="nationalId"
               id="studIdNumber"
-              value={formData.nationalId} 
-              onChange={handleInputChange}
+              {...register('nationalId', {required: true})}
             />
           </div>
         </div>
@@ -115,10 +116,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="date"
               className="StudentRegistration__input"
-              name="dateOfBirth"
               id="studDob"
-              value={formData.dateOfBirth} 
-              onChange={handleInputChange}
+              {...register('dateOfBirth', {required: true})}
             />
           </div>
         </div>
@@ -131,10 +130,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="email"
               className="StudentRegistration__input"
-              name="email"
               id="studEmail"
-              value={formData.email} 
-              onChange={handleInputChange}
+              {...register('email', {required: true})}
             />
           </div>
         </div>
@@ -145,10 +142,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="tel"
               className="StudentRegistration__input"
-              name="phone"
               id="studPhone"
-              value={formData.phone} 
-              onChange={handleInputChange}
+              {...register('phone', {required: true})}
             />
           </div>
         </div>
@@ -161,10 +156,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="address1"
               id="studAddress1"
-              value={formData.address1} 
-              onChange={handleInputChange}
+              {...register('address1', {required: true})}
             />
           </div>
         </div>
@@ -175,10 +168,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="address2"
               id="studAddress2"
-              value={formData.address2} 
-              onChange={handleInputChange}
+              {...register('address2', {required: true})}
               />
           </div>
         </div>
@@ -193,10 +184,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="parentName"
               id="parentName"
-              value={formData.parentName} 
-              onChange={handleInputChange}
+              {...register('parentName', {required: true})}
             />
           </div>
         </div>
@@ -207,10 +196,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="text"
               className="StudentRegistration__input"
-              name="parentSurname"
               id="parentSurname"
-              value={formData.parentSurname} 
-              onChange={handleInputChange}
+              {...register('parentSurname', {required: true})}
             />
           </div>
         </div>
@@ -223,10 +210,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="email"
               className="StudentRegistration__input"
-              name="parentEmail"
               id="parentEmail"
-              value={formData.parentEmail} 
-              onChange={handleInputChange}
+              {...register('parentEmail', {required: true})}
             />
           </div>
         </div>
@@ -237,10 +222,8 @@ export const StudentRegistration = ({courses = []}) => {
             <input
               type="tel"
               className="StudentRegistration__input"
-              name="parentPhone"
               id="parentPhone"
-              value={formData.parentPhone} 
-              onChange={handleInputChange}
+              {...register('parentPhone', {required: true})}
             />
           </div>
         </div>
@@ -248,7 +231,7 @@ export const StudentRegistration = ({courses = []}) => {
 
       <label htmlFor="courseName"><h3>Course</h3></label>
 
-      <select name="courseName" id="courseName" value={formData.courseName} onChange={handleInputChange}>
+      <select id="courseName" {...register('courseName', {required: true})}>
         <option defaultValue={''}>Select your prefered course</option>
         {courses.map((course: Course) =>{
           const { courseId} = course

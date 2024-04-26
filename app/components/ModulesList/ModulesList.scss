@@ -55,6 +55,7 @@
   padding: 14px 78px;
   background-color: #fff;
   border-radius: 20px;
+  margin-bottom: 20px;
 
   &_wrapper {
     display: flex;
@@ -105,9 +106,25 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    width: fit-content;
   }
 
   &_arrow {
     height: 8px;
   }
+}
+
+.Module__topics {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

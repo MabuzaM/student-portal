@@ -11,6 +11,7 @@ p, h1, h2, hr, h5, ul, li, body {
 
   &_main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 40px;
     padding: 0 94px;

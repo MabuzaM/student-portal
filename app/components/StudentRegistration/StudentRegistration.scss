@@ -3,7 +3,7 @@
 .StudentRegistration {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   margin-bottom: 50px;
   background-color: $light-blue;
   padding: 20px;
@@ -42,7 +42,6 @@
       border-bottom-color: transparent;
     }
   }
-
 
   &__submit {
     display: flex;

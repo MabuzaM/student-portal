@@ -12,7 +12,7 @@ export const IcassCard = () => {
   const [assessments, setAssessments] = useState<Assessment[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getAssessments')
+    axios.get('http://localhost:5000/getAssessments')
       .then((assessment) => (
         setAssessments(assessment.data)
       ))
