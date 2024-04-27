@@ -71,3 +71,20 @@ export type Assessment = {
   test: number,
   internal_exam: number
 }
+
+export type Employee = {
+  employeeName: string,
+  employeeSurname: string,
+  employeeDateOfBirth: Date, 
+  employeeNatId: string, 
+  employeeGender: string,
+  employeeMaritalStatus: string,
+  employeePhone: string, 
+  employeeAddress: string,
+  employeeEmail: string, 
+  employeePassword: string,
+  employeeNumber: string,
+  employeeJobTitle: string,
+  employeeDepartment: string, 
+  employeeCourses: string[]
+}

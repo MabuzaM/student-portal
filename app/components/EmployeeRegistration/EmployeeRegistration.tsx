@@ -30,8 +30,7 @@ export const EmployeeRegistration = ({courses = []}) => {
   const onSubmit = async (data: {}) => {
     try {
       const response = await client.post('http://127.0.0.1:5000/employee/', { json: data });
-      console.log(data);
-      data = {...initialEmployeeDetails}
+ 
       if (response.ok) {
         console.log('Employee data successfully saved!');
       } else {

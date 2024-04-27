@@ -20,10 +20,13 @@ const StudentSchema = new mongoose.Schema({
     type: String, required: true
   },
   email: {
-    type: String, required: true
+    type: String, required: true, unique: true
   },
   nationalId: {
-    type: String, required: true
+    type: String, required: true, unique: true
+  },
+  studentNumber: {
+    type: String, required: true, unique: true
   },
   dateOfBirth: {
     type: Date, required: true

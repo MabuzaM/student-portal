@@ -182,14 +182,20 @@
           "topicProgress": 0,
           "topicLessons": [{
             "topicLessonTitle": "Choosing an IDE or Text Editor",
-            "topicVideoLink": "Link goes here"
-          }],
-          "topicNotes": {
-            "externalLinks": [{
-              "link": "Notes link goes here"
+            "topicLessonVideoLink": "Link goes here",
+            "topicLessonNotes": "Instructor Notes go here",
+            "topicLessonNotesExtLinks": ["External Links go here"],
+            "topicLessonTaskShort": [{
+              "question": "?",
+              "options": [""],
+              "correctOptions": [""]
             }],
-            "notes": "Notes text goes here"
-          }
+            "topicLessonTaskLong": [{
+              "question": "?",
+              "studentAnswer": "",
+              "correctAnswer": ""
+            }]
+          }]
         },
 
         {
