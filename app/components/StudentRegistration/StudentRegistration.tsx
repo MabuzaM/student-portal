@@ -76,11 +76,16 @@ export const StudentRegistration = ({courses = []}) => {
           <div className="StudentRegistration__form-control">
             <input
               type="text" 
-              className="StudentRegistration__input"
+              className={`StudentRegistration__input ${errors.studentName && 'StudentRegistration__input-err'}`}
               id="studName"
               {...register('studentName', {required: true})}
             />
-            {errors.studentName && <div>{errors.studentName.message || "Name is required"}</div>}
+            {
+              errors.studentName &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.studentName.message || "Name is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -93,6 +98,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studSurname"
               {...register('surname', {required: true})}
             />
+
+            {
+              errors.surname &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.surname.message || "Surname is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -107,6 +119,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studIdNumber"
               {...register('nationalId', {required: true})}
             />
+
+            {
+              errors.nationalId &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.nationalId.message || "National ID is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -119,6 +138,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studDob"
               {...register('dateOfBirth', {required: true})}
             />
+
+            {
+              errors.dateOfBirth &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.dateOfBirth.message || "Date of birth is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -133,6 +159,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studEmail"
               {...register('email', {required: true})}
             />
+
+            {
+              errors.email &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.email.message || "Email is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -145,6 +178,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studPhone"
               {...register('phone', {required: true})}
             />
+
+            {
+              errors.phone &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.phone.message || "Phone is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -159,6 +199,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studAddress1"
               {...register('address1', {required: true})}
             />
+
+            {
+              errors.address1 &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.address1.message || "Address1 is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -171,6 +218,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="studAddress2"
               {...register('address2', {required: true})}
               />
+
+            {
+              errors.address2 &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.address2.message || "Address2 is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -187,6 +241,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="parentName"
               {...register('parentName', {required: true})}
             />
+
+            {
+              errors.parentName &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.parentName.message || "Parent Name is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -199,6 +260,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="parentSurname"
               {...register('parentSurname', {required: true})}
             />
+
+            {
+              errors.parentSurname &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.parentSurname.message || "Parent Surname is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -213,6 +281,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="parentEmail"
               {...register('parentEmail', {required: true})}
             />
+
+            {
+              errors.parentEmail &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.parentEmail.message || "Parent Email is required"}
+                </p>
+            }
           </div>
         </div>
 
@@ -225,6 +300,13 @@ export const StudentRegistration = ({courses = []}) => {
               id="parentPhone"
               {...register('parentPhone', {required: true})}
             />
+
+            {
+              errors.parentPhone &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.parentPhone.message || "Parent phone is required"}
+                </p>
+            }
           </div>
         </div>
       </div>
@@ -243,6 +325,13 @@ export const StudentRegistration = ({courses = []}) => {
               {course.courseName}
             </option>)
         })}
+
+        {
+          errors.courseName &&
+            <p className='StudentRegistration__input-error'>
+              {errors.courseName.message || "Course is required"}
+            </p>
+        }
       </select>
 
       <button

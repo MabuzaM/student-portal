@@ -3,10 +3,13 @@ import './AddModule.scss';
 import ky from 'ky';
 import { useForm } from 'react-hook-form';
 import { Course, CourseModule, Employee } from '@/app/utils/types';
+import { NavLink } from 'react-router-dom';
 
 export const AddModule = ({courses = [], employees = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
+  const [feedback, setFeedback] = useState('');
+  const [submitError, setSubmitError] = useState(false);
   const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
   const [moduleName, setModuleName] = useState('');
 
@@ -28,16 +31,18 @@ export const AddModule = ({courses = [], employees = []}) => {
 
   const onSubmit = async (data: {}) => {
     try {
-      const response = await client.post('http://127.0.0.1:5000/courses/modules', { json: data });
+      const response = await client.put('http://127.0.0.1:5000/courses/courses', { json: data });
       console.log(response);
 
       if (response.ok) {
-        console.log('Module successfully saved!');
+        setFeedback('Module successfully saved!');
       } else {
-        console.log('Error submitting module data!', await response.text());
+        setSubmitError(true);
+        setFeedback(`Error submitting module data! ${await response.text()}`);
       }
     } catch (error) {
-      console.log('Error making the request', error);
+      setSubmitError(true);
+      setFeedback(`Error making the request ${error}`);
     }
   }
 
@@ -74,11 +79,11 @@ export const AddModule = ({courses = [], employees = []}) => {
           Select Instructor:
 
           <select id="moduleInstructor" className="AddCourse__input" {...register('moduleInstructor', {required: true})}>
-            <option value="" disabled selected>Select Instructor</option>
+            <option value="" defaultValue={''}>Select Instructor</option>
             {
               employees.map((employee: Employee) => (
                 <option value={employee.employeeName}>
-                  {employee.employeeJobTitle == 'Teacher' && employee.employeeName}
+                  {employee.employeeJobTitle === 'Teacher' && employee.employeeName}
                 </option>
               ))
             }
@@ -89,7 +94,7 @@ export const AddModule = ({courses = [], employees = []}) => {
           Select Tutor:
 
           <select id="moduleTutor" className="AddCourse__input" {...register('moduleTutor', {required: true})}>
-            <option value="" disabled selected>Select Tutor</option>
+            <option value="" defaultValue={''}>Select Tutor</option>
             {
               employees.map((employee: Employee) => (
                 <option value={employee.employeeName}>
@@ -110,10 +115,18 @@ export const AddModule = ({courses = [], employees = []}) => {
             {...register('moduleSummary', {required: true})}
           ></textarea>
         </label>
+       
+        {
+          feedback && (
+            <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
+              {feedback}
+            </p>
+          )
+        }
 
         <div className="AddCourse__button-group">
           <button type='submit' className="AddCourse__submit">Save Module</button>
-          <button type='button' className="AddCourse__addTopic">Add Topics</button>
+          <NavLink to={'/topics'}><button type='button' className="AddCourse__addTopic">Add Topics</button></NavLink>
         </div>
       </form>
     </section>

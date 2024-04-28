@@ -42,8 +42,10 @@ app.route('/courses').get((req, res) => {
 })
 .put((req, res) => {  
   try {
-    const moduleData = new ModuleModel(req.body);
-    moduleData.save();
+    const moduleData = new CourseModel(req.body);
+    const course = req.body.courseName;
+
+    moduleData.findOne({courseName: course}).update({set: courseModules = [...courseModules, moduleData]});
     res.status(201).json({message: 'Module Successfully saved'});
   } catch (error) {
     res.status(500).json({ error: 'Error saving module data' });

@@ -110,55 +110,59 @@ export const AddLesson = ({courses = []}) => {
           }
         </label>
 
-        <label htmlFor="lessonLinks" className="AddCourse__label">
+        <label htmlFor="topicLessonTitle" className="AddCourse__label">
           Lesson Title:
-          <input type="text" id='lessonLinks' className="AddCourse__input" {...register('lessonLinks', {required: true})}/>
+          <input type="text" id='topicLessonTitle' className="AddCourse__input" {...register('topicLessonTitle', {required: true})}/>
         </label>
-{/* 
-        <label htmlFor="moduleId" className="AddCourse__label">
-          Module ID:
-          <input type="text" id='moduleId' className="AddCourse__input" {...register('moduleId', {required: true})}/>
-        </label> */}
 
-        {/* <label htmlFor="moduleTutor" className="AddCourse__label">
-          Select Tutor:
-
-          <select id="moduleTutor" className="AddCourse__input" {...register('moduleTutor', {required: true})}>
-            <option value="" disabled selected>Select Tutor</option>
-            {
-              employees.map((employee: Employee) => (
-                <option value={employee.employeeName}>
-                  {employee.employeeJobTitle == 'Teacher' && employee.employeeName}
-                </option>
-              ))
-            }
-          </select>
-        </label> */}
-
-        <label htmlFor="lessonNotes" className="AddCourse__label">
+        <label htmlFor="topicLessonNotes" className="AddCourse__label">
           Lesson Notes:
           <textarea
-            id="lessonNotes"
+            id="topicLessonNotes"
             cols="30"
             rows="10"
             className="AddCourse__input"
-            {...register('lessonNotes', {required: true})}
+            {...register('topicLessonNotes', {required: true})}
           ></textarea>
         </label>
 
-        <label htmlFor="lessonLinks" className="AddCourse__label">
+        <label htmlFor="topicLessonNotesExtLinks" className="AddCourse__label">
           External Links:
-          <input type="text" id='lessonLinks' className="AddCourse__input" placeholder='Enter external links, separated by a space'{...register('lessonLinks', {required: true})}/>
+          <input type="text" id='topicLessonNotesExtLinks' className="AddCourse__input" placeholder='Enter external links, separated by a space'{...register('topicLessonNotesExtLinks', {required: true})}/>
         </label>
 
-        <label htmlFor="lessonLinks" className="AddCourse__label">
+        <label htmlFor="topicLessonVideoLink" className="AddCourse__label">
           Video Link:
-          <input type="text" id='lessonLinks' className="AddCourse__input" placeholder='Enter a video'{...register('lessonLinks', {required: true})}/>
+          <input type="text" id='topicLessonVideoLink' className="AddCourse__input" placeholder='Enter a video link'{...register('topicLessonVideoLink', {required: true})}/>
+        </label>
+
+        <label htmlFor="moduleName" className="AddCourse__label">
+          Lesson Task:
+          <select id="lessonLinks" className="AddCourse__input" {...register('lessonLinks', {required: true})}>
+            <option value="" disabled selected>Select Task Type</option>
+              <option value='short'>Short Tasks</option>
+              <option value='short'>Long Tasks</option>
+          </select>
+        </label>
+
+        <label htmlFor="taskQuestion" className="AddCourse__label">
+          Question:
+          <input type="text" id='taskQuestion' className="AddCourse__input" placeholder='Enter a question'{...register('taskQuestion', {required: true})}/>
+        </label>
+
+        <label htmlFor="taskAnswerOptions" className="AddCourse__label">
+          Options:
+          <input type="text" id='taskAnswerOptions' className="AddCourse__input" placeholder='Enter options to choose from, separated by a space'{...register('taskAnswerOptions', {required: true})}/>
+        </label>
+
+        <label htmlFor="correctOptions" className="AddCourse__label">
+          Correct Options:
+          <input type="text" id='correctOptions' className="AddCourse__input" placeholder='Enter correct option(s) separated by a space'{...register('correctOptions', {required: true})}/>
         </label>
 
         <div className="AddCourse__button-group">
-          <button type='submit' className="AddCourse__submit">Save Topic</button>
-          <button type='button' className="AddCourse__addTopic">Add Lessons</button>
+          <button type='submit' className="AddCourse__submit">Save Lesson</button>
+          <button type='button' className="AddCourse__addTopic">Update Lesson</button>
         </div>
       </form>
     </section>

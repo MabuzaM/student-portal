@@ -3,6 +3,7 @@ import './AddTopic.scss';
 import ky from 'ky';
 import { useForm } from 'react-hook-form';
 import { Course, CourseModule } from '@/app/utils/types';
+import { NavLink } from 'react-router-dom';
 
 export const AddTopic = ({courses = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
@@ -80,7 +81,7 @@ export const AddTopic = ({courses = []}) => {
 
         <div className="AddCourse__button-group">
           <button type='submit' className="AddCourse__submit">Save Topic</button>
-          <button type='button' className="AddCourse__addTopic">Add Lessons</button>
+          <NavLink to={'/lessons'}><button type='button' className="AddCourse__addTopic">Add Lessons</button></NavLink>
         </div>
       </form>
     </section>

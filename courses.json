@@ -185,15 +185,15 @@
             "topicLessonVideoLink": "Link goes here",
             "topicLessonNotes": "Instructor Notes go here",
             "topicLessonNotesExtLinks": ["External Links go here"],
-            "topicLessonTaskShort": [{
-              "question": "?",
-              "options": [""],
+            "topicLessonTasksShort": [{
+              "taskQuestion": "?",
+              "taskAnswerOptions": [""],
               "correctOptions": [""]
             }],
-            "topicLessonTaskLong": [{
-              "question": "?",
-              "studentAnswer": "",
-              "correctAnswer": ""
+            "topicLessonTasksLong": [{
+              "taskQuestion": "?",
+              "taskAnswerOptions": "",
+              "correctOptions": ""
             }]
           }]
         },

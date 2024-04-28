@@ -17,7 +17,7 @@ import axios from 'axios';
 import { Course, CourseModule, Employee, ModuleTopic, TopicLesson } from './utils/types';
 import { StudentRegistration } from './components/StudentRegistration/StudentRegistration';
 import { EmployeeRegistration } from './components/EmployeeRegistration/EmployeeRegistration';
-import { BrowserRouter, Route, Routes, HashRouter, createBrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter, createBrowserRouter, NavLink } from 'react-router-dom';
 import { StudentsDashboard } from './components/StudentsDashboard/StudentsDashboard';
 import { AddCourse } from './components/AddCourse/AddCourse';
 import { AddModule } from './components/AddModule/AddModule';
@@ -57,7 +57,41 @@ function App() {
         <Navbar />
        </section>
       <main className="Main App_main">
-          <AddLesson courses={courses}/>
+        <aside className='Aside'>
+          <nav className="Nav Aside__nav">
+            <ul className="Aside__list">
+              <li className="Aside__item">
+                <NavLink to="/" className="Aside__link">Dashboard</NavLink>
+              </li>
+
+
+              <li className="Aside__item">
+                <NavLink to="/addCourse" className="Aside__link">Add Course</NavLink>
+              </li>
+
+              <li className="Aside__item">
+                <NavLink to="/module" className="Aside__link">Add Module</NavLink>
+              </li>
+
+              <li className="Aside__item">
+                <NavLink to="/topics" className="Aside__link">Add Topics</NavLink>
+              </li>
+
+              <li className="Aside__item">
+                <NavLink to="/lessons" className="Aside__link">Add Lessons</NavLink>
+              </li>
+
+              <li className="Aside__item">
+                <NavLink to="/staffRegistration" className="Aside__link">Register Employee</NavLink>
+              </li>
+
+              <li className="Aside__item">
+                <a href="#" className="Aside__link">Exams </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+        <div className="Main__content">
           <Routes>
               <Route
                 path='/'
@@ -83,13 +117,30 @@ function App() {
               path='/studentRegistration'
               element = {<StudentRegistration courses={courses}/>}
             />
+
+            <Route
+              path='/addCourse'
+              element = {<AddCourse employees={employees}/>}
+            />
+
+            <Route
+              path='/module'
+              element = {<AddModule courses={courses} employees={employees}/>}
+            />
+
+            <Route
+              path='/topics'
+              element = {<AddTopic courses={courses}/>}
+            />
+
+            <Route
+              path='/lessons'
+              element = {<AddLesson courses={courses}/>}
+            />
             
           </Routes>
-
-      </main>
-
-      {/* <Topic /> */}
-      
+        </div>      
+      </main>      
       <Footer />
       </HashRouter>
     </div>
