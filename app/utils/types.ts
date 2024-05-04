@@ -11,6 +11,7 @@ export type ModuleTopic = {
 }
 
 export type CourseModule = {  
+  moduleId: string,
   moduleName: string,
   moduleInstructor: string,
   moduleTutor: string,
@@ -51,18 +52,20 @@ export type Attendance = {
 }
 
 export type Student = {
-    name: string,
-    surname: string,
-    course: string,
-    phone: string,
-    address: string,
-    email: string,
-    parent: string,
-    student_id: string,
-    level: string,
-    date_of_birth: Date,
-    password: string,
-    picture: string
+  studentName: string,
+  surname: string,
+  courseName: string,
+  studentNumber: string,
+  phone: string,
+  address1: string,
+  address2: string,
+  email: string,
+  nationalId: string,
+  dateOfBirth: Date,
+  parentSurname: string,
+  parentName: string,
+  parentPhone: string,
+  parentEmail: string,
 }
 
 export type Assessment = {

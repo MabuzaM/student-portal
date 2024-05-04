@@ -7,19 +7,21 @@ import { Course, CourseModule } from '@/app/utils/types';
 export const AddLesson = ({courses = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
-  const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<Course>();
+  const [selectedModule, setSelectedModule] = useState<CourseModule>();
 
   const handleCourseChange = (e) => {
-    const selectedCourseData = courses.find((course: Course) => (
+    setSelectedCourse(courses.find((course: Course) => (
       course.courseName === e.target.value
-    ));
-
-    setCourseModules(selectedCourseData
-      ? selectedCourseData
-      .courseModules 
-      : []
-    );
+    )));
   };
+
+  const handleModuleChange = (event) => {
+    setSelectedModule(selectedCourse?.courseModules.find((module: CourseModule) => (
+      module.moduleName === event.target.value
+    )));
+  };
+
 
   // const addCourseModules = () => {
   //   setCourseModules([...courseModules, {
@@ -60,7 +62,7 @@ export const AddLesson = ({courses = []}) => {
       <label htmlFor="courseName" className="AddCourse__label">
           Select a Course:
 
-          <select id="courseName" className="AddCourse__input" onChange={handleCourseChange} hidden >
+          <select id="courseName" className="AddCourse__input" onChange={handleCourseChange}>
             <option value="" disabled selected>Select a Course</option>
             {
               courses.map((course: Course) => {
@@ -76,10 +78,10 @@ export const AddLesson = ({courses = []}) => {
           Module:
 
           {
-            <select id="moduleName" className="AddCourse__input" {...register('moduleName', {required: true})}>
-              <option value="" disabled selected>Select Module</option>
+            <select id="moduleName" className="AddCourse__input" onChange={handleModuleChange}>
+              <option disabled value={''} selected>Select Module</option>
               {
-                courseModules.map((courseModule) => (
+                selectedCourse?.courseModules.map((courseModule) => (
                   <option value={courseModule.moduleName} key={courseModule.moduleName}>
                     {courseModule.moduleName}
                   </option>
@@ -94,17 +96,14 @@ export const AddLesson = ({courses = []}) => {
           <input type="search" name="topicSearch" id="topicSearch" className="AddCourse__input" placeholder='Search Topic'/>
           {
             <select id="lessonLinks" className="AddCourse__input" {...register('lessonLinks', {required: true})}>
-              <option value="" disabled selected>Select Topic</option>
+              <option disabled value={''} selected>Select Topic</option>
               {
-                courseModules.map((courseModule) => (
-                  courseModule.moduleTopics.map((moduleTopic) => (
-                    moduleTopic.topicLessons.map((topicLesson) => (
-                      <option value={topicLesson.topicLessonTitle} key={topicLesson.topicLessonTitle}>
-                        {topicLesson.topicLessonTitle}
+                  selectedModule?.moduleTopics.map((moduleTopic) => (
+                      <option value={moduleTopic.topic} key={moduleTopic.topic}>
+                        {moduleTopic.topic}
                       </option>
-                    ))
-                  ))
-                ))
+                    )
+                  )
               }
             </select>
           }

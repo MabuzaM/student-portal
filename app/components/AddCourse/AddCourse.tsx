@@ -15,7 +15,7 @@ export const AddCourse = ({employees = []}) => {
 
   const addCourseModules = () => {
     setCourseModules([...courseModules, {
-      moduleName: moduleName,
+      moduleName: '',
       moduleInstructor: '',
       moduleTutor: '',
       moduleProgress: 0,
@@ -25,9 +25,6 @@ export const AddCourse = ({employees = []}) => {
 
     setModuleName('');
   }
-
-  console.log(moduleName)
-  console.log(courseModules)
 
   const onSubmit = async (data: {}) => {
     try {
@@ -88,14 +85,14 @@ export const AddCourse = ({employees = []}) => {
             <option defaultValue="" value="">Select Course Manager</option>
             {
               employees.map((employee: Employee) => (
-                <option value={employee.employeeName} key={employee.employeeName}>{employee.employeeJobTitle === 'Teacher' && employee.employeeName}</option>
+                employee.employeeJobTitle === 'Teacher' && <option value={employee.employeeName} key={employee.employeeName}>{employee.employeeName}</option>
               ))
             }
             
           </select>
         </label>
 
-        <label htmlFor="courseModule" className="AddCourse__label">
+        {/* <label htmlFor="courseModule" className="AddCourse__label">
           Course Module:
           <div className="AddCourse__input-group">
             <input
@@ -116,7 +113,7 @@ export const AddCourse = ({employees = []}) => {
               +
             </button>
           </div>
-        </label>
+        </label> */}
 
         {
           feedback && (

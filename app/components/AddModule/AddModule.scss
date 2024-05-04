@@ -38,6 +38,10 @@ select {
     border-bottom: 1px solid $main-blue;
     background-color: $light-blue;
 
+    &--select {
+      color: $main-blue;
+    }
+
     &:hover {
       background-color: #bbecf8;
     }

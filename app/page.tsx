@@ -14,20 +14,24 @@ import { TimetableCard } from './components/TimetableCard/TimetableCard';
 import { Topic } from './components/Topic/Topic';
 import { TopicList } from './components/TopicList/TopicList';
 import axios from 'axios';
-import { Course, CourseModule, Employee, ModuleTopic, TopicLesson } from './utils/types';
+import { Course, CourseModule, Employee, ModuleTopic, Student, TopicLesson } from './utils/types';
 import { StudentRegistration } from './components/StudentRegistration/StudentRegistration';
 import { EmployeeRegistration } from './components/EmployeeRegistration/EmployeeRegistration';
-import { BrowserRouter, Route, Routes, HashRouter, createBrowserRouter, NavLink } from 'react-router-dom';
+import { Route, Routes, HashRouter, NavLink, useNavigation } from 'react-router-dom';
 import { StudentsDashboard } from './components/StudentsDashboard/StudentsDashboard';
 import { AddCourse } from './components/AddCourse/AddCourse';
 import { AddModule } from './components/AddModule/AddModule';
 import { AddTopic } from './components/AddTopic/AddTopic';
 import { AddLesson } from './components/AddLesson/AddLesson';
+import { DashboardOverView } from './components/DashboardOverview/DashboardOverview';
+import { Students } from './components/Students/Students';
+
 
 function App() {
   //States
   const [courses, setCourses] = useState<Course[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
 
   useEffect(() => {
   // // Get courses
@@ -47,6 +51,14 @@ function App() {
   .catch((err) => {
     console.log(err);
   })
+
+  axios.get('http://127.0.0.1:5000/students')
+  .then((students) => {
+    setStudents(students.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
  },[])
 
   return (
@@ -61,12 +73,22 @@ function App() {
           <nav className="Nav Aside__nav">
             <ul className="Aside__list">
               <li className="Aside__item">
-                <NavLink to="/" className="Aside__link">Dashboard</NavLink>
+                <NavLink
+                  to="/"
+                  className={`Aside__link ${(navData) => navData.isActive ? 'active-link': ''}`}
+                
+                >Dashboard</NavLink>
               </li>
 
+              <li className="Aside__item">
+                <NavLink to="/overview" className="Aside__link">Overview</NavLink>
+              </li>
 
               <li className="Aside__item">
-                <NavLink to="/addCourse" className="Aside__link">Add Course</NavLink>
+                <NavLink
+                  to="/addCourse"
+                  className={`Aside__link ${(navData) => navData.isActive ? 'active-link': ''}`}
+                >Add Course</NavLink>
               </li>
 
               <li className="Aside__item">
@@ -82,11 +104,11 @@ function App() {
               </li>
 
               <li className="Aside__item">
-                <NavLink to="/staffRegistration" className="Aside__link">Register Employee</NavLink>
+                <NavLink to="/students" className="Aside__link">Students</NavLink>
               </li>
 
               <li className="Aside__item">
-                <a href="#" className="Aside__link">Exams </a>
+                <NavLink to="/staffRegistration" className="Aside__link">Register Employee</NavLink>
               </li>
             </ul>
           </nav>
@@ -136,6 +158,16 @@ function App() {
             <Route
               path='/lessons'
               element = {<AddLesson courses={courses}/>}
+            />
+
+            <Route
+              path='/overview'
+              element = {<DashboardOverView />}
+            />
+
+            <Route
+              path='/students'
+              element = {<Students students={students}/>}
             />
             
           </Routes>

@@ -47,7 +47,7 @@ export const StudentRegistration = ({courses = []}) => {
 
   const onSubmit = async (data: {}) => {
     try {
-      const response = await client.post('http://127.0.0.1:5000/student/', { json: data });
+      const response = await client.post('http://127.0.0.1:5000/students/', { json: data });
       console.log(data);
 
       if (response.ok) {

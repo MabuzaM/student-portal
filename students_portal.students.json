@@ -1,0 +1,363 @@
+[{
+  "_id": {
+    "$oid": "661bbef553446591a721070d"
+  },
+  "studentName": "Manqoba",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "345643534534",
+  "address1": "dfvdsfvdsf",
+  "address2": "fvfvdfvfd",
+  "email": "dfdfdsfds@dfxdcdcd",
+  "nationalId": "2323423423",
+  "dateOfBirth": "2024-04-01",
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "0988766767",
+  "parentEmail": "angi@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6629e07b1b514df10a70c90b"
+  },
+  "studentName": "Owethu",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "1234",
+  "dateOfBirth": "2024-04-01",
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662a787fd28af0ea6fa727db"
+  },
+  "studentName": "Owethu3",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "1234",
+  "dateOfBirth": "2024-04-01",
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662a7a16c04a712f18087501"
+  },
+  "studentName": "Owethu4",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "1234",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662a7a26c04a712f18087503"
+  },
+  "studentName": "Owethu5",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "1234",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b27277d8dd425e402251e"
+  },
+  "studentName": "Owethu",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "123456679",
+  "studentNumber": "A246679",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2807b6c371f82c56a6f0"
+  },
+  "studentName": "Owethu",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "123456679",
+  "studentNumber": "A246679class Timestamp extends LongWithoutOverridesClass {\n    get _bsontype() {\n        return 'Timestamp';\n    }\n    constructor(low) {\n        if (low == null) {\n            super(0, 0, true);\n        }\n        else if (typeof low === 'bigint') {\n            super(low, true);\n        }\n        else if (Long.isLong(low)) {\n            super(low.low, low.high, true);\n        }\n        else if (typeof low === 'object' && 't' in low && 'i' in low) {\n            if (typeof low.t !== 'number' && (typeof low.t !== 'object' || low.t._bsontype !== 'Int32')) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide t as a number');\n            }\n            if (typeof low.i !== 'number' && (typeof low.i !== 'object' || low.i._bsontype !== 'Int32')) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide i as a number');\n            }\n            const t = Number(low.t);\n            const i = Number(low.i);\n            if (t < 0 || Number.isNaN(t)) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide a positive t');\n            }\n            if (i < 0 || Number.isNaN(i)) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide a positive i');\n            }\n            if (t > 4294967295) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide t equal or less than uint32 max');\n            }\n            if (i > 4294967295) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide i equal or less than uint32 max');\n            }\n            super(i, t, true);\n        }\n        else {\n            throw new BSONError('A Timestamp can only be constructed with: bigint, Long, or { t: number; i: number }');\n        }\n    }\n    toJSON() {\n        return {\n            $timestamp: this.toString()\n        };\n    }\n    static fromInt(value) {\n        return new Timestamp(Long.fromInt(value, true));\n    }\n    static fromNumber(value) {\n        return new Timestamp(Long.fromNumber(value, true));\n    }\n    static fromBits(lowBits, highBits) {\n        return new Timestamp({ i: lowBits, t: highBits });\n    }\n    static fromString(str, optRadix) {\n        return new Timestamp(Long.fromString(str, true, optRadix));\n    }\n    toExtendedJSON() {\n        return { $timestamp: { t: this.high >>> 0, i: this.low >>> 0 } };\n    }\n    static fromExtendedJSON(doc) {\n        const i = Long.isLong(doc.$timestamp.i)\n            ? doc.$timestamp.i.getLowBitsUnsigned()\n            : doc.$timestamp.i;\n        const t = Long.isLong(doc.$timestamp.t)\n            ? doc.$timestamp.t.getLowBitsUnsigned()\n            : doc.$timestamp.t;\n        return new Timestamp({ t, i });\n    }\n    inspect(depth, options, inspect) {\n        inspect ??= defaultInspect;\n        const t = inspect(this.high >>> 0, options);\n        const i = inspect(this.low >>> 0, options);\n        return `new Timestamp({ t: ${t}, i: ${i} })`;\n    }\n}",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2843b6c371f82c56a6f2"
+  },
+  "studentName": "Owethu",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "123456679",
+  "studentNumber": "A246679class Timestamp extends LongWithoutOverridesClass {\n    get _bsontype() {\n        return 'Timestamp';\n    }\n    constructor(low) {\n        if (low == null) {\n            super(0, 0, true);\n        }\n        else if (typeof low === 'bigint') {\n            super(low, true);\n        }\n        else if (Long.isLong(low)) {\n            super(low.low, low.high, true);\n        }\n        else if (typeof low === 'object' && 't' in low && 'i' in low) {\n            if (typeof low.t !== 'number' && (typeof low.t !== 'object' || low.t._bsontype !== 'Int32')) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide t as a number');\n            }\n            if (typeof low.i !== 'number' && (typeof low.i !== 'object' || low.i._bsontype !== 'Int32')) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide i as a number');\n            }\n            const t = Number(low.t);\n            const i = Number(low.i);\n            if (t < 0 || Number.isNaN(t)) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide a positive t');\n            }\n            if (i < 0 || Number.isNaN(i)) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide a positive i');\n            }\n            if (t > 4294967295) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide t equal or less than uint32 max');\n            }\n            if (i > 4294967295) {\n                throw new BSONError('Timestamp constructed from { t, i } must provide i equal or less than uint32 max');\n            }\n            super(i, t, true);\n        }\n        else {\n            throw new BSONError('A Timestamp can only be constructed with: bigint, Long, or { t: number; i: number }');\n        }\n    }\n    toJSON() {\n        return {\n            $timestamp: this.toString()\n        };\n    }\n    static fromInt(value) {\n        return new Timestamp(Long.fromInt(value, true));\n    }\n    static fromNumber(value) {\n        return new Timestamp(Long.fromNumber(value, true));\n    }\n    static fromBits(lowBits, highBits) {\n        return new Timestamp({ i: lowBits, t: highBits });\n    }\n    static fromString(str, optRadix) {\n        return new Timestamp(Long.fromString(str, true, optRadix));\n    }\n    toExtendedJSON() {\n        return { $timestamp: { t: this.high >>> 0, i: this.low >>> 0 } };\n    }\n    static fromExtendedJSON(doc) {\n        const i = Long.isLong(doc.$timestamp.i)\n            ? doc.$timestamp.i.getLowBitsUnsigned()\n            : doc.$timestamp.i;\n        const t = Long.isLong(doc.$timestamp.t)\n            ? doc.$timestamp.t.getLowBitsUnsigned()\n            : doc.$timestamp.t;\n        return new Timestamp({ t, i });\n    }\n    inspect(depth, options, inspect) {\n        inspect ??= defaultInspect;\n        const t = inspect(this.high >>> 0, options);\n        const i = inspect(this.low >>> 0, options);\n        return `new Timestamp({ t: ${t}, i: ${i} })`;\n    }\n}",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2ad0f48e9034ce9ce198"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2ad5f48e9034ce9ce19a"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2ad6f48e9034ce9ce19c"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b4d0c4f453fa590917b"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b4f0c4f453fa590917f"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b500c4f453fa5909182"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b510c4f453fa5909185"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b510c4f453fa5909187"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662b2b520c4f453fa5909189"
+  },
+  "studentName": "Owethu30",
+  "surname": "Ncube",
+  "courseName": "Web Development",
+  "phone": "098765",
+  "address1": "42",
+  "address2": "steyn road",
+  "email": "asheracad@gmail.com",
+  "nationalId": "676558658",
+  "studentNumber": "A248658",
+  "dateOfBirth": {
+    "$date": "2024-04-01T00:00:00.000Z"
+  },
+  "parentSurname": "Vundla",
+  "parentName": "Angie",
+  "parentPhone": "56789",
+  "parentEmail": "angie@gmail.com",
+  "__v": 0
+}]

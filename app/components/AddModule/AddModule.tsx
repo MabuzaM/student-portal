@@ -10,8 +10,8 @@ export const AddModule = ({courses = [], employees = []}) => {
   const client = ky.create({});
   const [feedback, setFeedback] = useState('');
   const [submitError, setSubmitError] = useState(false);
-  const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
-  const [moduleName, setModuleName] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState<Course>();
+  const [courseId, setCourseId] = useState('');
 
   // const addCourseModules = () => {
   //   setCourseModules([...courseModules, {
@@ -26,19 +26,20 @@ export const AddModule = ({courses = [], employees = []}) => {
   //   setModuleName('');
   // }
 
-  // console.log(moduleName)
-  // console.log(courseModules)
-
   const onSubmit = async (data: {}) => {
     try {
-      const response = await client.put('http://127.0.0.1:5000/courses/courses', { json: data });
+      const newModule = {...data, 
+        moduleProgress: 0,
+        moduleTopics: []
+      }
+      const response = await client.patch(`http://127.0.0.1:5000/courses/${selectedCourse?._id}`, { json: newModule });
       console.log(response);
 
       if (response.ok) {
         setFeedback('Module successfully saved!');
       } else {
         setSubmitError(true);
-        setFeedback(`Error submitting module data! ${await response.text()}`);
+        setFeedback(`Error saving the module! ${await response.text()}`);
       }
     } catch (error) {
       setSubmitError(true);
@@ -54,12 +55,14 @@ export const AddModule = ({courses = [], employees = []}) => {
       <label htmlFor="courseName" className="AddCourse__label">
           Select a Course:
 
-          <select id="courseName" className="AddCourse__input" {...register('courseName', {required: true})} hidden>
+          <select id="courseName" className="AddCourse__input" hidden onChange={(e) => {
+            setSelectedCourse(courses.find((course: Course) => course.courseId === e.target.value))
+          }}>
             <option value="" disabled selected>Select a Course</option>
             {
-              courses.map((course: Course) => (
-                <option value={course.courseName}>{course.courseName}</option>
-              ))
+              courses.map((course: Course) => 
+                <option value={course.courseId}>{course.courseName}</option>
+              )
             }
             
           </select>
@@ -82,8 +85,8 @@ export const AddModule = ({courses = [], employees = []}) => {
             <option value="" defaultValue={''}>Select Instructor</option>
             {
               employees.map((employee: Employee) => (
-                <option value={employee.employeeName}>
-                  {employee.employeeJobTitle === 'Teacher' && employee.employeeName}
+                employee.employeeJobTitle === 'Teacher' && <option value={employee.employeeName}>
+                  { employee.employeeName}
                 </option>
               ))
             }
@@ -93,12 +96,12 @@ export const AddModule = ({courses = [], employees = []}) => {
         <label htmlFor="moduleTutor" className="AddCourse__label">
           Select Tutor:
 
-          <select id="moduleTutor" className="AddCourse__input" {...register('moduleTutor', {required: true})}>
+          <select id="moduleTutor" className="AddCourse__input AddCourse__input--select" {...register('moduleTutor', {required: true})}>
             <option value="" defaultValue={''}>Select Tutor</option>
             {
               employees.map((employee: Employee) => (
-                <option value={employee.employeeName}>
-                  {employee.employeeJobTitle == 'Teacher' && employee.employeeName}
+                employee.employeeJobTitle == 'Teacher' && <option value={employee.employeeName}>
+                  {employee.employeeName}
                 </option>
               ))
             }

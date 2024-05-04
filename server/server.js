@@ -40,17 +40,86 @@ app.route('/courses').get((req, res) => {
     res.status(500).json({ error: 'Error saving course data' });
   }
 })
-.put((req, res) => {  
-  try {
-    const moduleData = new CourseModel(req.body);
-    const course = req.body.courseName;
 
-    moduleData.findOne({courseName: course}).update({set: courseModules = [...courseModules, moduleData]});
-    res.status(201).json({message: 'Module Successfully saved'});
-  } catch (error) {
-    res.status(500).json({ error: 'Error saving module data' });
-  }
+// app.route('/courses/:id').get((req, res) => {
+//   const courseId = req.params.id;
+
+//   CourseModel.findById({courseId}).then((course) => {
+//     res.json(course);
+//   }).catch(err => res.json(err));
+// })
+
+app.patch('/courses/:id', async (req, res) => {  
+    const courseId = req.params.id;
+
+    const newModuleData = req.body;
+
+    try {
+      const course = await CourseModel.findByIdAndUpdate(
+        courseId,
+        { $push: { courseModules: newModuleData } },
+        { new: true }
+      );
+
+      res.status(200).send('success');
+  
+    } catch (err) {
+      res.send('Error');
+    }
+
 });
+
+app.patch('/courses/modules/:id', async (req, res) => {
+  const courseId = req.params.id;
+  const updatedModule = req.body;
+
+  try {
+    const course = await CourseModel.findByIdAndUpdate(
+      courseId,
+      {$set: {courseModules: updatedModule}},
+      {new: true}
+    );
+
+    res.status(200).send('success');
+
+
+  } catch (err) {
+    res.send('Error');
+  }
+
+});
+
+const updateCourseModules = async (courseId, newModule) => {
+  try {
+    const course = await CourseModel.findByIdAndUpdate(
+      courseId,
+      { $push: { courseModules: newModule } },
+      { new: true }
+    );
+
+    console.log(course);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+app.route('/courses/:id').put(async (req, res) => {
+  const courseId = req.params.id;
+  const newModules = req.body.modules;
+
+  // try {
+  //   const course = await CourseModel.findById(courseId);
+
+  //   if (!course) {
+  //     return { error: 'Course not found' };
+  //   } else {
+  //     course.courseModules = [...courseModules, newModules];
+  //     await course.save();
+  //   }
+  // } catch (error) {
+  //   return { error: 'Failed to update course modules' };
+  // }
+})
 
 //Get all employees
 app.route('/employees').get((req, res) => {
@@ -85,22 +154,43 @@ app.get('/getStudent', (req, res) => {
   .catch((err) => {res.json(err);});
 });
 
-app.route('/student')
+app.route('/students')
   .get((req, res) => {
-    StudentModel.find()
+    const searchKey = req.body.params;
+    StudentModel.find({studentName: { $regex: searchKey, $options: 'i' }})
     .then((students) => {res.json(students);})
     .catch((err) => {res.json(err);});
   })
   .post((req, res) => {
     try {
-      const uniqueNumber = round(parseInt(req.body.nationalId) / 73).toString().slice(0, 2);
-      const studentNumber = `A24${req.body.nationalId.slice(-4)}${uniqueNumber}`;
+      // const uniqueNumber = round(Number(req.body.nationalId) / 73).toString().slice(0, 2);
+      const studentNumber = `A24${req.body.nationalId.slice(-4)}`;
       const studentData = new StudentModel({...req.body, studentNumber: studentNumber});
       studentData.save();
       res.status(201).json({ message: 'User input saved successfully' });
     } catch (error) {
       res.status(500).json({ error: 'Error saving student data' });
     }
+  })
+
+  app.route('/students/search')
+  .get(async (req, res) => {
+    const searchKey = req.query.search;
+    const students = await StudentModel.find({
+      $or: [
+        { 
+          studentName: { $regex: searchKey, $options: 'i' }
+        },
+        {
+          nationalId: searchKey
+        },
+        {
+          studentNumber: searchKey
+        }
+      ],
+    });
+
+    res.json(students);
   })
 
 app.route('/employee').post((req, res) => {

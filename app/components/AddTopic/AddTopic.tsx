@@ -9,31 +9,46 @@ export const AddTopic = ({courses = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
   const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<Course>();
+  const [selectedModule, setSelectedModule] = useState<CourseModule>();
+  const [selectedModuleId, setSelectedModuleId] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [submitError, setSubmitError] = useState(false);
 
   const handleCourseChange = (e) => {
-    const selectedCourseData = courses.find((course: Course) => (
-      course.courseName === e.target.value
-    ));
+    setSelectedCourse(courses.find((course: Course) => (
+      course.courseId === e.target.value
+    )));
+  };
 
-    setCourseModules(selectedCourseData
-      ? selectedCourseData
-      .courseModules 
-      : []
-    );
+  const handleModuleChange = (e) => {
+    setSelectedModule(selectedCourse?.courseModules.find((courseModule) => (courseModule.moduleId === e.target.value)));
   };
 
   const onSubmit = async (data: {}) => {
     try {
-      const response = await client.post('http://127.0.0.1:5000/courses/modules', { json: data });
-      console.log(response);
+      const updatedModule = {
+        ...selectedModule,
+        moduleTopics: [...selectedModule?.moduleTopics, {
+          topic: data?.topicTitle,
+          topicLessons: [],
+          topicProgress: 0,
+          topicNotes: {}
+      }]}
 
+      console.log(updatedModule);
+
+      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/${selectedCourse._id}`, { json: updatedModule });
       if (response.ok) {
-        console.log('Module successfully saved!');
+        setSubmitError(false);
+        setFeedback('Topic successfully added!');
       } else {
-        console.log('Error submitting module data!', await response.text());
+        setSubmitError(true);
+        setFeedback(`Error adding the topic! ${await response.text()}`);
       }
     } catch (error) {
-      console.log('Error making the request', error);
+      setSubmitError(true);
+      setFeedback(`Error making the request ${error}`);
     }
   }
 
@@ -48,9 +63,8 @@ export const AddTopic = ({courses = []}) => {
           <select id="courseName" className="AddCourse__input" onChange={handleCourseChange} hidden >
             <option value="" disabled selected>Select a Course</option>
             {
-              courses.map((course: Course) => {
-                
-                return <option value={course.courseName} key={course.courseName}>{course.courseName}</option>
+              courses.map((course: Course) => {                
+                return <option value={course.courseId} key={course.courseName}>{course.courseName}</option>
               })
             }
             
@@ -61,11 +75,11 @@ export const AddTopic = ({courses = []}) => {
           Module:
 
           {
-            <select id="moduleName" className="AddCourse__input" {...register('moduleName', {required: true})}>
-              <option value="" disabled selected>Select Module</option>
+            <select id="moduleName" className="AddCourse__input" onChange={handleModuleChange}>
+              <option value="" disabled defaultValue={''}>Select Module</option>
               {
-                courseModules.map((courseModule) => (
-                  <option value={courseModule.moduleName} key={courseModule.moduleName}>
+                selectedCourse?.courseModules.map((courseModule) => (
+                  selectedCourse.courseModules.some((module) => module.moduleName === courseModule.moduleName) &&<option value={courseModule.moduleId} key={courseModule.moduleName}>
                     {courseModule.moduleName}
                   </option>
                 ))
@@ -74,10 +88,18 @@ export const AddTopic = ({courses = []}) => {
           }
         </label>
 
-        <label htmlFor="topicTitle" className="AddCourse__label">
+        <label htmlFor="topic" className="AddCourse__label">
           Topic Title:
-          <input type="text" id='topicTitle' className="AddCourse__input" {...register('topicTitle', {required: true})}/>
+          <input type="text" id='topic' className="AddCourse__input" {...register('topicTitle', {required: true})}/>
         </label>
+
+        {
+          feedback && (
+            <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
+              {feedback}
+            </p>
+          )
+        }
 
         <div className="AddCourse__button-group">
           <button type='submit' className="AddCourse__submit">Save Topic</button>
