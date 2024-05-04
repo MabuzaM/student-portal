@@ -1,6 +1,18 @@
+export type LessonTask = {
+  lessonTaskGrade: number,
+  lessonTaskType: string,
+  lessonTaskQuestion: string,
+  lessonTaskAnswerOptions: string[],
+  lessonTaskCorrectAnswers: string[]
+}
+
 export type TopicLesson = {  
   topicLessonTitle: string,
-  topicVideoLink: string
+  topicLessonVideoLink: string[],
+  topicLessonNotes: string,
+  topicLessonExtLinks: string[],
+  topicLessonProgress: number,
+  topicLessonTasks: LessonTask[]
 }
 
 export type ModuleTopic = {  

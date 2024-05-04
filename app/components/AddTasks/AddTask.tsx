@@ -1,10 +1,10 @@
 import react, { useEffect, useState } from 'react';
-import './AddLesson.scss';
+import './AddTask.scss';
 import ky from 'ky';
 import { useForm } from 'react-hook-form';
-import { Course, CourseModule } from '@/app/utils/types';
+import { Course, CourseModule, LessonTask, TopicLesson } from '@/app/utils/types';
 
-export const AddLesson = ({courses = []}) => {
+export const AddTask = ({courses = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
   const [feedback, setFeedback] = useState('');
@@ -12,6 +12,7 @@ export const AddLesson = ({courses = []}) => {
   const [selectedCourse, setSelectedCourse] = useState<Course>();
   const [selectedModule, setSelectedModule] = useState<CourseModule>();
   const [selectedTopicName, setSelectedTopicName] = useState('');
+  const [selectedLesson, setSelectedLesson] = useState<TopicLesson>();
 
   const handleCourseChange = (e) => {
     setSelectedCourse(courses.find((course: Course) => (
@@ -29,14 +30,21 @@ export const AddLesson = ({courses = []}) => {
     setSelectedTopicName(e.target.value);
   }
 
-  const onSubmit = async (data: {}) => {
+  const handleLessonChange = (e) => {
+
+  }
+
+  const onSubmit = async (data: LessonTask) => {
     try {
       const newLesson = {
         ...data,
         moduleId: selectedModule?.moduleId,
         topic: selectedTopicName,
-        topicLessonExtLinks: (data?.topicLessonExtLinks).split(';')
+        lessonTaskAnswerOptions: (data?.lessonTaskAnswerChoices).split(';'),
+        lessonTaskCorrectAnswers: (data?.lessonTaskAnswers).split(';')
       }
+
+      console.log(newLesson);
 
       const response = await client.patch(`http://127.0.0.1:5000/courses/modules/lessons/${selectedCourse?._id}`, { json: newLesson });
       // console.log(response);
@@ -54,9 +62,15 @@ export const AddLesson = ({courses = []}) => {
     }
   }
 
+  // lessonTaskGrade: Number,
+  // lessonTaskType: String,
+  // lessonTaskQuestion: String,
+  // lessonTaskAnswerOptions: [String],
+  // lessonTaskCorrectAnswers: [String]
+
   return (
     <section className="AddCourse">
-      <h2 className="AddCourse__heading">Add Lessons</h2>
+      <h2 className="AddCourse__heading">Add Tasks</h2>
 
       <form className="AddCourse__form" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="courseName" className="AddCourse__label">
@@ -109,29 +123,44 @@ export const AddLesson = ({courses = []}) => {
         </label>
 
         <label htmlFor="topicLessonTitle" className="AddCourse__label">
-          Lesson Title:
-          <input type="text" id='topicLessonTitle' className="AddCourse__input" {...register('topicLessonTitle', {required: true})}/>
+          Lesson:
+          {
+            <select id="moduleTopic" className="AddCourse__input" onChange={handleLessonChange}>
+              <option disabled value={''} selected>{'Select a Lesson'}</option>
+              {
+                selectedModule?.moduleTopics?.find((moduleTopic) => moduleTopic.topic === selectedTopicName)?.topicLessons.map((topiclesson) => (
+                  <option value={topiclesson._id} key={topiclesson._id}>
+                    {topiclesson.topicLessonTitle}
+                  </option>
+                ))
+ 
+              }
+            </select>
+          }
         </label>
 
-        <label htmlFor="topicLessonNotes" className="AddCourse__label">
-          Lesson Notes:
-          <textarea
-            id="topicLessonNotes"
-            cols="30"
-            rows="10"
-            className="AddCourse__input"
-            {...register('topicLessonNotes', {required: true})}
-          ></textarea>
+        <label htmlFor="moduleName" className="AddCourse__label">
+          Lesson Task:
+          <select id="lessonTaskType" className="AddCourse__input" {...register('lessonTaskType', {required: true})}>
+            <option value="" disabled selected>Select Task Type</option>
+              <option value='short'>Short Tasks</option>
+              <option value='long'>Long Tasks</option>
+          </select>
         </label>
 
-        <label htmlFor="topicLessonExtLinks" className="AddCourse__label">
-          External Links:
-          <input type="text" id='topicLessonExtLinks' className="AddCourse__input" placeholder='Enter external links, separated by a semi-colon (;)'{...register('topicLessonExtLinks', {required: true})}/>
+        <label htmlFor="lessonTaskQuestion" className="AddCourse__label">
+          Question:
+          <input type="text" id='lessonTaskQuestion' className="AddCourse__input" placeholder='Enter a question'{...register('lessonTaskQuestion', {required: true})}/>
         </label>
 
-        <label htmlFor="topicLessonVideoLink" className="AddCourse__label">
-          Video Link:
-          <input type="text" id='topicLessonVideoLink' className="AddCourse__input" placeholder='Enter a video link'{...register('topicLessonVideoLink', {required: true})}/>
+        <label htmlFor="lessonTaskAnswerChoices" className="AddCourse__label">
+          Options:
+          <input type="text" id='lessonTaskAnswerChoices' className="AddCourse__input" placeholder='Enter options to choose from, separated by a space'{...register('lessonTaskAnswerChoices', {required: true})}/>
+        </label>
+
+        <label htmlFor="lessonTaskAnswers" className="AddCourse__label">
+          Correct Options:
+          <input type="text" id='lessonTaskAnswers' className="AddCourse__input" placeholder='Enter correct option(s) separated by a space'{...register('lessonTaskAnswers', {required: true})}/>
         </label>
 
         {
@@ -143,8 +172,8 @@ export const AddLesson = ({courses = []}) => {
         }
 
         <div className="AddCourse__button-group">
-          <button type='submit' className="AddCourse__submit">Save Lesson</button>
-          <button type='button' className="AddCourse__addTopic">Update Lesson</button>
+          <button type='submit' className="AddCourse__submit">Save Lesson Task</button>
+          <button type='button' className="AddCourse__addTopic">Update Lesson Task</button>
         </div>
       </form>
     </section>

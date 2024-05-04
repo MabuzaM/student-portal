@@ -25,6 +25,7 @@ import { AddTopic } from './components/AddTopic/AddTopic';
 import { AddLesson } from './components/AddLesson/AddLesson';
 import { DashboardOverView } from './components/DashboardOverview/DashboardOverview';
 import { Students } from './components/Students/Students';
+import { AddTask } from './components/AddTasks/AddTask';
 
 
 function App() {
@@ -104,6 +105,10 @@ function App() {
               </li>
 
               <li className="Aside__item">
+                <NavLink to="/tasks" className="Aside__link">Add Tasks</NavLink>
+              </li>
+
+              <li className="Aside__item">
                 <NavLink to="/students" className="Aside__link">Students</NavLink>
               </li>
 
@@ -158,6 +163,11 @@ function App() {
             <Route
               path='/lessons'
               element = {<AddLesson courses={courses}/>}
+            />
+
+            <Route
+              path='/tasks'
+              element = {<AddTask courses={courses}/>}
             />
 
             <Route

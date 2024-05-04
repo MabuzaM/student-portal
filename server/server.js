@@ -71,23 +71,59 @@ app.patch('/courses/:id', async (req, res) => {
 
 app.patch('/courses/modules/:id', async (req, res) => {
   const courseId = req.params.id;
-  const updatedModule = req.body;
+  const newModuleTopicToSave = {...req.body};
+  delete newModuleTopicToSave.moduleId;
 
   try {
-    const course = await CourseModel.findByIdAndUpdate(
-      courseId,
-      {$set: {courseModules: updatedModule}},
-      {new: true}
+    const course = await CourseModel.updateOne({
+      _id: courseId,
+      "courseModules.moduleId": req.body.moduleId
+    },
+      {$push: {"courseModules.$.moduleTopics": newModuleTopicToSave}},
     );
 
     res.status(200).send('success');
 
-
   } catch (err) {
     res.send('Error');
   }
-
 });
+
+app.patch('/courses/modules/lessons/:id', async (req, res) => {
+  const courseId = req.params.id;
+  const newTopicLesson = {...req.body};
+  delete newTopicLesson.moduleId;
+  delete newTopicLesson.topic;
+
+  try {
+    console.log(newTopicLesson);
+    const course = await CourseModel.updateOne(
+      {
+        _id: courseId,
+        "courseModules.moduleId": req.body.moduleId,
+        "courseModules.moduleTopics.topic": req.body.topic
+      },
+      {
+        $push: {
+          "courseModules.$[courseModule].moduleTopics.$[topicLesson].topicLessons": newTopicLesson
+        }
+      },
+      {
+        arrayFilters: [
+          {"courseModule.moduleId": req.body.moduleId},
+          {"topicLesson.topic": req.body.topic},
+          {"topicLessonExtLinks": req.body.topicLessonExtLinks}
+        ]
+      }
+    );
+
+    res.status(200).send('success');
+  } catch(err) {
+    res.send('Error');
+
+    throw err;
+  }
+})
 
 const updateCourseModules = async (courseId, newModule) => {
   try {

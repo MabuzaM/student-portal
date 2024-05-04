@@ -8,9 +8,7 @@ import { NavLink } from 'react-router-dom';
 export const AddTopic = ({courses = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
-  const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<Course>();
-  const [selectedModule, setSelectedModule] = useState<CourseModule>();
+  const [selectedCourse, setSelectedCourse] = useState<Course | object>();
   const [selectedModuleId, setSelectedModuleId] = useState('');
   const [feedback, setFeedback] = useState('');
   const [submitError, setSubmitError] = useState(false);
@@ -22,23 +20,22 @@ export const AddTopic = ({courses = []}) => {
   };
 
   const handleModuleChange = (e) => {
-    setSelectedModule(selectedCourse?.courseModules.find((courseModule) => (courseModule.moduleId === e.target.value)));
+    setSelectedModuleId(e.target.value);
   };
 
   const onSubmit = async (data: {}) => {
     try {
-      const updatedModule = {
-        ...selectedModule,
-        moduleTopics: [...selectedModule?.moduleTopics, {
+      const newModuleTopic = {
           topic: data?.topicTitle,
           topicLessons: [],
           topicProgress: 0,
-          topicNotes: {}
-      }]}
+          topicNotes: {},
+          moduleId: selectedModuleId
+      }
 
-      console.log(updatedModule);
+      console.log(newModuleTopic.moduleId);
 
-      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/${selectedCourse._id}`, { json: updatedModule });
+      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/${selectedCourse?._id}`, { json: {...newModuleTopic} });
       if (response.ok) {
         setSubmitError(false);
         setFeedback('Topic successfully added!');
@@ -76,7 +73,7 @@ export const AddTopic = ({courses = []}) => {
 
           {
             <select id="moduleName" className="AddCourse__input" onChange={handleModuleChange}>
-              <option value="" disabled defaultValue={''}>Select Module</option>
+              <option value="" disabled selected>Select Module</option>
               {
                 selectedCourse?.courseModules.map((courseModule) => (
                   selectedCourse.courseModules.some((module) => module.moduleName === courseModule.moduleName) &&<option value={courseModule.moduleId} key={courseModule.moduleName}>
