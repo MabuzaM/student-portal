@@ -32,7 +32,7 @@ export const AddModule = ({courses = [], employees = []}) => {
         moduleProgress: 0,
         moduleTopics: []
       }
-      const response = await client.patch(`http://127.0.0.1:5000/courses/${selectedCourse?._id}`, { json: newModule });
+      const response = await client.patch(`http://127.0.0.1:5000/addModules/${selectedCourse?._id}`, { json: newModule });
       console.log(response);
 
       if (response.ok) {

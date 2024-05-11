@@ -1,5 +1,9 @@
 @import "../../utils/variables.scss";
 
+.Learn {
+  display: flex;
+}
+
 .Course {
   &_controlWrapper {
     display: flex;
@@ -11,12 +15,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 16px;
+    padding-left: 10px;
     background-color: $main-blue;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 12px;
     line-height: 36px;
-    width: 50%;
   }
 
   &_progress {
@@ -31,8 +34,8 @@
   }
 
   &_summary {
-    padding: 16px;
-    background-color: $light-blue;
+    // padding: 16px;
+    // background-color: $light-blue;
     font-size: 16px;
     text-align: justify;
     line-height: 24px;
@@ -41,38 +44,42 @@
 }
 
 .ModulesList {
-  background-color: $accent-gray;
-  padding: 60px 30px;
+  background-color: $lighter-gray;
+  padding: 40px 10px 10px 94px;
+  width: 20%;
+  height: 74vh;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
 
 .ModuleInfo {
   font-weight: 400;
   font-size: 12px;
-  line-height: 166.52%;
+  line-height: 166%;
   letter-spacing: 0.14em;
   display: flex;
   gap: 42px;
-  padding: 14px 78px;
+  padding: 14px 8px;
   background-color: #fff;
-  border-radius: 20px;
+  // border-radius: 20px;
   margin-bottom: 20px;
 
   &_wrapper {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
   }
 
   &_name {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
     letter-spacing: 0.14em;
   }
 
   &_instructor {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
     letter-spacing: 0.14em;
   }
 
@@ -88,18 +95,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 82px;
-    height: 82px;
-    border-radius: 100%;
-    font-weight: 700;
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    // border-radius: 40px;
+    font-weight: 600;
+    font-size: 18px;
     line-height: 29px;
     color: #fff;
-    background-color: $main-blue;
+    // background-color: $main-blue;
   }
 
   &_summary {
-    margin-bottom: 36px;
+    // margin-bottom: 36px;
   }
 
   &_dropdown {

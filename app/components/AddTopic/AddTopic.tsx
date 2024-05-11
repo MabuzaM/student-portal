@@ -35,7 +35,7 @@ export const AddTopic = ({courses = []}) => {
 
       console.log(newModuleTopic.moduleId);
 
-      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/${selectedCourse?._id}`, { json: {...newModuleTopic} });
+      const response = await client.patch(`http://127.0.0.1:5000/addTopics/${selectedCourse?._id}`, { json: {...newModuleTopic} });
       if (response.ok) {
         setSubmitError(false);
         setFeedback('Topic successfully added!');

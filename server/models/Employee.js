@@ -15,6 +15,7 @@ const EmployeeSchema = new mongoose.Schema({
     required: true,
   }, 
   employeeNatId: String, 
+  role: String,
   employeeGender: String,
   employeeMaritalStatus: String,
   employeePhone: String, 

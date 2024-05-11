@@ -1,12 +1,9 @@
 @import "../../utils/variables.scss";
 
 .Nav {
-  position: sticky;
   display: flex;
   background-color: $main-blue;
-  padding: 20px 95px;
-  max-width: 100vw;
-  top: 0;
+  padding: 20px 94px;
   &_list {
     list-style: none;
     text-transform: uppercase;

@@ -3,7 +3,7 @@ import './TopicList.scss';
 import { ModuleTopic } from '@/app/utils/types';
 import { changeProgressBackground } from '@/app/utils/handlerFunctions';
 
-export const TopicList = ({moduleTopics = [], onTopicClick = () => {}, topicListShown = false, selectedModule = ''}) => {
+export const TopicList = ({moduleTopics = [], onTopicClick = (selectedTopic?: ModuleTopic) => {}, topicListShown = false, selectedModule = ''}) => {
   const handleSelectedTopicChange = (newTopic: ModuleTopic) => {
     const selectedTopic = newTopic;
     
@@ -30,7 +30,7 @@ export const TopicList = ({moduleTopics = [], onTopicClick = () => {}, topicList
                     <button
                       type='button'
                       className="TopicList__column"
-                      value={moduleTopic}
+                      value={moduleTopic.topic}
                       onClick={() => {
                         handleSelectedTopicChange(moduleTopic)
                         console.log(moduleTopic)

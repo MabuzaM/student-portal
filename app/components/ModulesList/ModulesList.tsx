@@ -26,8 +26,7 @@ export const ModulesList = ({courses = []}) => {
   // }
 
   return (
-    <>
-      <Topic selectedTopic={selectedTopic}/>
+    <div className='Learn'>
       <article className="ModulesList">
         {
           courses.map((course: Course, index) => {
@@ -42,7 +41,7 @@ export const ModulesList = ({courses = []}) => {
                   >
                     <div className="Course_title">
                       {
-                        courseName
+                        courseName && courseName
                       }
 
                       <div
@@ -97,7 +96,7 @@ export const ModulesList = ({courses = []}) => {
         
                             <p className="ModuleInfo_summary">
                               {
-                                showModuleSummary && selectedModule == moduleName && moduleSummary
+                                showModuleSummary && selectedModule === moduleName && moduleSummary
                               }
                             </p>
 
@@ -118,14 +117,13 @@ export const ModulesList = ({courses = []}) => {
                                 className="ModuleInfo_arrow" />
                             </button>
                             {
-                              showTopic && selectedModule == moduleName && <TopicList
+                              (showTopic && selectedModule === moduleName) && <TopicList
                               moduleTopics={moduleTopics}
                               selectedTopic={selectedTopic}
                               onTopicClick={getSelectedTopic}
                               moduleName={selectedModule}
                             /> 
                           }
-
                           </div>        
                         </div>
                       );
@@ -137,7 +135,9 @@ export const ModulesList = ({courses = []}) => {
           )
         }
       </article>
-    </>
+
+      <Topic selectedTopic={selectedTopic}/>
+    </div>
   )
 }
 

@@ -41,15 +41,7 @@ app.route('/courses').get((req, res) => {
   }
 })
 
-// app.route('/courses/:id').get((req, res) => {
-//   const courseId = req.params.id;
-
-//   CourseModel.findById({courseId}).then((course) => {
-//     res.json(course);
-//   }).catch(err => res.json(err));
-// })
-
-app.patch('/courses/:id', async (req, res) => {  
+app.patch('/addModules/:id', async (req, res) => {  
     const courseId = req.params.id;
 
     const newModuleData = req.body;
@@ -69,7 +61,7 @@ app.patch('/courses/:id', async (req, res) => {
 
 });
 
-app.patch('/courses/modules/:id', async (req, res) => {
+app.patch('/addTopics/:id', async (req, res) => {
   const courseId = req.params.id;
   const newModuleTopicToSave = {...req.body};
   delete newModuleTopicToSave.moduleId;
@@ -89,7 +81,7 @@ app.patch('/courses/modules/:id', async (req, res) => {
   }
 });
 
-app.patch('/courses/modules/lessons/:id', async (req, res) => {
+app.patch('/addLessons/:id', async (req, res) => {
   const courseId = req.params.id;
   const newTopicLesson = {...req.body};
   delete newTopicLesson.moduleId;
@@ -97,7 +89,7 @@ app.patch('/courses/modules/lessons/:id', async (req, res) => {
 
   try {
     console.log(newTopicLesson);
-    const course = await CourseModel.updateOne(
+    await CourseModel.updateOne(
       {
         _id: courseId,
         "courseModules.moduleId": req.body.moduleId,
@@ -125,37 +117,39 @@ app.patch('/courses/modules/lessons/:id', async (req, res) => {
   }
 })
 
-const updateCourseModules = async (courseId, newModule) => {
-  try {
-    const course = await CourseModel.findByIdAndUpdate(
-      courseId,
-      { $push: { courseModules: newModule } },
-      { new: true }
-    );
+app.route('/addTasks/:id').patch(async (req, res) => {
+    const courseId = req.params.id;
+    const newLessonTask = {...req.body};
+    delete newLessonTask.moduleId;
+    delete newLessonTask.topic;
+    delete newLessonTask.topicLessonTitle;
 
-    console.log(course);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-app.route('/courses/:id').put(async (req, res) => {
-  const courseId = req.params.id;
-  const newModules = req.body.modules;
-
-  // try {
-  //   const course = await CourseModel.findById(courseId);
-
-  //   if (!course) {
-  //     return { error: 'Course not found' };
-  //   } else {
-  //     course.courseModules = [...courseModules, newModules];
-  //     await course.save();
-  //   }
-  // } catch (error) {
-  //   return { error: 'Failed to update course modules' };
-  // }
-})
+    await CourseModel.findByIdAndUpdate({
+      _id: courseId,
+      "courseModules.moduleId": req.body.moduleId,
+      "courseModules.moduleTopics.moduleTopic": req.body.topic,
+      "courseModules.moduleTopics.topicLessons.topicLessonTitle": req.body.topicLessonTitle
+    },
+    {
+      $push: {
+        "courseModules.$[courseModule].moduleTopics.$[moduleTopic].topicLessons.$[topicLesson].topicLessonTasks": newLessonTask
+      }
+    },
+    {
+      arrayFilters: [{
+        "courseModule.moduleId": req.body.moduleId
+      },
+      {
+        "moduleTopic.topic": req.body.topic
+      },
+      {
+        "topicLesson.topicLessonTitle": req.body.topicLessonTitle
+      }]
+    }, { lean: true }).then((result) => {
+      result.status(200).send(result);
+    }).catch((error) => {
+      res.send(error);
+    })})
 
 //Get all employees
 app.route('/employees').get((req, res) => {
@@ -184,7 +178,7 @@ app.get('/getAssessments', (req, res) => {
     .catch(err => res.json(err));
 });
 
-app.get('/getStudent', (req, res) => {
+app.get('/getStudent/:id', (req, res) => {
   StudentModel.findOne({student_id: 'ash01'})
   .then((student) => {res.json(student);})
   .catch((err) => {res.json(err);});
@@ -192,8 +186,7 @@ app.get('/getStudent', (req, res) => {
 
 app.route('/students')
   .get((req, res) => {
-    const searchKey = req.body.params;
-    StudentModel.find({studentName: { $regex: searchKey, $options: 'i' }})
+    StudentModel.find()
     .then((students) => {res.json(students);})
     .catch((err) => {res.json(err);});
   })

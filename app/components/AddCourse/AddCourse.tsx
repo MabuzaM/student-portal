@@ -8,27 +8,14 @@ import { NavLink } from 'react-router-dom';
 export const AddCourse = ({employees = []}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
-  const [courseModules, setCourseModules] = useState<CourseModule[]>([]);
-  const [moduleName, setModuleName] = useState('');
   const [feedback, setFeedback] = useState('');
   const [submitError, setSubmitError] = useState(false);
 
-  const addCourseModules = () => {
-    setCourseModules([...courseModules, {
-      moduleName: '',
-      moduleInstructor: '',
-      moduleTutor: '',
-      moduleProgress: 0,
-      moduleSummary: '',
-      moduleTopics: []
-    }])
-
-    setModuleName('');
-  }
-
   const onSubmit = async (data: {}) => {
+    const newCourse = { ...data, courseProgress: 0 };
+
     try {
-      const response = await client.post('http://127.0.0.1:5000/courses/', { json: {...data, courseModules} });
+      const response = await client.post('http://127.0.0.1:5000/courses/', { json: newCourse });
 
       if (response.ok) {
         setFeedback('Course successfully saved!');
@@ -91,29 +78,6 @@ export const AddCourse = ({employees = []}) => {
             
           </select>
         </label>
-
-        {/* <label htmlFor="courseModule" className="AddCourse__label">
-          Course Module:
-          <div className="AddCourse__input-group">
-            <input
-              type="text"
-              className="AddCourse__input AddCourse__input--addModule"
-              name='courseModules'
-              value={moduleName}
-              onChange={(e) => {setModuleName(e.target.value)}}
-            />
-
-            <button
-              className='AddCourse__btn'
-              type='button'
-              onClick={
-                addCourseModules
-              }
-            >
-              +
-            </button>
-          </div>
-        </label> */}
 
         {
           feedback && (

@@ -46,8 +46,11 @@ export const StudentRegistration = ({courses = []}) => {
   const client = ky.create({ /* Optional: Create a pre-configured Ky instance*/  });
 
   const onSubmit = async (data: {}) => {
+    console.log(data?.studentPhoto[0].name);
+
+    const studentData = { ...data, studentPhoto:  data?.studentPhoto[0].name}
     try {
-      const response = await client.post('http://127.0.0.1:5000/students/', { json: data });
+      const response = await client.post('http://127.0.0.1:5000/students/', { json: studentData });
       console.log(data);
 
       if (response.ok) {
@@ -67,6 +70,28 @@ export const StudentRegistration = ({courses = []}) => {
       method='post'
     >
       <h3>Student Registration</h3>
+
+      <hr />
+
+      <div className="StudentRegistration__row">
+        <div className='StudentRegistration__field'>
+          <label htmlFor="studPhoto" className="StudentRegistration__label">Profile Photo:</label>
+          <div className="StudentRegistration__form-control">
+            <input
+              type="file" 
+              className={`StudentRegistration__input ${errors.studentPhoto && 'StudentRegistration__input-err'}`}
+              id="studPhoto"
+              {...register('studentPhoto', {required: true})}
+            />
+            {
+              errors.studentPhoto &&
+                <p className='StudentRegistration__input-error'>
+                  {errors.studentPhoto.message || "Photo is required"}
+                </p>
+            }
+          </div>
+        </div>
+      </div>
 
       <hr />
 
@@ -313,7 +338,7 @@ export const StudentRegistration = ({courses = []}) => {
 
       <label htmlFor="courseName"><h3>Course</h3></label>
 
-      <select id="courseName" {...register('courseName', {required: true})}>
+      <select id="courseName" className='StudentRegistration__input' {...register('courseName', {required: true})}>
         <option defaultValue={''}>Select your prefered course</option>
         {courses.map((course: Course) =>{
           const { courseId} = course

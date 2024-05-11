@@ -1,8 +1,9 @@
 @import "../../utils/variables.scss";
 
 .Topic {
-  background-color: $accent-gray;
-  padding: 60px 30px;
+  // background-color: $accent-gray;
+  padding: 40px 94px 20px 10px;
+  width: 80%;
 
   &__headerWrapper {
     display: flex;

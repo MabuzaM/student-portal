@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema({
+  studentPhoto: {
+    type: String, required: true
+  },
   studentName: {
     type: String, required: true
   },
@@ -28,6 +31,9 @@ const StudentSchema = new mongoose.Schema({
   studentNumber: {
     type: String, required: true, unique: true
   },
+  password: {
+    type: String, required: true
+  },
   dateOfBirth: {
     type: Date, required: true
   },
@@ -43,6 +49,7 @@ const StudentSchema = new mongoose.Schema({
   parentEmail: {
     type: String, required: true
   },
+  role: String,
 });
 
 const StudentModel = new mongoose.model("students", StudentSchema);

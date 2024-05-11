@@ -38,7 +38,7 @@ export const AddLesson = ({courses = []}) => {
         topicLessonExtLinks: (data?.topicLessonExtLinks).split(';')
       }
 
-      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/lessons/${selectedCourse?._id}`, { json: newLesson });
+      const response = await client.patch(`http://127.0.0.1:5000/addLessons/${selectedCourse?._id}`, { json: newLesson });
       // console.log(response);
 
       if (response.ok) {

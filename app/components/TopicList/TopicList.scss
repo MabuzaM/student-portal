@@ -2,8 +2,8 @@
 
 .TopicList {
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 16px;
   letter-spacing: 0.14em;
 
   &__hidden {
@@ -62,7 +62,7 @@
   &_name, &_progress {
     display: flex;
     //justify-self: flex-end;
-    gap: 20px;
+    gap: 10px;
   }
 
   &_progress {

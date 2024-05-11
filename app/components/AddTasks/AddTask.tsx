@@ -12,7 +12,8 @@ export const AddTask = ({courses = []}) => {
   const [selectedCourse, setSelectedCourse] = useState<Course>();
   const [selectedModule, setSelectedModule] = useState<CourseModule>();
   const [selectedTopicName, setSelectedTopicName] = useState('');
-  const [selectedLesson, setSelectedLesson] = useState<TopicLesson>();
+  const [selectedLessonTitle, setSelectedLessonTitle] = useState('');
+  const [selectedTopicLesson, setSelectedTopicLesson] = useState<TopicLesson>();
 
   const handleCourseChange = (e) => {
     setSelectedCourse(courses.find((course: Course) => (
@@ -31,23 +32,24 @@ export const AddTask = ({courses = []}) => {
   }
 
   const handleLessonChange = (e) => {
-
+    setSelectedLessonTitle(e.target.value);
   }
 
-  const onSubmit = async (data: LessonTask) => {
+  const onSubmit = async (data: {}) => {
     try {
       const newLesson = {
         ...data,
         moduleId: selectedModule?.moduleId,
         topic: selectedTopicName,
-        lessonTaskAnswerOptions: (data?.lessonTaskAnswerChoices).split(';'),
-        lessonTaskCorrectAnswers: (data?.lessonTaskAnswers).split(';')
+        topicLessonTitle: selectedLessonTitle,
+        lessonTaskGrade: 0,
+        lessonTaskAnswerOptions: (data?.lessonTaskAnswerOptions).split(';'),
+        lessonTaskCorrectAnswers: (data?.lessonTaskCorrectAnswers).split(';')
       }
 
       console.log(newLesson);
 
-      const response = await client.patch(`http://127.0.0.1:5000/courses/modules/lessons/${selectedCourse?._id}`, { json: newLesson });
-      // console.log(response);
+      const response = await client.patch(`http://127.0.0.1:5000/addTasks/${selectedCourse?._id}`, { json: newLesson });
 
       if (response.ok) {
         setSubmitError(false);
@@ -62,12 +64,6 @@ export const AddTask = ({courses = []}) => {
     }
   }
 
-  // lessonTaskGrade: Number,
-  // lessonTaskType: String,
-  // lessonTaskQuestion: String,
-  // lessonTaskAnswerOptions: [String],
-  // lessonTaskCorrectAnswers: [String]
-
   return (
     <section className="AddCourse">
       <h2 className="AddCourse__heading">Add Tasks</h2>
@@ -81,7 +77,7 @@ export const AddTask = ({courses = []}) => {
             {
               courses.map((course: Course) => {
                 
-                return <option value={course.courseName} key={course.courseName}>{course.courseName}</option>
+                return <option value={course.courseName} key={course._id.toString()}>{course.courseName}</option>
               })
             }
             
@@ -96,7 +92,7 @@ export const AddTask = ({courses = []}) => {
               <option disabled value={''} selected>Select Module</option>
               {
                 selectedCourse?.courseModules.map((courseModule) => (
-                  <option value={courseModule.moduleId} key={courseModule.moduleName}>
+                  <option value={courseModule.moduleId} key={courseModule._id.toString()}>
                     {courseModule.moduleName}
                   </option>
                 ))
@@ -129,7 +125,7 @@ export const AddTask = ({courses = []}) => {
               <option disabled value={''} selected>{'Select a Lesson'}</option>
               {
                 selectedModule?.moduleTopics?.find((moduleTopic) => moduleTopic.topic === selectedTopicName)?.topicLessons.map((topiclesson) => (
-                  <option value={topiclesson._id} key={topiclesson._id}>
+                  <option value={topiclesson.topicLessonTitle} key={topiclesson._id.toString()}>
                     {topiclesson.topicLessonTitle}
                   </option>
                 ))
@@ -153,14 +149,14 @@ export const AddTask = ({courses = []}) => {
           <input type="text" id='lessonTaskQuestion' className="AddCourse__input" placeholder='Enter a question'{...register('lessonTaskQuestion', {required: true})}/>
         </label>
 
-        <label htmlFor="lessonTaskAnswerChoices" className="AddCourse__label">
+        <label htmlFor="lessonTaskAnswerOptions" className="AddCourse__label">
           Options:
-          <input type="text" id='lessonTaskAnswerChoices' className="AddCourse__input" placeholder='Enter options to choose from, separated by a space'{...register('lessonTaskAnswerChoices', {required: true})}/>
+          <input type="text" id='lessonTaskAnswerOptions' className="AddCourse__input" placeholder='Enter options to choose from, separated by a space'{...register('lessonTaskAnswerOptions', {required: true})}/>
         </label>
 
-        <label htmlFor="lessonTaskAnswers" className="AddCourse__label">
+        <label htmlFor="lessonTaskCorrectAnswers" className="AddCourse__label">
           Correct Options:
-          <input type="text" id='lessonTaskAnswers' className="AddCourse__input" placeholder='Enter correct option(s) separated by a space'{...register('lessonTaskAnswers', {required: true})}/>
+          <input type="text" id='lessonTaskCorrectAnswers' className="AddCourse__input" placeholder='Enter correct option(s) separated by a space'{...register('lessonTaskCorrectAnswers', {required: true})}/>
         </label>
 
         {

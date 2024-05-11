@@ -1,4 +1,7 @@
+import { ObjectId } from "mongodb"
+
 export type LessonTask = {
+  _id: ObjectId,
   lessonTaskGrade: number,
   lessonTaskType: string,
   lessonTaskQuestion: string,
@@ -7,6 +10,7 @@ export type LessonTask = {
 }
 
 export type TopicLesson = {  
+  _id: ObjectId,
   topicLessonTitle: string,
   topicLessonVideoLink: string[],
   topicLessonNotes: string,
@@ -16,6 +20,7 @@ export type TopicLesson = {
 }
 
 export type ModuleTopic = {  
+  _id: ObjectId,
   topic: string,
   topicProgress: number,
   topicLessons: TopicLesson[],
@@ -23,6 +28,7 @@ export type ModuleTopic = {
 }
 
 export type CourseModule = {  
+  _id: ObjectId,
   moduleId: string,
   moduleName: string,
   moduleInstructor: string,
@@ -46,6 +52,7 @@ export type Timetable = {
 }
 
 export type Course = {
+  _id: ObjectId,
   courseId: string,
   courseName: string,
   courseSummary: string,
@@ -64,10 +71,13 @@ export type Attendance = {
 }
 
 export type Student = {
+  studentPhoto: string,
   studentName: string,
   surname: string,
   courseName: string,
   studentNumber: string,
+  role: string,
+  password: string,
   phone: string,
   address1: string,
   address2: string,
@@ -91,7 +101,8 @@ export type Employee = {
   employeeName: string,
   employeeSurname: string,
   employeeDateOfBirth: Date, 
-  employeeNatId: string, 
+  employeeNatId: string,
+  role: string,
   employeeGender: string,
   employeeMaritalStatus: string,
   employeePhone: string, 
@@ -102,4 +113,8 @@ export type Employee = {
   employeeJobTitle: string,
   employeeDepartment: string, 
   employeeCourses: string[]
+}
+
+export type Arrays = {
+  ArrayData:  Course | Student | Employee
 }
