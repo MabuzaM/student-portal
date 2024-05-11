@@ -1,0 +1,56 @@
+.Card {
+  border: 1px solid #f6b012;
+  border-radius: 20px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_title {
+    margin-bottom: 20px;
+  }
+
+  &_image {
+    max-width: 100px;
+    height: auto;
+    // background-color: #e2e2e2;
+    margin-bottom: 20px;
+  }
+
+  &_button {
+    margin-top: 16px;
+  }
+}
+
+.Module {
+  &_name {
+    margin-bottom: 6px;
+  }
+
+  &_info {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-left: 20px;
+
+    &--label {
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      margin-bottom: 4px;
+    }
+
+    &--name {
+      margin-left: 16px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+
+  &_line {
+    color: #f6b012;
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "courseId": "webdev",
+  "courseName": "Web Development",
+  "courseManager": "M Ncube",
+  "courseDuration": 6,
+  "courseProgress": 50,
+  "courseSummary": "In this course, you will learn about how to transform a website designed in Figma or photoshop into a working web application. You will enjoy learning about and using modern web development technologies such as HTML5, CSS3, SASS, JavaScript, Git, GitHub, NodeJS, ExpressJS, MongoDB, SQL and ReactJS. At the end of this module, you will be able to develop and deploy your own portfolio website where you will showcase all your projects you have completed during your study time at Asher Academy. And of course, any other projects you complete on your own and would like prospective employers to know about. Happy coding!!",
+  "courseFaculty": "Information technology",
+    "courseTimetable": [
+      {
+        "day": "Monday",
+        "lessons": [
+          {
+            "lesson_number": 1,
+            "lesson_time": "09:00 AM",
+            "subject": "Mathematics",
+            "teacher": "Mr. Smith",
+            "classroom": "Room A101"
+          },
+          {
+            "lesson_number": 2,
+            "lesson_time": "10:00 AM",
+            "subject": "English",
+            "teacher": "Ms. Johnson",
+            "classroom": "Room B202"
+          },
+          {
+            "lesson_number": 3,
+            "lesson_time": "11:00 AM",
+            "subject": "Science",
+            "teacher": "Dr. Brown",
+            "classroom": "Lab C301"
+          },
+          {
+            "lesson_number": 4,
+            "lesson_time": "12:00 PM",
+            "subject": "History",
+            "teacher": "Mrs. Wilson",
+            "classroom": "Room D401"
+          },
+          {
+            "lesson_number": 5,
+            "lesson_time": "01:00 PM",
+            "subject": "Physical Education",
+            "teacher": "Coach Anderson",
+            "classroom": "Gymnasium"
+          }
+        ]
+      },
+      {
+        "day": "Tuesday",
+        "lessons": [
+          {
+            "lesson_number": 1,
+            "lesson_time": "09:00 AM",
+            "subject": "Physics",
+            "teacher": "Dr. Lee",
+            "classroom": "Lab C301"
+          },
+          {
+            "lesson_number": 2,
+            "lesson_time": "10:00 AM",
+            "subject": "Mathematics",
+            "teacher": "Mr. Smith",
+            "classroom": "Room A101"
+          },
+          {
+            "lesson_number": 3,
+            "lesson_time": "11:00 AM",
+            "subject": "English",
+            "teacher": "Ms. Johnson",
+            "classroom": "Room B202"
+          },
+          {
+            "lesson_number": 4,
+            "lesson_time": "12:00 PM",
+            "subject": "Art",
+            "teacher": "Ms. Davis",
+            "classroom": "Art Studio E501"
+          },
+          {
+            "lesson_number": 5,
+            "lesson_time": "01:00 PM",
+            "subject": "Chemistry",
+            "teacher": "Dr. Lee",
+            "classroom": "Lab C301"
+          }
+        ]
+      }
+    ],
+  
+  "courseModules": [
+    {
+      "moduleName": "HTML5",
+      "moduleId": "html5",
+      "moduleInstructor": "M Ncube",
+      "moduleTutor": "M Ncube",
+      "moduleProgress": 0,
+      "moduleSummary": "This is an introductory module for the web development course, mainly for creating the structure of your web application. In this module, you will learn about how to transform a website designed in Figma or photoshop or any other web design technology into a working static web application. There is a lot of typing here, you must be a fast typer, hope you took your typing speed drills. You will enjoy learning how to use the modern standard, HTML5 for creating webpages. We will teach you how to create webpages and join them together to make a website or web application from sratch. We are also going to teach the industry standards and good practices you should follow when writing html markup. Happy coding!!",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to HTML and the Web",
+          "topicProgress": 100,
+          "topicLessons": [
+            {
+              "topicLessonTitle": "Choosing an IDE or Text Editor",
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
+            },
+            {
+              "topicLessonTitle": "How the internet works",
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
+            },
+            {
+              "topicLessonTitle": "HTML5 Syntax and how it differs from HTML ",
+              "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
+            }
+        
+        ],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "HTML Elements",
+          "topicProgress": 60,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Semantic tags",
+          "topicProgress": 10,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "HTML Comment",
+          "topicProgress": 0,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "<a href='https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a'>Html comment</a>"
+            }],
+            "notes": "Notes text goes here"
+          }
+        }
+      ]
+    },
+
+    {
+      "moduleName": "CSS3",
+      "moduleId": "css3",
+      "moduleInstructor": "M Moyo",
+      "moduleTutor": "B Sibanda",
+      "moduleProgress": 0,
+      "moduleSummary": "Now that you are able to create the structure of your web application and add some content to it. In this module, we will teach you how to use CSS3 for adding styles to your webpages. You will learn how to make your web application look nice and presentable. We will also introduce you to SASS, which is a compiled css. Happy coding.",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to CSS3 and Styling",
+          "topicProgress": 0,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicLessonVideoLink": "Link goes here",
+            "topicLessonNotes": "Instructor Notes go here",
+            "topicLessonNotesExtLinks": ["External Links go here"],
+            "topicLessonTasksShort": [{
+              "taskQuestion": "?",
+              "taskAnswerOptions": [""],
+              "correctOptions": [""]
+            }],
+            "topicLessonTasksLong": [{
+              "taskQuestion": "?",
+              "taskAnswerOptions": "",
+              "correctOptions": ""
+            }]
+          }]
+        },
+
+        {
+          "topic": "Element Selectors",
+          "topicProgress": 60,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Class Selectors",
+          "topicProgress": 10,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "ID Selectors",
+          "topicProgress": 0,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "https://chat.openai.com/c/5cb921d0-64bb-4b94-bb83-7c483936c25a"
+            }],
+            "notes": "Notes text goes here"
+          }
+        }
+
+      ]
+    },
+
+    {
+      "moduleName": "JavaScript",
+      "moduleId": "javascript",
+      "moduleInstructor": "M Moyo",
+      "moduleTutor": "B Sibanda",
+      "moduleProgress": 0,
+      "moduleSummary": "You are now able to create a complete web application that you can show to your friends or even the whole world, Yeee!!. Comeon your web application needs some interactivity. JavaScript is the guy to help you with that. We will teach you javascript from scratch and how you can use it to add some interactivity to your web application. Javascript will also be the foundation you need to learn modern web development frameworks like ReactJS, NextJS, ExpressJS and many more. Happy coding!.",
+      "moduleTopics": [
+        {
+          "topic": "Introduction to JavaScript and interactions",
+          "topicProgress": 100,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "Notes link goes here"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "JavaScript Syntax, Variables",
+          "topicProgress": 60,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "Notes link goes here"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Datatypes",
+          "topicProgress": 10,
+          "topicLessons": [{
+            "topicLessonTitle": "Choosing an IDE or Text Editor",
+            "topicVideoLink": "Link goes here"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "Notes link goes here"
+            }],
+            "notes": "Notes text goes here"
+          }
+        },
+
+        {
+          "topic": "Basic Operators",
+          "topicProgress": 0,
+          "topicLessons": [{
+            "topicLessonTitle": "Working with arithmetic operators",
+            "topicVideoLink": "https://youtube.com/embed/uEwZOQfcTys"
+          }],
+          "topicNotes": {
+            "externalLinks": [{
+              "link": "Notes link goes here"
+            }],
+            "notes": "Notes text goes here"
+          }
+        }
+      ]
+    }
+  ]
+}

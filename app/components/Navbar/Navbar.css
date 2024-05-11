@@ -1,9 +1,0 @@
-.Nav {
- display: flex;
- justify-content: center;
-}
-.Nav__list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}

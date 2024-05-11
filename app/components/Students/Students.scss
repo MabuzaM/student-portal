@@ -1,0 +1,39 @@
+@import '../../utils/variables.scss';
+
+.Students {
+  &__form{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 6px 8px;
+    outline-color: $main-blue;
+    border: none;
+    border-bottom: 1px solid $main-blue;
+  }
+
+  &__button {
+    background-color: $main-blue;
+    padding: 8px 10px;
+    outline: 0;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.Table {  
+  &__row {
+    border-bottom: 1px solid $main-blue;
+  }
+
+  &__column, &__data {
+    padding: 6px 8px;
+    // border: 1px solid $accent-gray;
+  }
+}

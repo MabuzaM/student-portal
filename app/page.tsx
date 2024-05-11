@@ -1,23 +1,158 @@
-import LoginForm from "./components/LoginForm/LoginForm";
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
-import Class from "./components/Class/Class";
-import { Payment } from "./components/Payment/Payment";
-import { Footer } from "./components/Footer/Footer";
+'use client';
+import {useEffect, useState} from 'react';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './globals.scss';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { Navbar } from './components/Navbar/Navbar';
+import axios from 'axios';
+import { Course, Employee, Student } from './utils/types';
+import { Route, Routes, HashRouter, Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
+import LoginForm from './components/LoginForm/LoginForm';
+import { StudentsDashboard } from './components/StudentsDashboard/StudentsDashboard';
+import { Home } from './components/Home/Home';
+import { StudentProfile } from './components/Profile/StudentProfile';
+import { StudentRegistration } from './components/StudentRegistration/StudentRegistration';
+import { ModulesList } from './components/ModulesList/ModulesList';
 
-export default function Home() {
+function App() {
+  //States
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [students, setStudents] = useState<Student[]>([]);
+  const [user, setUser] = useState<Student>();
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+  // // Get courses
+
+  axios.get('http://127.0.0.1:5000/courses')
+  .then((courses) => {
+    setCourses(courses.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+  axios.get('http://127.0.0.1:5000/employees')
+  .then((employees) => {
+    setEmployees(employees.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+  axios.get('http://127.0.0.1:5000/students')
+  .then((students) => {
+    setStudents(students.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+ },[])
+
+ const onInputChange = (e) => {
+  if (e.target.name === 'username') {
+    setUsername(e.target.value);
+  } else {
+    setPassword(e.target.value);
+  }
+ }
+
+ const onLogin = (e) => {
+  e.preventDefault();
+
+  const loggedInUser: Student | undefined = students.find((student: Student) => ((student.email === username || student.studentNumber === username) && (student.password === password)));
+
+  console.log(loggedInUser);
+ 
+  if (loggedInUser) {
+   
+    // localStorage.setItem("user", JSON.stringify(loggedInUser));
+    setUser(loggedInUser);
+    if (loggedInUser){
+      // navigate('/student-portal', { replace: true });
+    }
+    
+    // if (loggedInUser?.role === 'student') {
+    //   return (
+    //     <Navigate to={'/student-portal'} replace={true}/>
+    //   )
+    // } else if (loggedInUser?.role === 'adminStaff') {
+    //   return (
+    //     <Navigate to={'/staff-portal'} replace={true} />
+    //   )
+    // }
+  } else {
+    alert("You are either not registered or you entered incorrect username and password combination");
+  }
+ }
+
+ const handleLogin = (role: string) => {
+  
+ }
+
   return (
     <>
-        <Header />
-        <Navbar />
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <LoginForm />
-          <Profile />
-          <Class />
-          <Payment />
+     <Header user={user}/>
+     <HashRouter>
+      <div className="App">
+        <Navbar user={user}/>
+    
+        <main className="Main App_main">
+          
+          <Routes>
+            <Route
+              path='/'
+              element={<Home/>}
+            />
+            <Route
+              path='/login'
+              element={!user 
+                ? <LoginForm
+                    username = {username}
+                    password={password}
+                    onInputChange={onInputChange}
+                    onLogin={onLogin}
+              /> : <Navigate to="/student-portal" replace/>}
+            />
+
+            <Route
+              path='/student-portal'
+              element={user && user.role === 'student'
+                ? <StudentsDashboard courses={courses} user={user}/>
+                : <Navigate to="/login" replace/>}
+            />
+
+            <Route
+              path='/student-profile'
+              element={user  && user.role === 'student'
+                ? <StudentProfile user={user}/>
+                : <Navigate to="/login" replace/>}
+            />
+
+            <Route
+              path='/learn'
+              element={user  && user.role === 'student'
+                ? <ModulesList courses={courses}/>
+                : <Navigate to="/login" replace/>}
+            />
+
+            <Route
+              path='/studentRegistration'
+              element={!user
+                ? <StudentRegistration courses={courses}/>
+                : <Navigate to="/student-portal" replace/>}
+            />
+          </Routes>                     
         </main>
-        <Footer />
+      </div>
+      </HashRouter> 
+      <Footer />
     </>
   );
 }
+
+export default App;

@@ -1,0 +1,38 @@
+@import "../../utils/variables.scss";
+
+.StudentProfile {
+  background-color: $accent-gray;
+  box-shadow: (0 10px 4px rgba(20, 186, 252, 0.705));
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 40px 94px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  &_photoBG {
+    background-color: $main-blue;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: (0 10px 4px rgba(20, 186, 252, 0.452));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+  }
+
+  &_photo {
+    display: flex;
+    max-width: 100px;
+    height: auto;
+  }
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+    width: 80%;
+  }
+}

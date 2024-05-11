@@ -1,0 +1,43 @@
+@import "../../utils/variables.scss";
+
+h1 {
+  margin: 0;
+}
+
+.Header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 0.5vmin);
+  color: $main-blue;
+  padding: 4px 94px;
+  box-shadow: 0px 11px 16px 4px rgba(0, 0, 0, 0.14);
+
+  &_logo {
+    pointer-events: none;
+    width: auto;
+    height: auto;
+  }
+
+  &_title {
+    text-transform: uppercase;
+  }
+
+  &_profile-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: $main-blue;
+    }
+  }
+
+  // &_profile {
+  //   height: 30px;
+  // }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "module": "CSS3",
+    "assignment": 67,
+    "test": 78,
+    "internal-exam": 89
+  },
+
+  {
+    "module": "HTML5",
+    "assignment": 90,
+    "test": 56,
+    "internal-exam": 87
+  },
+
+  {
+    "module": "Javascript",
+    "assignment": 89,
+    "test": 76,
+    "internal-exam": 45
+  }
+]
