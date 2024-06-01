@@ -4,6 +4,7 @@ export type LessonTask = {
   _id: ObjectId,
   lessonTaskGrade: number,
   lessonTaskType: string,
+  lessonTaskAnswerType: string,
   lessonTaskQuestion: string,
   lessonTaskAnswerOptions: string[],
   lessonTaskCorrectAnswers: string[]

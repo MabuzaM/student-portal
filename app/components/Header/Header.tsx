@@ -3,14 +3,19 @@ import Image from 'next/image';
 import logo from './assets/logo.png';
 import profile from './assets/profile.png';
 import './Header.scss';
+import { Employee, Student } from '@/app/utils/types';
 
-export const Header = ({ user = undefined }) => {
+interface HeaderProps {
+  user: Student | Employee;
+}
+
+export const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
     <header className="Header">
       <Image src={logo} className="Header_logo" alt="logo" width={100} />
 
       <h1 className="Header_title">
-        Student Portal
+        {user ? 'EduPalm' : 'Online Coding School'}
       </h1>
 
       {user && 

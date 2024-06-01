@@ -1,0 +1,86 @@
+@import "../../utils/variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+.MobileNav {
+  display: none;
+  visibility: hidden;
+
+  @media (max-width: 650px) {
+    display: flex;
+    visibility: visible;
+    z-index: 1000;
+    margin-top: 16px;
+    width: 100%;
+    // padding: 10px;
+    // justify-content: right;
+  }
+
+  &__list {
+    margin: 0;
+    list-style: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    display: none;
+    visibility: hidden;
+    // display: flex;
+    // justify-content: space-between;
+    // gap: 30px;
+    // flex-wrap: wrap;
+
+    &--active {
+      display: flex;
+      visibility: visible;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      text-align: left;
+      background-color: $main-blue;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    padding: 8px 90% 8px 0;
+    border-bottom: 1px solid $light-blue;
+
+    &:hover {
+      color: #d9d9d9;
+    }
+  }
+
+  // &__hamburger {
+  //   max-height: 28px;
+  //   @media (max-width: 650px) {
+  //     display: flex;
+  //   }
+
+  //   justify-self: right;
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 6px;
+  //   border: 4px solid $light-blue;
+  //   padding: 2px;
+  //   border-radius: 4px;
+
+  //   &:hover {
+  //     cursor: pointer;
+  //     .Nav__hamburger-bar {
+  //       background-color: $light-blue;
+  //     }
+  //     border-color: $accent-gray;
+  //   }
+
+  //   &-bar {
+  //     background-color: $accent-gray;
+  //     height: 4px;
+  //     width: 28px;
+  //   }
+  // }
+}

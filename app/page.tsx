@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import './globals.scss';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
-import { Navbar } from './components/Navbar/Navbar';
+import { MainNavbar } from './components/Navbar/MainNavbar';
 import axios from 'axios';
 import { Course, Employee, Student } from './utils/types';
 import { Route, Routes, HashRouter, Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
@@ -14,6 +14,9 @@ import { Home } from './components/Home/Home';
 import { StudentProfile } from './components/Profile/StudentProfile';
 import { StudentRegistration } from './components/StudentRegistration/StudentRegistration';
 import { ModulesList } from './components/ModulesList/ModulesList';
+import { Courses } from './courses';
+import { Mobilenav } from './components/MobileNav/MobileNav';
+import { CourseInfo } from './components/CourseInfo/CourseInfo';
 
 function App() {
   //States
@@ -66,7 +69,7 @@ function App() {
 
   const loggedInUser: Student | undefined = students.find((student: Student) => ((student.email === username || student.studentNumber === username) && (student.password === password)));
 
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
  
   if (loggedInUser) {
    
@@ -99,14 +102,14 @@ function App() {
      <Header user={user}/>
      <HashRouter>
       <div className="App">
-        <Navbar user={user}/>
+        <MainNavbar user={user} />
     
         <main className="Main App_main">
           
           <Routes>
             <Route
               path='/'
-              element={<Home/>}
+              element={<Home courses={courses}/>}
             />
             <Route
               path='/login'
@@ -120,7 +123,7 @@ function App() {
             />
 
             <Route
-              path='/student-portal'
+              path='/dashboard'
               element={user && user.role === 'student'
                 ? <StudentsDashboard courses={courses} user={user}/>
                 : <Navigate to="/login" replace/>}
@@ -136,7 +139,14 @@ function App() {
             <Route
               path='/learn'
               element={user  && user.role === 'student'
-                ? <ModulesList courses={courses}/>
+                ? <ModulesList courses={courses} user={user}/>
+                : <Navigate to="/login" replace/>}
+            />
+
+            <Route
+              path='/course-info'
+              element={user  && user.role === 'student'
+                ? <CourseInfo courses={courses} user={user}/>
                 : <Navigate to="/login" replace/>}
             />
 

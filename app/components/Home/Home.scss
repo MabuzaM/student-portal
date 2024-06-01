@@ -1,6 +1,32 @@
+// @import "~react-bootstrap-sass/assets/stylesheets/bootstrap";
+// @import '~bootstrap/scss/bootstrap';
+@import "../../utils/variables.scss";
+
 .Home {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  gap: 60px;
+  width: fit-content;
+  padding: 0 94px;
+
+  &__carousel-container {
+    background-color: $accent-gray;
+  }
+
+  &__header {
+    width: 20%;
+  }
+
+  &__body {
+    text-align: left;
+  }
+
+  @media (max-width: 620px) {
+    width: 100%;
+    padding: 0 10px;
+    &__header {
+      width: 100%;
+    }
+  }
 }

@@ -49,8 +49,9 @@
     }
 
     &:hover {
-      border-top-color: $light-blue;
-      box-shadow: rgba(14, 190, 235, 0.589)
+      // border-top-color: $light-blue;
+      box-shadow: (1px 0 4px 1px rgba(14, 190, 235, 0.589));
+      border-color: transparentize($color: $main-blue, $amount: 0.5);
     }
   }
 

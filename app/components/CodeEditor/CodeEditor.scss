@@ -1,0 +1,24 @@
+.CodeEditor {
+  &__live-editor, &__live-preview, &__live-error {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  &__live-editor {
+    background-color: #282c34;
+    color: #fff;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+  }
+
+  &__live-preview {
+    background-color: #f4f4f9;
+  }
+
+  &__live-error {
+    color: #f00;
+    background-color: #fdd;
+  }
+}
