@@ -5,7 +5,8 @@ import { Playlist } from '../Playlist/Playlist';
 import { Course, CourseModule, LessonTask, ModuleTopic, TopicLesson } from '@/app/utils/types'; 
 import { NavLink } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { CodeEditor } from '../CodeEditor/CodeEdditor';
+import { Ide } from '../Ide/Ide';
+import { CodeEditorAndRunner } from '../CodeEditorAndRunner/CodeEditorAndRunner';
 
 interface TopicProps {
     selectedModule: CourseModule
@@ -31,10 +32,24 @@ const checkAnswerType = (answerType: string) => {
     case 'single':
       return 'radio';
 
+    case 'text':
+      return 'text';
+
     default:
       return '';    
   }
 }
+
+const initialCode =
+`<!Doctype html>
+<html>
+  <head>
+  </head>
+  
+  <body>
+  </body>
+</html>
+`;
 
 export const Topic: React.FC<TopicProps> = ({selectedModule = { moduleName: '', moduleSummary: ''}, selectedTopic, topicLesson, course}) => {
   // const { topic, topicLessons, topicNotes } = selectedTopic;
@@ -118,7 +133,7 @@ export const Topic: React.FC<TopicProps> = ({selectedModule = { moduleName: '', 
           <h4>Practice</h4>
 
           <div className="Topic__practice-wrapper">
-            <CodeEditor initialCode='<!Doctype html><html><head></head><body></body></html>' />
+            <Ide initialCode={initialCode}/>
           </div>
 
           <hr />
@@ -135,7 +150,7 @@ export const Topic: React.FC<TopicProps> = ({selectedModule = { moduleName: '', 
                     </p>
 
                     {
-                      lessonTask.lessonTaskType === 'coding' && (<CodeEditor initialCode='<!Doctype html><html><head></head><body></body></html>'/>)
+                      lessonTask.lessonTaskType === 'coding' && (<CodeEditorAndRunner />)
                     }
 
                     {

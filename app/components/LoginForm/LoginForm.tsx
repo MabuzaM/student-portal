@@ -1,8 +1,6 @@
 import { useState } from "react";
 import  "./LoginForm.scss";
 import axios from "axios";
-import { Employee, Student } from "@/app/utils/types";
-import { Profile } from "../Profile/StudentProfile";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function LoginForm({username = '', password = '', onInputChange = () => {}, onLogin = () => {}}) {

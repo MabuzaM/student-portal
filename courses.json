@@ -9,7 +9,7 @@
   "courseManager": " Sbusiso",
   "courseModules": [
     {
-      "moduleName": "HTML5",
+      "moduleName": "Hypertext Markup Language (HTML)",
       "moduleId": "html",
       "moduleInstructor": " Sbusiso",
       "moduleTutor": "Amity",
@@ -50,7 +50,8 @@
                   ],
                   "_id": {
                     "$oid": "6637624a0e62e8dfd31c15bb"
-                  }
+                  },
+                  "lessonTaskAnswerType": "multiple"
                 },
                 {
                   "lessonTaskGrade": 0,
@@ -65,7 +66,55 @@
                   ],
                   "_id": {
                     "$oid": "663764bf8dc8d45c85a2f51b"
-                  }
+                  },
+                  "lessonTaskAnswerType": "single"
+                }
+              ]
+            },
+
+            {
+              "topicLessonTitle": "HTML Syntax and Working with a text editor and browser",
+              "topicLessonVideoLink": [
+                "www.youtube.com"
+              ],
+              "topicLessonNotes": "In this lesson I will cover the HTM5 syntax and help you get started on working with a text editor and a web browser.",
+              "topicLessonExtLinks": [
+                "www.w3schools.org",
+                "www.mdn.org"
+              ],
+              "_id": {
+                "$oid": "663749287bb880fd3e827c78"
+              },
+              "topicLessonTasks": [
+                {
+                  "lessonTaskGrade": 0,
+                  "lessonTaskType": "short",
+                  "lessonTaskQuestion": "What are the two most important software needed to create a webpage?",
+                  "lessonTaskAnswerOptions": [
+                    "text editor",
+                    " web browser",
+                    " ms word",
+                    " ms powerpoint"
+                  ],
+                  "lessonTaskCorrectAnswers": [
+                    "text editor",
+                    " web browser"
+                  ],
+                  "_id": {
+                    "$oid": "6637624a0e62e8dfd31c15bb"
+                  },
+                  "lessonTaskAnswerType": "multiple"
+                },
+                {
+                  "lessonTaskGrade": 0,
+                  "lessonTaskType": "coding",
+                  "lessonTaskQuestion": "Write an HTML code to display hello world",
+                  "lessonTaskAnswerOptions": [],
+                  "lessonTaskCorrectAnswers": [],
+                  "_id": {
+                    "$oid": "663764bf8dc8d45c85a2f51b"
+                  },
+                  "lessonTaskAnswerType": "coding"
                 }
               ]
             }
@@ -79,7 +128,6 @@
         "$oid": "663747fb7bb880fd3e827c61"
       }
     },
-
     {
       "moduleName": "Cascading Style Sheet (CSS)",
       "moduleId": "css",
@@ -106,36 +154,33 @@
                 {
                   "lessonTaskGrade": 0,
                   "lessonTaskType": "short",
-                  "lessonTaskQuestion": "What are the two most important software needed to create a webpage?",
+                  "lessonTaskQuestion": "Which of the following are the three main componets of a css style rule?",
                   "lessonTaskAnswerOptions": [
-                    "text editor",
-                    " web browser",
-                    " ms word",
-                    " ms powerpoint"
+                    "Selector, Property, Value",
+                    "Attribute, Selector, Value",
+                    "Property, Value, Element",
+                    "Class, Id, Element"
                   ],
                   "lessonTaskCorrectAnswers": [
-                    "text editor",
-                    " web browser"
-                  ]
+                    "Selector, Property, Value"
+                  ],
+                  "lessonTaskAnswerType": "single"
                 },
                 {
                   "lessonTaskGrade": 0,
-                  "lessonTaskType": "short",
-                  "lessonTaskQuestion": "Most html tags are in pairs",
-                  "lessonTaskAnswerOptions": [
-                    "True",
-                    "False"
-                  ],
+                  "lessonTaskType": "long",
+                  "lessonTaskQuestion": "Name three items that can be used as selectors in CSS",
+                  "lessonTaskAnswerOptions": [],
                   "lessonTaskCorrectAnswers": [
-                    "True"
-                  ]
+                    "class, id, element, tag, attribute, pseudoclass, pseudoelement"
+                  ],
+                  "lessonTaskAnswerType": "text"
                 }
               ]
             }
           ]
         }
       ]
-
     }
   ],
   "courseFaculty": "Technology",

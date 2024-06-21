@@ -2,10 +2,16 @@ import react, { useEffect, useState } from 'react';
 import './AddTopic.scss';
 import ky from 'ky';
 import { useForm } from 'react-hook-form';
-import { Course, CourseModule } from '@/app/utils/types';
+import { Course, CourseModule, Employee } from '@/app/utils/types';
 import { NavLink } from 'react-router-dom';
+import { AsideMenu } from '../Asidemenu/AsideMenu';
 
-export const AddTopic = ({courses = []}) => {
+interface AddTopicProps {
+  courses: Course[],
+  staff: Employee
+}
+
+export const AddTopic: React.FC<AddTopicProps> = ({courses, staff}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
   const [selectedCourse, setSelectedCourse] = useState<Course | object>();
@@ -50,59 +56,62 @@ export const AddTopic = ({courses = []}) => {
   }
 
   return (
-    <section className="AddCourse">
-      <h2 className="AddCourse__heading">Add Topics</h2>
+    <section className="AddTopics">
+      {staff && (<AsideMenu />)}
 
-      <form className="AddCourse__form" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="courseName" className="AddCourse__label">
-          Select a Course:
+      <div className="AddTopics__wrapper">
+        <h2 className="AddTopics__heading">Add Topics</h2>
 
-          <select id="courseName" className="AddCourse__input" onChange={handleCourseChange} hidden >
-            <option value="" disabled selected>Select a Course</option>
+        <form className="AddTopics__form" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="courseName" className="AddTopics__label">
+            Select a Course:
+            <select id="courseName" className="AddTopics__input" onChange={handleCourseChange} hidden >
+              <option value="" disabled selected>Select a Course</option>
+              {
+                courses.map((course: Course) => {                
+                  return <option value={course.courseId} key={course.courseName}>{course.courseName}</option>
+                })
+              }
+              
+            </select>
+          </label>
+
+          <label htmlFor="moduleName" className="AddTopics__label">
+            Module:
+
             {
-              courses.map((course: Course) => {                
-                return <option value={course.courseId} key={course.courseName}>{course.courseName}</option>
-              })
+              <select id="moduleName" className="AddTopics__input" onChange={handleModuleChange}>
+                <option value="" disabled selected>Select Module</option>
+                {
+                  selectedCourse?.courseModules.map((courseModule) => (
+                    selectedCourse.courseModules.some((module) => module.moduleName === courseModule.moduleName) &&<option value={courseModule.moduleId} key={courseModule.moduleName}>
+                      {courseModule.moduleName}
+                    </option>
+                  ))
+                }
+              </select>
             }
-            
-          </select>
-        </label>
+          </label>
 
-        <label htmlFor="moduleName" className="AddCourse__label">
-          Module:
+          <label htmlFor="topic" className="AddTopics__label">
+            Topic Title:
+            <input type="text" id='topic' className="AddTopics__input" {...register('topicTitle', {required: true})}/>
+          </label>
 
           {
-            <select id="moduleName" className="AddCourse__input" onChange={handleModuleChange}>
-              <option value="" disabled selected>Select Module</option>
-              {
-                selectedCourse?.courseModules.map((courseModule) => (
-                  selectedCourse.courseModules.some((module) => module.moduleName === courseModule.moduleName) &&<option value={courseModule.moduleId} key={courseModule.moduleName}>
-                    {courseModule.moduleName}
-                  </option>
-                ))
-              }
-            </select>
+            feedback && (
+              <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
+                {feedback}
+              </p>
+            )
           }
-        </label>
 
-        <label htmlFor="topic" className="AddCourse__label">
-          Topic Title:
-          <input type="text" id='topic' className="AddCourse__input" {...register('topicTitle', {required: true})}/>
-        </label>
-
-        {
-          feedback && (
-            <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
-              {feedback}
-            </p>
-          )
-        }
-
-        <div className="AddCourse__button-group">
-          <button type='submit' className="AddCourse__submit">Save Topic</button>
-          <NavLink to={'/lessons'}><button type='button' className="AddCourse__addTopic">Add Lessons</button></NavLink>
-        </div>
-      </form>
+          <div className="AddTopics__button-group">
+            <button type='submit' className="AddTopics__submit">Save Topic</button>
+            <NavLink to={'/lessons'}><button type='button' className="AddTopics__addTopic">Add Lessons</button></NavLink>
+          </div>
+        </form>
+      </div>
     </section>
   )
 }

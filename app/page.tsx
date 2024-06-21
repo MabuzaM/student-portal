@@ -17,6 +17,17 @@ import { ModulesList } from './components/ModulesList/ModulesList';
 import { Courses } from './courses';
 import { Mobilenav } from './components/MobileNav/MobileNav';
 import { CourseInfo } from './components/CourseInfo/CourseInfo';
+import { StaffPortal } from './components/AdminDashboard/StaffPortal';
+import { StaffLogin } from './components/StaffLogin/StaffLogin';
+import { AsideMenu } from './components/Asidemenu/AsideMenu';
+import { DashboardOverView } from './components/DashboardOverview/DashboardOverview';
+import { AddCourse } from './components/AddCourse/AddCourse';
+import { AddLesson } from './components/AddLesson/AddLesson';
+import { AddModule } from './components/AddModule/AddModule';
+import { AddTask } from './components/AddTasks/AddTask';
+import { AddTopic } from './components/AddTopic/AddTopic';
+import { EmployeeRegistration } from './components/EmployeeRegistration/EmployeeRegistration';
+import { Students } from './components/Students/Students';
 
 function App() {
   //States
@@ -25,7 +36,8 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [students, setStudents] = useState<Student[]>([]);
-  const [user, setUser] = useState<Student>();
+  const [student, setStudent] = useState<Student>();
+  const [staff, setStaff] = useState<Employee>();
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,7 +68,9 @@ function App() {
   })
  },[])
 
- const onInputChange = (e) => {
+//STUDENT LOGIN FORM LOGIC
+
+ const onStudentInputChange = (e) => {
   if (e.target.name === 'username') {
     setUsername(e.target.value);
   } else {
@@ -64,47 +78,64 @@ function App() {
   }
  }
 
- const onLogin = (e) => {
+ const onStudentLogin = (e) => {
   e.preventDefault();
 
-  const loggedInUser: Student | undefined = students.find((student: Student) => ((student.email === username || student.studentNumber === username) && (student.password === password)));
+  const loggedInStudent: Student | undefined = students.find((student: Student) => ((student.email === username || student.studentNumber === username) && (student.password === password)));
 
   // console.log(loggedInUser);
  
-  if (loggedInUser) {
-   
-    // localStorage.setItem("user", JSON.stringify(loggedInUser));
-    setUser(loggedInUser);
-    if (loggedInUser){
-      // navigate('/student-portal', { replace: true });
-    }
-    
-    // if (loggedInUser?.role === 'student') {
-    //   return (
-    //     <Navigate to={'/student-portal'} replace={true}/>
-    //   )
-    // } else if (loggedInUser?.role === 'adminStaff') {
-    //   return (
-    //     <Navigate to={'/staff-portal'} replace={true} />
-    //   )
-    // }
+  if (loggedInStudent) { 
+    setStudent(loggedInStudent);
+    setStaff(undefined);
+  
   } else {
     alert("You are either not registered or you entered incorrect username and password combination");
   }
  }
 
- const handleLogin = (role: string) => {
+ //STAFF LOGIN FORM LOGIC
+
+ const onStaffInputChange = (e) => {
+  if (e.target.name === 'username') {
+    setUsername(e.target.value);
+  } else {
+    setPassword(e.target.value);
+  }
+ }
+
+ const onStaffLogin = (e) => {
+  e.preventDefault();
+
+  const loggedInStaff: Employee | undefined = employees?.find((employee: Employee) => ((employee.employeeEmail === username || employee.employeeNumber === username) && (employee.employeePassword === password)));
+ 
+  if (loggedInStaff) { 
+    setStaff(loggedInStaff);
+    setStudent(undefined);
   
+  } else {
+    alert("You are either not registered or you entered incorrect username and password combination");
+  }
+ }
+
+ const handleLogout = () => {
+  if (student) {
+    setStudent(undefined);
+  } else if (staff) {
+    setStaff(undefined);
+  } else {
+    setStaff(undefined);
+    setStudent(undefined);
+  }
  }
 
   return (
     <>
-     <Header user={user}/>
+     <Header student={student} staff={staff}/>
      <HashRouter>
       <div className="App">
-        <MainNavbar user={user} />
-    
-        <main className="Main App_main">
+        <MainNavbar student={student} staff={staff} onLogout={handleLogout}/>
+        <main className="Main App_main">      
           
           <Routes>
             <Route
@@ -112,49 +143,127 @@ function App() {
               element={<Home courses={courses}/>}
             />
             <Route
-              path='/login'
-              element={!user 
+              path='/student-login'
+              element={!student 
                 ? <LoginForm
                     username = {username}
                     password={password}
-                    onInputChange={onInputChange}
-                    onLogin={onLogin}
-              /> : <Navigate to="/student-portal" replace/>}
+                    onInputChange={onStudentInputChange}
+                    onLogin={onStudentLogin}
+              /> : <Navigate to="/dashboard" replace/>}
             />
 
             <Route
               path='/dashboard'
-              element={user && user.role === 'student'
-                ? <StudentsDashboard courses={courses} user={user}/>
-                : <Navigate to="/login" replace/>}
+              element={student
+                ? <StudentsDashboard courses={courses} user={student}/>
+                : <Navigate to="/student-login" replace/>}
             />
 
             <Route
               path='/student-profile'
-              element={user  && user.role === 'student'
-                ? <StudentProfile user={user}/>
-                : <Navigate to="/login" replace/>}
+              element={student
+                ? <StudentProfile user={student}/>
+                : <Navigate to="/student-login" replace/>}
             />
 
             <Route
               path='/learn'
-              element={user  && user.role === 'student'
-                ? <ModulesList courses={courses} user={user}/>
-                : <Navigate to="/login" replace/>}
+              element={student
+                ? <ModulesList courses={courses} user={student}/>
+                : <Navigate to="/student-login" replace/>}
             />
 
             <Route
               path='/course-info'
-              element={user  && user.role === 'student'
-                ? <CourseInfo courses={courses} user={user}/>
-                : <Navigate to="/login" replace/>}
+              element={student
+                ? <CourseInfo courses={courses} user={student}/>
+                : <Navigate to="/student-login" replace/>}
             />
 
             <Route
               path='/studentRegistration'
-              element={!user
+              element={!student
                 ? <StudentRegistration courses={courses}/>
                 : <Navigate to="/student-portal" replace/>}
+            />
+
+
+            <Route
+              path='/staff-login'
+              element={!staff
+                ? <StaffLogin
+                    username = {username}
+                    password={password}
+                    onStaffInputChange={onStaffInputChange}
+                    onStaffLogin={onStaffLogin}
+              /> : <Navigate to="/overview" replace/>}
+            />
+
+            <Route
+              path='/overview'
+              element={staff
+                ? <DashboardOverView courses={courses} students={students} employees={employees} staff={staff}/>
+                : <Navigate to="/staff-login" replace/>}
+            />
+
+            <Route
+              path='/add-course'
+              element={
+                staff
+                  ? <AddCourse employees={employees} staff={staff} />
+                  : <Navigate to={`/staff-login`} replace/>
+              }
+            />
+
+            <Route
+              path='/add-lesson'
+              element={
+                staff
+                  ? <AddLesson courses={courses} staff={staff} />
+                  : <Navigate to={`/staff-login`} replace/>
+              }
+            />
+
+            <Route
+              path='/add-module'
+              element={
+                staff
+                  ? <AddModule courses={courses} employees={employees} staff={staff} />
+                  : <Navigate to={`/staff-login`} replace/>
+              }
+            />
+
+            <Route
+              path='/add-tasks'
+              element={
+                staff
+                  ? <AddTask courses={courses} staff={staff} />
+                  : <Navigate to={`/staff-login`} replace/>
+              }
+            />
+
+            <Route
+              path='/add-topics'
+              element={
+                staff
+                  ? <AddTopic courses={courses} staff={staff} />
+                  : <Navigate to={`/staff-login`} replace/>
+              }
+            />
+
+            <Route
+              path='/students'
+              element={staff
+                ? <Students staff={staff} />
+                : <Navigate to="/staff-login" replace/>}
+            />
+
+            <Route
+              path='/staff-registration'
+              element={staff
+                ? <EmployeeRegistration courses={courses} staff={staff} />
+                : <Navigate to="/staff-login" replace/>}
             />
           </Routes>                     
         </main>

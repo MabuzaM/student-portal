@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './MobileNav.scss';
+import { Employee, Student } from '@/app/utils/types';
 
-export const Mobilenav = ({user = undefined, isOpen = false}) => {
+interface MobileNavProps {
+  student: Student | undefined;
+  staff: Employee | undefined;
+  isOpen: boolean;
+}
+
+export const Mobilenav: React.FC<MobileNavProps> = ({student, staff, isOpen}) => {
   // const [isOpen, setIsOpen] = useState(false);
 
   // const toggleNav = () => {
@@ -17,7 +24,7 @@ export const Mobilenav = ({user = undefined, isOpen = false}) => {
         </li>
 
         {
-          user && user?.role === 'student' 
+          student
             ? (
                 <>
                   <li className="MobileNav__item">
@@ -37,7 +44,28 @@ export const Mobilenav = ({user = undefined, isOpen = false}) => {
                   </li>
                 </>
                 )
-            : (
+            : staff
+              ? 
+              (
+                <>
+                  <li className="MobileNav__item">
+                    <NavLink to="/admin-dashboard" className="MobileNav__link">Admin Dashboard</NavLink>
+                  </li>
+
+                  <li className="MobileNav__item">
+                    <NavLink to="/courses" className="MobileNav__link">Courses</NavLink>
+                  </li>
+
+                  <li className="MobileNav__item">
+                    <NavLink to="/students" className="MobileNav__link">Students</NavLink>
+                  </li>
+
+                  <li className="MobileNav__item">
+                    <NavLink to="/logout" className="MobileNav__link">Logout</NavLink>
+                  </li>
+                </>
+                ) :
+              (
                 <>
                   <li className="MobileNav__item">
                     <NavLink to="/studentRegistration" className="MobileNav__link">Apply&nbsp;Now</NavLink>

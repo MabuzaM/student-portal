@@ -2,9 +2,15 @@ import react, { useEffect, useState } from 'react';
 import './AddLesson.scss';
 import ky from 'ky';
 import { useForm } from 'react-hook-form';
-import { Course, CourseModule } from '@/app/utils/types';
+import { Course, CourseModule, Employee } from '@/app/utils/types';
+import { AsideMenu } from '../Asidemenu/AsideMenu';
 
-export const AddLesson = ({courses = []}) => {
+interface AddLessonProps {
+  courses: Course[],
+  staff: Employee
+}
+
+export const AddLesson: React.FC<AddLessonProps> = ({courses, staff}) => {
   const { register, handleSubmit, formState: {errors} } = useForm();
   const client = ky.create({});
   const [feedback, setFeedback] = useState('');
@@ -55,98 +61,102 @@ export const AddLesson = ({courses = []}) => {
   }
 
   return (
-    <section className="AddCourse">
-      <h2 className="AddCourse__heading">Add Lessons</h2>
+    <section className="AddLesson">
+      {staff && (<AsideMenu />)}
 
-      <form className="AddCourse__form" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="courseName" className="AddCourse__label">
-          Select a Course:
+      <div className="AddLesson__wrapper">
+        <h2 className="AddLesson__heading">Add Lessons</h2>
 
-          <select id="courseName" className="AddCourse__input" onChange={handleCourseChange}>
-            <option value="" disabled selected>Select a Course</option>
+        <form className="AddLesson__form" onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="courseName" className="AddLesson__label">
+            Select a Course:
+
+            <select id="courseName" className="AddLesson__input" onChange={handleCourseChange}>
+              <option value="" disabled selected>Select a Course</option>
+              {
+                courses.map((course: Course) => {
+                  
+                  return <option value={course.courseName} key={course.courseName}>{course.courseName}</option>
+                })
+              }
+              
+            </select>
+          </label>
+
+          <label htmlFor="moduleName" className="AddLesson__label">
+            Module:
+
             {
-              courses.map((course: Course) => {
-                
-                return <option value={course.courseName} key={course.courseName}>{course.courseName}</option>
-              })
+              <select id="moduleName" className="AddLesson__input" onChange={handleModuleChange}>
+                <option disabled value={''} selected>Select Module</option>
+                {
+                  selectedCourse?.courseModules.map((courseModule) => (
+                    <option value={courseModule.moduleId} key={courseModule.moduleName}>
+                      {courseModule.moduleName}
+                    </option>
+                  ))
+                }
+              </select>
             }
-            
-          </select>
-        </label>
+          </label>
 
-        <label htmlFor="moduleName" className="AddCourse__label">
-          Module:
-
-          {
-            <select id="moduleName" className="AddCourse__input" onChange={handleModuleChange}>
-              <option disabled value={''} selected>Select Module</option>
-              {
-                selectedCourse?.courseModules.map((courseModule) => (
-                  <option value={courseModule.moduleId} key={courseModule.moduleName}>
-                    {courseModule.moduleName}
-                  </option>
-                ))
-              }
-            </select>
-          }
-        </label>
-
-        <label htmlFor="noduleTopic" className="AddCourse__label">
-          Topic:
-          {
-            <select id="moduleTopic" className="AddCourse__input" onChange={handleTopicChange}>
-              <option disabled value={''} selected>Select Topic</option>
-              {
-                  selectedModule?.moduleTopics.map((moduleTopic) => (
-                      <option value={moduleTopic.topic} key={moduleTopic.topic}>
-                        {moduleTopic.topic}
-                      </option>
+          <label htmlFor="noduleTopic" className="AddLesson__label">
+            Topic:
+            {
+              <select id="moduleTopic" className="AddLesson__input" onChange={handleTopicChange}>
+                <option disabled value={''} selected>Select Topic</option>
+                {
+                    selectedModule?.moduleTopics.map((moduleTopic) => (
+                        <option value={moduleTopic.topic} key={moduleTopic.topic}>
+                          {moduleTopic.topic}
+                        </option>
+                      )
                     )
-                  )
-              }
-            </select>
+                }
+              </select>
+            }
+          </label>
+
+          <label htmlFor="topicLessonTitle" className="AddLesson__label">
+            Lesson Title:
+            <input type="text" id='topicLessonTitle' className="AddLesson__input" {...register('topicLessonTitle', {required: true})}/>
+          </label>
+
+          <label htmlFor="topicLessonNotes" className="AddLesson__label">
+            Lesson Notes:
+            <textarea
+              id="topicLessonNotes"
+              cols="30"
+              rows="10"
+              className="AddLesson__input"
+              {...register('topicLessonNotes', {required: true})}
+            ></textarea>
+          </label>
+
+          <label htmlFor="topicLessonExtLinks" className="AddLesson__label">
+            External Links:
+            <input type="text" id='topicLessonExtLinks' className="AddLesson__input" placeholder='Enter external links, separated by a semi-colon (;)'{...register('topicLessonExtLinks', {required: true})}/>
+          </label>
+
+          <label htmlFor="topicLessonVideoLink" className="AddLesson__label">
+            Video Link:
+            <input type="text" id='topicLessonVideoLink' className="AddLesson__input" placeholder='Enter a video link'{...register('topicLessonVideoLink', {required: true})}/>
+          </label>
+
+          {
+            feedback && (
+              <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
+                {feedback}
+              </p>
+            )
           }
-        </label>
 
-        <label htmlFor="topicLessonTitle" className="AddCourse__label">
-          Lesson Title:
-          <input type="text" id='topicLessonTitle' className="AddCourse__input" {...register('topicLessonTitle', {required: true})}/>
-        </label>
-
-        <label htmlFor="topicLessonNotes" className="AddCourse__label">
-          Lesson Notes:
-          <textarea
-            id="topicLessonNotes"
-            cols="30"
-            rows="10"
-            className="AddCourse__input"
-            {...register('topicLessonNotes', {required: true})}
-          ></textarea>
-        </label>
-
-        <label htmlFor="topicLessonExtLinks" className="AddCourse__label">
-          External Links:
-          <input type="text" id='topicLessonExtLinks' className="AddCourse__input" placeholder='Enter external links, separated by a semi-colon (;)'{...register('topicLessonExtLinks', {required: true})}/>
-        </label>
-
-        <label htmlFor="topicLessonVideoLink" className="AddCourse__label">
-          Video Link:
-          <input type="text" id='topicLessonVideoLink' className="AddCourse__input" placeholder='Enter a video link'{...register('topicLessonVideoLink', {required: true})}/>
-        </label>
-
-        {
-          feedback && (
-            <p className={`Feedback ${submitError ? 'Feedback__error' : 'Feedback__success'}`}>
-              {feedback}
-            </p>
-          )
-        }
-
-        <div className="AddCourse__button-group">
-          <button type='submit' className="AddCourse__submit">Save Lesson</button>
-          <button type='button' className="AddCourse__addTopic">Update Lesson</button>
-        </div>
-      </form>
+          <div className="AddLesson__button-group">
+            <button type='submit' className="AddLesson__submit">Save Lesson</button>
+            <button type='button' className="AddLesson__addTopic">Update Lesson</button>
+          </div>
+        </form>
+      </div>
     </section>
   )
 }

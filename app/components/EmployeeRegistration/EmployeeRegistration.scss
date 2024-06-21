@@ -2,11 +2,17 @@
 
 .EmployeeRegistration {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 50px;
-  background-color: $light-blue;
-  padding: 20px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 50px;
+    background-color: $light-blue;
+    padding: 20px;
+  
+    
+  }
 
   &__row {
     display: flex;
@@ -61,5 +67,4 @@
       cursor: pointer;
     }
   }
-
 }

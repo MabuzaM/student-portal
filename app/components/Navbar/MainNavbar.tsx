@@ -9,12 +9,69 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Mobilenav } from '../MobileNav/MobileNav';
+import { Student, Employee } from '@/app/utils/types';
 
-export const MainNavbar = ({ user = undefined }) => {
+interface MainNavbarProps {
+  student: Student | undefined;
+  staff: Employee | undefined;
+  onLogout: () => {}
+}
+
+export const MainNavbar: React.FC<MainNavbarProps> = ({ student, staff, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
+  }
+
+  const renderNavLinks = (staff: Employee | undefined,  student: Student | undefined) => {
+    if (student && !staff) {
+      return (
+        <>
+          <li className="Nav_item">
+            <NavLink to="/student-profile" className="Nav_link">Profile</NavLink>
+          </li>
+
+          <li className="Nav_item">
+            <NavLink to="/course-info" className="Nav_link">Course&nbsp;Info</NavLink>
+          </li>
+
+          <li className="Nav_item">
+            <NavLink to="/learn" className="Nav_link">
+              Learn
+            </NavLink>
+          </li>
+
+          <li className='Nav_item'>
+            <NavLink to="/dashboard" className="Nav_link">
+              Dashboard
+            </NavLink>
+          </li>
+
+          <li className="Nav_item">
+            <NavLink to="/" className="Nav_link" onClick={onLogout}>Logout</NavLink>
+          </li>
+        </>
+      );
+    } else if (staff && !student) {
+      return (
+        <>
+          <li className="Nav_item">
+            <NavLink to="/overview" className="Nav_link">Dashboard Overview</NavLink>
+          </li>
+
+          {/* <li className='Nav_item'>
+            <NavLink to="/admin-dashboard" className="Nav_link">
+              Admin&nbsp;Dashboard
+            </NavLink>
+          </li> */}
+
+          <li className="Nav_item">
+          <NavLink to="/" className="Nav_link" onClick={onLogout}>Logout</NavLink>
+          </li>
+        </>
+      );
+    }
   }
 
   return (
@@ -26,47 +83,21 @@ export const MainNavbar = ({ user = undefined }) => {
         </li>
 
         {
-          user && user?.role === 'student' 
-            ? (
-                <>
-                  <li className="Nav_item">
-                    <NavLink to="/student-profile" className="Nav_link">Profile</NavLink>
-                  </li>
+          renderNavLinks(staff, student)
+        }
 
-                  <li className="Nav_item">
-                    <NavLink to="/course-info" className="Nav_link">Course&nbsp;Info</NavLink>
-                  </li>
-
-                  <li className="Nav_item">
-                    <NavLink to="/learn" className="Nav_link">
-
-                      Learn
-                    </NavLink>
-                  </li>
-
-                  <li className='Nav_item'>
-                    <NavLink to="/dashboard" className="Nav_link">
-                      Dashboard
-                    </NavLink>
-                  </li>
-
-                  <li className="Nav_item">
-                    <NavLink to="/logout" className="Nav_link">Logout</NavLink>
-                  </li>
-                </>
-                )
-            : (
-                <>
-                  <li className="Nav_item">
-                    <NavLink to="/studentRegistration" className="Nav_link">Apply&nbsp;Now</NavLink>
-                  </li>
-
-                  <li className="Nav_item">
-                    <NavLink to="/login" className="Nav_link">Login</NavLink>
-                  </li>
-                </>
-              )
-        }        
+        <li className="Nav_item">
+          <NavLink to="/studentRegistration" className="Nav_link">Apply&nbsp;Now</NavLink>
+        </li>
+  
+        {/* <li className="Nav_item">
+          <NavLink to="/student-login" className="Nav_link">Student&nbsp;Login</NavLink>
+        </li>
+  
+        <li className="Nav_item">
+          <NavLink to="/staff-login" className="Nav_link">Staff&nbsp;Login</NavLink>
+        </li>  */}
+   
       </ul>
 
       <div className="Nav__mobile">
@@ -76,7 +107,7 @@ export const MainNavbar = ({ user = undefined }) => {
           <span className="Nav__hamburger-bar"></span>
         </div>
 
-        <Mobilenav user={user} isOpen={isOpen}/>
+        <Mobilenav student={student} staff={staff} isOpen={isOpen}/>
       </div>
     </nav>
   );

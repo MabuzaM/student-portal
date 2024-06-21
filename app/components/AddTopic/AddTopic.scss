@@ -4,9 +4,13 @@ select {
   padding: 0;
 }
 
-.AddCourse {
+.AddTopics {
   display: flex;
-  flex-direction: column;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__heading {
     margin-bottom: 40px;

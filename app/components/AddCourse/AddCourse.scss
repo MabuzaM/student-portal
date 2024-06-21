@@ -6,7 +6,12 @@ select {
 
 .AddCourse {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__heading {
     margin-bottom: 40px;
@@ -17,7 +22,7 @@ select {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    min-width: 100%;
+    max-width: 100%;
   }
 
   &__label {
